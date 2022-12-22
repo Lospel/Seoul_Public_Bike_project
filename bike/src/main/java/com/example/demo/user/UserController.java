@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+    private final UserService userService;
     
     @GetMapping("/signup")
     public String signup(UserCreateForm userCreateForm) {
