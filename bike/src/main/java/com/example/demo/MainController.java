@@ -10,4 +10,8 @@ public class MainController {
     public String main() {
         return "main_form";
     }
+    @RequestMapping("/main_login")
+    public String main_login() {
+        return "main_login";
+    }
 }
