@@ -7,11 +7,12 @@
     <title>Seoul_Public_Bike</title>
 </head>
 <body>
-    <form action="/login" method="GET">
+    <form th:action="@{/user/main}" method="GET">
         <div>
             <input name="keyword" type="text" placeholder="대여소 검색하기">
         </div>
         <button>검색</button>
     </form>
+    
 </body>
 </html>
