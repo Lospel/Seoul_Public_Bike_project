@@ -34,7 +34,8 @@ public class UserController {
         }
         
         try {
-            userService.create(userCreateForm.getUsername(), 
+            userService.create(userCreateForm.getNickname(),
+            userCreateForm.getUsername(), 
             userCreateForm.getEmail(), 
             userCreateForm.getPassword1());
         } catch (DataIntegrityViolationException e) {
@@ -50,6 +51,10 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login_form";
+    }
 
     @GetMapping("/rental_office")
     public String rental_office() {
