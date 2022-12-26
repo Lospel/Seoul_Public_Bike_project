@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-<th:block th:fragment="sidebarFragment">
-
-    <!-- Sidebar -->
-    <!-- <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-    </ul> -->
+<th:block th:fragment="sidebarFragment(current)">
 
     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -16,13 +11,13 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
+            <a th:href="@{/user/rental_office}" class="nav-link link-dark" aria-current="page" th:classappend="${current == '대여소'} ? active">
               <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
               대여소
             </a>
           </li>
-          <li>
-            <a href="#" class="nav-link link-dark">
+          <li class="nav-item">
+            <a th:href="@{/user/course}" class="nav-link link-dark"  th:classappend="${current == '코스확인'} ? active">
               <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
               코스확인
             </a>
@@ -56,5 +51,4 @@
       </div>
 
 </th:block>
-
 </html>
