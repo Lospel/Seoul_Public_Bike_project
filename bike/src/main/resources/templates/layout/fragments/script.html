@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org">
+
+<!-- 공통으로 쓰이는 script 파일을넣는다.-->
+<th:block th:fragment="scriptFragment">
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+
+	.... 스크립트 코드 작성
+
+    <!-- Page level custom scripts -->
+    <script th:src="@{/css/bootstrap.css}"></script>
+
+</th:block>
+</html>

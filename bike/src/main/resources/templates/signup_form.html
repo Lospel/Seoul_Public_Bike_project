@@ -1,11 +1,13 @@
-<html layout:decorate="~{layout}">
-<div layout:fragment="content" class="container my-3">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+<th:block layout:fragment="content" class="container my-3">
     <div class="my-3 border-bottom">
         <div>
             <h4>회원가입</h4>
         </div>
     </div>
-    <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
+    <!-- <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
         <div class="mb-3">
             <label for="nickname" class="form-label">이름</label>
@@ -28,6 +30,6 @@
             <input type="email" th:field="*{email}" class="form-control">
         </div>
         <button type="submit" class="btn btn-primary">회원가입</button>
-    </form>
-</div>
+    </form> -->
+</th:block>
 </html>

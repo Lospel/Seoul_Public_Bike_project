@@ -1,21 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seoul_Public_Bike</title>
-</head>
-<body>
-    <thead>
-        MainView
-    </thead>
-    <tbody>
-        <td>Seoul Bike trevel</td>
-        <td>주제설명</td>
-    </tbody>
-    <footer>
-        <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+<!-- 최신 SpringBoot 에서는 layout:decorate="~{layout/layout}" 으로 사용 -->
+
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <h1>MainView</h1>
+        <h5>Seoul Bike trevel</h5>
+        <h5>주제설명</h5>
+        <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/rental_office}">로그인</a>
         <a class="nav-link" th:href="@{/user/signup}">회원가입</a>
-    </footer>
-</body>
+    </div>
+</th:block>
 </html>
