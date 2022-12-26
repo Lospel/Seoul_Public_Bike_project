@@ -3,8 +3,11 @@
       layout:decorator="~{layout/layout}">
 
 <th:block th:replace="/layout/fragments/head :: headFragment(title='대여소')"></th:block>
+<!-- 사이드바 -->
+<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='대여소')"></th:block>
 
 <th:block layout:fragment="content" class="container my-3">
+  
     <form th:action="@{/user/rental_office}" method="GET">
       <!-- 상단 검색창 -->
       <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
@@ -30,9 +33,7 @@
           <input type="button" id="searchBtn" name="searchBtn" value="검색" />
         </div>
       </div>
-      <!-- 사이드바 -->
-      <th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='대여소')"></th:block>
-
+    
 
     
     <th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
