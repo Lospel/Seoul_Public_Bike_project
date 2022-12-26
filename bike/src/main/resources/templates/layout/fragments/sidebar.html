@@ -42,9 +42,9 @@
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link link-dark">
+            <a href="#" class="nav-link link-dark" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">
               <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-              Customers
+              로그아웃
             </a>
           </li>
         </ul>
