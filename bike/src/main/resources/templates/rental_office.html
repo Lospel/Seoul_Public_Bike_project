@@ -7,12 +7,12 @@
     <title>Seoul_Public_Bike</title>
 </head>
 <body>
-    <form th:action="@{/user/main}" method="GET">
+    <form th:action="@{/user/rental_office}" method="GET">
         
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
               <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-              <span class="fs-4">Sidebar</span>
+              <span class="fs-4">따릉이 여행</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
@@ -63,10 +63,9 @@
             </div>
           </div>
         </div>
-        
-        <div>
-            <input name="keyword" type="text" placeholder="대여소 검색하기">
-            <button>검색</button>
+        <div class="search" style="width: px;">
+            <input id="keyword" name="keyword" type="text" placeholder="대여소 검색하기">
+            <input type="button" id="keywordBtn" name="keywordBtn" value="검색"> 
         </div>
     </form>
     

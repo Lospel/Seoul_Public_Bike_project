@@ -50,14 +50,10 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login_form";
-    }
 
-    @GetMapping("/main")
+    @GetMapping("/rental_office")
     public String main() {
-        return "main_login";
+        return "rental_office";
     }
     
 }
