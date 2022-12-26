@@ -52,8 +52,13 @@ public class UserController {
 
 
     @GetMapping("/rental_office")
-    public String main() {
+    public String rental_office() {
         return "rental_office";
+    }
+
+    @GetMapping("/course")
+    public String course(){
+        return "course";
     }
     
 }
