@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="~{layout/layout}">
-<!-- 최신 SpringBoot 에서는 layout:decorate="~{layout/layout}" 으로 사용 -->
-
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="/layout/fragments/head :: headFragment(title='따릉이')"></th:block>
+<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='따릉이')"></th:block>
 <th:block layout:fragment="content">
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -15,4 +14,5 @@
         <a th:href="@{/user/signup}">회원가입</a>
     </div>
 </th:block>
+<th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
 </html>
