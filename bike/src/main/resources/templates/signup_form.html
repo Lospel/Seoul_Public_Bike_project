@@ -1,6 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="~{layout/layout}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="/layout/fragments/head :: headFragment(title='회원가입')"></th:block>
+<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='회원가입')"></th:block>
 <th:block layout:fragment="content" class="container my-3">
     <div class="my-3 border-bottom">
         <div>
@@ -32,4 +33,5 @@
         <button type="submit" class="btn btn-primary">회원가입</button>
     </form>
 </th:block>
+<th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
 </html>
