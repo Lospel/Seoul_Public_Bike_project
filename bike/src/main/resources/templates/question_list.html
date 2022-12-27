@@ -1,9 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="~{layout/layout}">
+      >
 <th:block th:replace="/layout/fragments/head :: headFragment(title='커뮤니티')"></th:block>
 <th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='커뮤니티')"></th:block>
-<main>
+
     <div layout:fragment="content" class="container my-3">
         <div class="row my-3">
             <div class="col-6">
@@ -71,7 +71,7 @@
             <input type="hidden" id="page" name="page" th:value="${paging.number}">
         </form>
     </div>
-</main>
+
 <script layout:fragment="script" type="text/javascript">
 const page_elements = document.getElementsByClassName("page-link");
 Array.from(page_elements).forEach(function(element) {
