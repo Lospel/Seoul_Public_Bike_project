@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
 <th:block th:replace="/layout/fragments/head :: headFragment(title='따릉이')"></th:block>
 <th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='따릉이')"></th:block>
 <th:block layout:fragment="content">
     <!-- Begin Page Content -->
     <div class="container-fluid text-center">
-        <h3 class="slogan" style="margin: 50px;"><img src="https://www.sisul.or.kr/open_content/traffic/images/bike_logo.gif" alt="서울자전거(Seoul Bike) 따릉이" /></h3>
-        <img src="https://img.khan.co.kr/news/2022/03/29/l_2022032901003662700327361.webp" class="img-fluid">
+        <img src="https://user-images.githubusercontent.com/115764991/209622499-2ad50e16-f1b7-4413-9928-2abe4b8f43bf.png" class="img-fluid">
 
         <div id="container" class="mx-auto" >
            
             <div id="detail_con" >
-                <div class="info" style=" padding:30px 40px; background:#fff; display:inline-block; ">
-                    <p class="txt1"><span>서울자전거는 <em style="color:blue;">누구나, 언제나, 어디서나</em> 쉽고 편리하게 이용할 수 있는 무인대여 시스템입니다.</span></p>
-                    <p class="txt2">서울시의 교통체증, 대기오염, 고유가 문제를 해결하고 건강한 사회 및 시민들의 삶의 질을 높이고자 마련되었습니다. </p>
+                <div class="info" style=" padding:30px 40px; display:inline-block; ">
+                    <p class="txt1"><span>Seoul Bicycle is an unmanned rental system that <em style="color:blue;">Anyone, Anytime, Anywhere</em> can use easily and conveniently.</span></p>
+                    <p class="txt2">It is designed to solve traffic congestion, air pollution, and high oil prices in Seoul and to improve the quality of life of healthy society and citizens.</p>
 
                     <div class="container" style="font-size: 14px;">
                         <div class="row">
@@ -35,13 +34,12 @@
                 </div>
             </div>
         </div>
-        <div class="text-center">
-            <a sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
-            <a sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
-            <a th:href="@{/user/signup}">회원가입</a>
+
+        <div>
+            여행 코스
         </div>
+
     </div>
 </th:block>
 <th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
-
 </html>
