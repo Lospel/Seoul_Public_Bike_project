@@ -65,5 +65,10 @@ public class UserController {
     public String course(){
         return "course";
     }
+
+    @GetMapping("/course_1")
+    public String course_1(){
+        return "course_1";
+    }
     
 }
