@@ -1,78 +1,146 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="~{layout/layout}">
-<style>
-      .content1{
-            width:100%;
-            display: flex;
-            flex-direction: row;
-      }
-      .sample{
-            width:600px;
-            height:200px;
-            justify-content: center;
-            display: flex;
-            flex-direction: column;
-      }
-      .fakeimg{
-             background: #aaaaaa;
-             height: 200px;
-             width: 200px;
-             padding: 20px;
-         }
-</style>
-<th:block th:replace="/layout/fragments/head :: headFragment(title='Check out the Course')"></th:block>
+
+<th:block th:replace="/layout/fragments/head :: headFragment(title='코스확인')"></th:block>
 <th:block layout:fragment="content" class="container my-3">
 
       <!-- 사이드바 -->
       <th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Check out the Course')"></th:block>
       <form th:action="@{/user/course}" method="GET">
-            <select id="country" style="width:300px; height:40px; margin:10px 30px;" >
-                  <option>지역 검색</option>
-                  <option value="강남">강남</option>
-                  <option value="홍대">홍대</option>
-                  <option value="북촌">북촌</option>
-            </select>
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+                  </div>
+                  <div class="carousel-inner" style="width:100%; height: 500px;">
+                    <div class="carousel-item active">
+                      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+              
+                      <div class="container">
+                        <div class="carousel-caption text-start">
+                          <h1>Yeouido</h1>
+                          <p>Some representative placeholder content for the first slide of the carousel.</p>
+                          <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+              
+                      <div class="container">
+                        <div class="carousel-caption">
+                          <h1>Bukchon</h1>
+                          <p>Some representative placeholder content for the second slide of the carousel.</p>
+                          <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+              
+                      <div class="container">
+                        <div class="carousel-caption text-end">
+                          <h1>Cheonggyecheon</h1>
+                          <p>Some representative placeholder content for the third slide of this carousel.</p>
+                          <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              
+              
+                <!-- Marketing messaging and featurettes
+                ================================================== -->
+                <!-- Wrap the rest of the page in another container to center all the content. -->
+      
+                <div class="container marketing" style="padding-top: 50px; text-align: center;">
+              
+                  <!-- Three columns of text below the carousel -->
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+              
+                      <h2 class="fw-normal">Yeouido</h2>
+                      <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+                      <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+              
+                      <h2 class="fw-normal">Bukchon</h2>
+                      <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+                      <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                      <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+              
+                      <h2 class="fw-normal">Cheonggyecheon</h2>
+                      <p>And lastly this, the third column of representative placeholder content.</p>
+                      <p><a class="btn btn-secondary" href="#">View details »</a></p>
+                    </div><!-- /.col-lg-4 -->
+                  </div><!-- /.row -->
+              
+              
+                  <!-- START THE FEATURETTES -->
+              
+                  <hr class="featurette-divider">
+              
+                  <div class="row featurette">
+                    <div class="col-md-7">
+                      <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
+                      <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+                    </div>
+                    <div class="col-md-5">
+                      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x300" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+              
+                    </div>
+                  </div>
+              
+                  <hr class="featurette-divider">
+              
+                  <div class="row featurette">
+                    <div class="col-md-7 order-md-2">
+                      <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
+                      <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+                    </div>
+                    <div class="col-md-5 order-md-1">
+                      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x300" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+              
+                    </div>
+                  </div>
+              
+                  <hr class="featurette-divider">
+              
+                  <div class="row featurette">
+                    <div class="col-md-7">
+                      <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+                      <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+                    </div>
+                    <div class="col-md-5">
+                      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 300x300" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+              
+                    </div>
+                  </div>
+              
+                  <hr class="featurette-divider">
+              
+                  <!-- /END THE FEATURETTES -->
+              
+                </div><!-- /.container -->
+            
       </form>
-      <h4>About</h4>
-      <div class="content1">
-            <div class="sample">
-                  <h5>Photo of me:</h5>
-                  <a th:href="@{/user/course_1}">
-                        <div class="fakeimg" style="height: 80px;">Image</div>
-                  </a>
-                  <p>Some text about me</p>
-            </div>
-            <div class="sample">
-                  <h5>Photo of me:</h5>
-                  <div class="fakeimg" style="height: 80px;">Image</div>
-                  <p>Some text about me</p>
-            </div>
-            <div div class="sample">
-                  <h5>Photo of me:</h5>
-                  <div class="fakeimg" style="height: 80px;">Image</div>
-                  <p>Some text about me</p>
-            </div>
-      </div>
-      <hr style="border: double 10px rgb(100, 98, 98);">
-      <h4>이용자 추천</h4>
-      <div class="content1">
-            <div class="sample">
-                  <h5>Photo of me:</h5>
-                  <div class="fakeimg" style="height: 80px;">Image</div>
-                  <p>Some text about me</p>
-            </div>
-            <div class="sample">
-                  <h5>Photo of me:</h5>
-                  <div class="fakeimg" style="height: 80px;">Image</div>
-                  <p>Some text about me</p>
-            </div>
-            <div div class="sample">
-                  <h5>Photo of me:</h5>
-                  <div class="fakeimg" style="height: 80px;">Image</div>
-                  <p>Some text about me</p>
-            </div>
-      </div>
+      
 <th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
 </th:block>
 </html>

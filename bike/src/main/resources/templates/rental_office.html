@@ -11,7 +11,7 @@
       <!-- 상단 검색창 -->
       <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr; ">
 
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center" >
           <form class="w-100 me-3" role="search">
             <input type="text" id="keyword" name="keyword" class="form-control" placeholder="대여소 검색" aria-label="Search">
           </form>
@@ -35,7 +35,7 @@
   
   
   function initMap() { 
-    
+
     var areaArr = new Array();  // 지역을 담는 배열 ( 지역명/위도경도 )
     areaArr.push(
         /*지역구 이름*/			/*위도*/					/*경도*/				
@@ -95,7 +95,7 @@
     
     
     for (var i = 0; i < areaArr.length; i++) {
-      // 지역을 담은 배열의 길이만큼 for문으로 마커와 정보창을 채워주자 !
+      // 지역을 담은 배열의 길이만큼 for문으로 마커를 채워주자 !
   
         var marker = new naver.maps.Marker({
             map: map,
