@@ -4,7 +4,7 @@
 <th:block th:fragment="sidebarFragment(current)">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">따릉이 여행</a>
+          <a class="navbar-brand" href="/">Ttareungi Trip</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -12,41 +12,45 @@
             <ul class="nav navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" sec:authorize="isAnonymous()"  th:href="@{/user/login}">
-                  대여소
+                  Rental Office
                 </a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" aria-current="page" th:href="@{/user/rental_office}" th:classappend="${current == '대여소'} ? active">
-                  대여소
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">
-                  코스확인
-                </a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/course}" th:classappend="${current == '코스확인'} ? active">
-                  코스확인
+                <a class="nav-link" sec:authorize="isAuthenticated()" aria-current="page" th:href="@{/user/rental_office}" th:classappend="${current == 'Rental Office'} ? active">
+                  Rental Office
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">
-                  일일코스 만들기
+                  Check out the Course
                 </a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/}" th:classappend="${current == '일일코스 만들기'} ? active">일일코스 만들기</a>
+                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/course}" th:classappend="${current == 'Check out the Course'} ? active">
+                  Check out the Course
+                </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">
-                  커뮤니티
+                  Create a Daily Course
                 </a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/question/list}" th:classappend="${current == '커뮤니티'} ? active">커뮤니티</a>
+                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/}" th:classappend="${current == 'Create a Daily Course'} ? active">
+                  Create a Daily Course
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">
+                  Community
+                </a>
+                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/question/list}" th:classappend="${current == 'Community'} ? active">
+                  Community
+                </a>
               </li>
             </ui>
             </div>
             <ul class="nav navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
+                <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
+                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">Logout</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" th:href="@{/user/signup}">회원가입</a>
+                <a class="nav-link" th:href="@{/user/signup}">Signup</a>
               </li>
             </ul>
         </div>

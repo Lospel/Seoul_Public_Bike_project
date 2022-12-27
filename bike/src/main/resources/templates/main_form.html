@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
-<th:block th:replace="/layout/fragments/head :: headFragment(title='따릉이')"></th:block>
-<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='따릉이')"></th:block>
+<th:block th:replace="/layout/fragments/head :: headFragment(title='Seoul Public Bicycle Ttareungi')"></th:block>
+<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Seoul Public Bicycle Ttareungi')"></th:block>
 <th:block layout:fragment="content">
     <!-- Begin Page Content -->
     <div class="container-fluid text-center">
         <img src="https://user-images.githubusercontent.com/115764991/209622499-2ad50e16-f1b7-4413-9928-2abe4b8f43bf.png" class="img-fluid">
 
+        <!-- 따릉이 소개 페이지 -->
         <div id="container" class="mx-auto" >
            
             <div id="detail_con" >
-                <div class="info" style=" padding:30px 40px; display:inline-block; ">
+                <hr class="my-2">
+                <div class="info" style="display:inline-block; font-size: large;">
+                    <p class="h2">Seoul Public Bicycle Ttareungi</p>
                     <p class="txt1"><span>Seoul Bicycle is an unmanned rental system that <em style="color:blue;">Anyone, Anytime, Anywhere</em> can use easily and conveniently.</span></p>
                     <p class="txt2">It is designed to solve traffic congestion, air pollution, and high oil prices in Seoul and to improve the quality of life of healthy society and citizens.</p>
 
                     <div class="container" style="font-size: 14px;">
                         <div class="row">
                             <div class="col-sm">
-                                <dt>건강한<br />자전거 도시</dt>
-                                <dd>자전거 이용의 생활화를<br />통한 시민건강 증진 실현</dd>
+                                <dt>Healthy<br />Bicycle City</dt>
+                                <dd>Let's talk about the daily life of using bicycles
+                                    realization of the promotion of public health through</dd>
                             </div>
                             <div class="col-sm">
-                                <dt>깨끗한<br />자전거의 도시</dt>
-                                <dd>자전거 교통수단<br />분담률을 향상시켜<br />CO2 발생 감소실현</dd>
+                                <dt>Clean<br />The City Of Bicycles</dt>
+                                <dd>Bicycle Transportation
+                                    by improving the share ratio
+                                    Reduction of CO2 generation</dd>
                             </div>
                             <div class="col-sm">
-                                <dt>녹색 성장<br />선도 도시</dt>
-                                <dd>국가 비전인<br />“저탄소 녹색성장” 실현</dd>
+                                <dt>Green Growth<br />Leading City</dt>
+                                <dd>A National Vision
+                                    Realizing "Low Carbon Green Growth"</dd>
                             </div>
                         </div>
                     </div>
@@ -35,11 +42,80 @@
             </div>
         </div>
 
-        <div>
-            여행 코스
+<!-- 따릉이 여행 소개 -->
+    <div class="container-fluid text-center">
+        <hr class="my-2">
+        <p class="h2">
+            About Seoul
+        </p>
+        <p style="font-size: 15px; line-height: 25.2px;">
+            Seoul has been the capital of Korea for more than 600 years since the Joseon Dynasty (1392-1910). It was referred to as "Hanyang"during the Joseon Dynasty.
+        </p>
+        <p style="padding-top: 0px !important; padding-bottom: 0px !important;"></p>
+        <p style="font-size: 15px; line-height: 25.2px;">
+            Today's Seoul is a bustling metropolis, acting as the hub for political, economical, socialand cultural matters. The Hangang River, which runs through the center of the city, divides Seoul into the culture and history-oriented northern region, and the business-oriented southern region. 
+        </p>
+    </div>
+
+<!-- 여행 기본정보(s) -->
+<section class="container-fluid text-center">
+    <hr class="my-2">  
+		<h2>Plan Ahead</h2>
+        <div class="row">
+			<div class="col-sm">
+				<a href="https://english.visitseoul.net/taxrefund">
+					<dl>
+						<dt><img src="https://cdn-icons-png.flaticon.com/512/7052/7052897.png" width="100" height="100"></dt>
+						<dd class="btn btn-primary">Tax Refund</dd>
+					</dl>
+				</a>
+			</div>
+			<div class="col-sm">
+				<a href="https://english.visitseoul.net/exchange">
+					<dl>
+						<dt><img src="https://cdn-icons-png.flaticon.com/512/3310/3310608.png" width="100" height="100"></dt>
+						<dd class="btn btn-primary">Exchange Rate</dd>
+					</dl>
+				</a>
+			</div>
+			<div class="col-sm">
+				<a href="https://english.visitseoul.net/visa">
+					<dl>
+						<dt><img src="https://cdn-icons-png.flaticon.com/512/5968/5968299.png" width="100" height="100"></dt>
+						<dd class="btn btn-primary">Visa</dd>
+					</dl>
+				</a>
+			</div>
+			<div class="col-sm">
+				<a href="https://english.visitseoul.net/transportation">
+					<dl>
+						<dt><img src="https://cdn-icons-png.flaticon.com/512/3526/3526150.png" width="100" height="100"></dt>
+						<dd class="btn btn-primary">Transportation</dd>
+					</dl>
+				</a>
+			</div>
+			<div class="col-sm">
+				<a href="https://english.visitseoul.net/safe-travel">
+					<dl>
+						<dt><img src="https://cdn-icons-png.flaticon.com/512/3967/3967544.png" width="100" height="100"></dt>
+						<dd class="btn btn-primary">Traveling Safe</dd>
+					</dl>
+				</a>
+			</div>
+			<div class="col-sm">
+				<a href="https://english.visitseoul.net/tourist-Information-center">
+					<dl>
+						<dt><img src="https://cdn-icons-png.flaticon.com/512/7516/7516826.png" width="100" height="100"></dt>
+						<dd class="btn btn-primary">Information Center</dd>
+					</dl>
+				</a>
+			</div>
         </div>
 
-    </div>
+</section>
+<!-- 여행 기본정보(e) -->
+
+</div>
 </th:block>
 <th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
 </html>
