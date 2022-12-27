@@ -1,10 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="~{layout/layout}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<th:block th:replace="/layout/fragments/head :: headFragment(title='대여소')"></th:block>
+<th:block th:replace="/layout/fragments/head :: headFragment(title='Rental Office')"></th:block>
 <!-- 사이드바 -->
-<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='대여소')"></th:block>
+<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Rental Office')"></th:block>
 
 <th:block layout:fragment="content" class="container my-3">
   
