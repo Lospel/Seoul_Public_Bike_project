@@ -21,11 +21,11 @@
              padding: 20px;
          }
 </style>
-<th:block th:replace="/layout/fragments/head :: headFragment(title='코스확인')"></th:block>
+<th:block th:replace="/layout/fragments/head :: headFragment(title='Check out the Course')"></th:block>
 <th:block layout:fragment="content" class="container my-3">
 
       <!-- 사이드바 -->
-      <th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='코스확인')"></th:block>
+      <th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Check out the Course')"></th:block>
       <form th:action="@{/user/course}" method="GET">
             <select id="country" style="width:300px; height:40px; margin:10px 30px;" >
                   <option>지역 검색</option>
