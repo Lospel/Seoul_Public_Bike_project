@@ -75,4 +75,10 @@ public class UserController {
     public String mycourse(){
         return "mycourse";
     }
+
+    @GetMapping("/profile")
+    public String profile() {
+        return "profile_form";
+    }
+
 }
