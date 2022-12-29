@@ -34,7 +34,7 @@
                 <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">
                   Create a Daily Course
                 </a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/}" th:classappend="${current == 'Create a Daily Course'} ? active">
+                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/mycourse}" th:classappend="${current == 'Create a Daily Course'} ? active">
                   Create a Daily Course
                 </a>
               </li>
