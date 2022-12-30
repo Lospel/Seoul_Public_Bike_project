@@ -37,7 +37,7 @@
                                     <div class="simplebar-content" style="padding: 16px;">
                                         <nav class="nav nav-pills nav-gap-y-1 flex-column">
                                             <nav class="nav-item">
-                                            <a href="/question/list" data-toggle="tab" class="nav-link nav-link-faded has-icon active">Lately</a>
+                                            <a href="#Lately" data-toggle="tab" class="nav-link nav-link-faded has-icon">Lately</a>
                                             </nav>
                                             <nav class="nav-item">
                                             <a href="#outdated" data-toggle="tab" class="nav-link nav-link-faded has-icon">Outdated</a>
@@ -65,10 +65,6 @@
             <!-- Inner main header -->
             <div class="inner-main-header">
                 <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
-                <!-- <select class="custom-select custom-select-sm w-auto mr-1">
-                    <option selected="">Latest</option>
-                    <option value="1">Popular</option>
-                </select> -->
                 <div class="col-6">
                   <div class="input-group">
                       <input type="text" id="search_kw" class="form-control" th:value="${kw}" placeholder="Search Forum">
@@ -79,7 +75,6 @@
             <!-- /Inner main header -->
 
             <!-- Inner main body -->
-
             <!-- Forum List -->
             <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
                 <table class="table">
@@ -106,8 +101,9 @@
                           <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
                           <td  th:text="${#lists.size(question.voter)}"></td>
                       </tr>
-                  </tbody>
+                  </tbody> 
               </table>
+              
         <!-- 페이징처리 시작 -->
         <div th:if="${!paging.isEmpty()}">
           <ul class="pagination justify-content-center">
