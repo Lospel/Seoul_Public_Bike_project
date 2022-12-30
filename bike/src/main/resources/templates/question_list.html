@@ -7,22 +7,29 @@
     <div layout:fragment="content" class="container my-3">
         <div class="row my-3">
             <div class="col-6">
-                <a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
+                <a th:href="@{/question/create}" class="btn btn-primary">NEW DISCUSSION</a>
             </div>
             <div class="col-6">
-                <div class="input-group">
-                    <input type="text" id="search_kw" class="form-control" th:value="${kw}">
-                    <button class="btn btn-outline-secondary btn-dark" type="button" id="btn_search">찾기</button>
-                </div>
+                <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
+                <select class="custom-select custom-select-sm w-auto mr-1">
+                    <option selected="">Latest</option>
+                    <option value="1">Popular</option>
+                </select>
+                <div class="col-6">
+                  <div class="input-group">
+                      <input type="text" id="search_kw" class="form-control" th:value="${kw}" placeholder="Search Forum">
+                      <button class="btn btn-outline-secondary btn-dark" type="button" id="btn_search">Find</button>
+                  </div>
+              </div>
             </div>
         </div>
         <table class="table">
             <thead class="table-dark">
                 <tr class="text-center">
-                    <th>번호</th>
-                    <th style="width:50%;">제목</th>
-                    <th>글쓴이</th>
-                    <th>작성일시</th>
+                    <th style="width:50%;">Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th>Recommendation</th>
                 </tr>
             </thead>
             <tbody>
