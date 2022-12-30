@@ -1,8 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       >
-<th:block th:replace="/layout/fragments/head :: headFragment(title='Community')"></th:block>
-<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Community')"></th:block>
+<th:block th:replace="/layout/fragments/head :: headFragment(title='Forum')"></th:block>
+<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Forum')"></th:block>
 
 <div layout:fragment="content" class="container my-3">
 <link rel="stylesheet" href="/css/mdb.min.forum.css">
@@ -28,7 +28,9 @@
             <div class="inner-sidebar-body p-0">
                 <div class="p-3 h-100" data-simplebar="init">
                     <div class="simplebar-wrapper" style="margin: -16px;">
-                        <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
+                        <div class="simplebar-height-auto-observer-wrapper">
+                            <div class="simplebar-height-auto-observer"></div>
+                        </div>
                         <div class="simplebar-mask">
                             <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
                                 <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
@@ -42,10 +44,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div>
+                        <!-- <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div> -->
                     </div>
-                    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
-                    <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div>
+                    <!-- <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
+                    <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div> -->
                 </div>
             </div>
             <!-- /Inner sidebar body -->
