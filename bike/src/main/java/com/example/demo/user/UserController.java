@@ -1,9 +1,12 @@
 package com.example.demo.user;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -76,8 +79,10 @@ public class UserController {
         return "mycourse";
     }
 
-    @GetMapping("/profile")
-    public String profile() {
+    @GetMapping("/profile/{username}")
+    public String profile(Model model, @PathVariable("username") String username) throws Exception {
+        SiteUser siteUser = this.userService.getUser(username);
+        model.addAttribute("siteUser", siteUser);
         return "profile_form";
     }
 
