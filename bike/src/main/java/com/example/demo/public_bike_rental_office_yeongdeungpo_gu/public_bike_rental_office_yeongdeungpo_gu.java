@@ -12,23 +12,23 @@ public class public_bike_rental_office_yeongdeungpo_gu {
     @Id
     private String Rental_Office_Number;
 
-    private String Rental_Office_Name_KOR;
+    // private String Rental_Office_Name_KOR;
 
-    private String Rental_Office_Name_ENG;
+    // private String Rental_Office_Name_ENG;
 
     private String Ward_KOR;
 
-    private String Ward_ENG;
+    // private String Ward_ENG;
 
-    private String Address_KOR;
+    // private String Address_KOR;
 
-    private String Address_ENG;
+    // private String Address_ENG;
 
     private String Latitude;
 
     private String Longitude;
 
-    private String Holder_LCD;
+//     private String Holder_LCD;
 
-    private String Holder_QR;
+//     private String Holder_QR;
 }

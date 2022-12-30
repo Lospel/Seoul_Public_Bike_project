@@ -18,7 +18,7 @@
                 <a class="nav-link" sec:authorize="isAnonymous()"  th:href="@{/user/login}">
                   Rental Office
                 </a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" aria-current="page" th:href="@{/user/rental_office}" th:classappend="${current == 'Rental Office'} ? active">
+                <a class="nav-link" sec:authorize="isAuthenticated()" aria-current="page" th:href="@{/rental/rental_office}" th:classappend="${current == 'Rental Office'} ? active">
                   Rental Office
                 </a>
               </li>
