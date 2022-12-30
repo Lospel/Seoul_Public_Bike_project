@@ -47,6 +47,20 @@ public class QuestionService {
         return this.questionRepository.findAllByKeyword(kw, pageable);
     }
 
+    public Page<Question> outDated(int page, String kw){
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.asc("createDate"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+        return this.questionRepository.findAllByKeyword(kw, pageable);
+    }
+
+    public Page<Question> Popular(int page, String kw){
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+        return this.questionRepository.findAllByKeyword(kw, pageable);
+    }
+
     public void modify (Question question, String subject, String content) {
         question.setSubject(subject);
         question.setContent(content);

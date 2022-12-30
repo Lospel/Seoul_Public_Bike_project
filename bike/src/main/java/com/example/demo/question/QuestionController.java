@@ -34,7 +34,11 @@ public class QuestionController {
         @RequestParam(value = "page", defaultValue = "0") int page,
         @RequestParam(value = "kw", defaultValue = "") String kw) {
         Page<Question> paging = this.questionService.getList(page, kw);
+        Page<Question> paging2 = this.questionService.outDated(page, kw);
+        Page<Question> paging3 = this.questionService.Popular(page, kw);
         model.addAttribute("paging",paging);
+        model.addAttribute("paging2", paging2);
+        model.addAttribute("paging3", paging3);
         model.addAttribute("kw", kw);
         return "question_list";
     }
