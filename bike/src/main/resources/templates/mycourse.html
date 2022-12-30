@@ -1,61 +1,85 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<style>
+  #center{
+    width:100%
+  }
+  #nav{
+    background-color:rgb(247, 243, 243);
+    width:20%;
+    height: 100%;
+    float:left;
+  }
+  #section{
+    width: 80%;
+    text-align: center;
+    float:left;
+    padding: 10px;
+  }
+</style>
 <th:block th:replace="/layout/fragments/head :: headFragment(title='Rental Office')"></th:block>
 <!-- 사이드바 -->
-<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Rental Office')"></th:block>
-
+<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Create a Daily Course')"></th:block>
 <th:block layout:fragment="content" class="container my-3">
     <form th:action="@{/user/mycourse}" method="GET">
-        <div class="bg-white border rounded-5">
-    
-            <section style="position: relative; overflow: hidden; min-height: 800px; border-radius: .5rem .5rem 0 0;" class="w-100 p-4 d-flex justify-content-center">
-              <!-- Sidenav-->
-              <nav id="sidenav-1" data-mdb-close-on-esc="false" class="sidenav sidenav-primary ps" data-mdb-hidden="false" data-mdb-position="absolute" data-mdb-focus-trap="false" style="width: 240px; height: 100%; position: absolute; transition: all 0.3s linear 0s;">
-                <ul class="sidenav-menu">
-                  <li class="sidenav-item">
-                    <a class="sidenav-link ripple-surface"> <i class="far fa-smile fa-fw me-3"></i><span>Link 1</span></a>
-                  </li>
-                  <li class="sidenav-item">
-                    <a class="sidenav-link active ripple-surface-primary" data-mdb-toggle="collapse" href="#sidenav-collapse-2-0-0" role="button" aria-expanded="true"><i class="fas fa-grin fa-fw me-3"></i><span>Category 1</span><i class="fas fa-angle-down rotate-icon" style="transform: rotate(180deg);"></i></a>
-                    <ul class="sidenav-collapse collapse show" id="sidenav-collapse-2-0-0" >
-                      <li class="sidenav-item">
-                        <a class="sidenav-link ripple-surface-primary">Link 2</a>
-                      </li>
-                      <li class="sidenav-item">
-                        <a class="sidenav-link ripple-surface-primary active">Link 3</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="sidenav-item">
-                    <a class="sidenav-link ripple-surface-primary" data-mdb-toggle="collapse" href="#sidenav-collapse-2-0-1" role="button" aria-expanded="true"><i class="fas fa-grin-wink fa-fw me-3"></i><span>Category 2</span><i class="fas fa-angle-down rotate-icon" style="transform: rotate(180deg);"></i></a>
-                    <ul class="sidenav-collapse collapse show" id="sidenav-collapse-2-0-1">
-                      <li class="sidenav-item">
-                        <a class="sidenav-link ripple-surface">Link 4</a>
-                      </li>
-                      <li class="sidenav-item">
-                        <a class="sidenav-link ripple-surface">Link 5</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></nav>
-        
-              <!-- Sidenav-->
-              <div style="padding: 20px;" class="text-center">
-                <button data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1" class="btn btn-primary" aria-controls="#sidenav-1" aria-haspopup="true">
-                  <i class="fas fa-bars"></i>
+      <div id="center">
+        <div id="nav">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  나만의 코스 1
                 </button>
-                <div class="d-flex justify-content-center my-5"></div>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <ul class="list-group list-group-flush">
+                    <a th:href="@{#scrollspyHeading1}" class="list-group-item">장소 1</a>
+                    <a th:href="@{/user/course_1}" class="list-group-item">장소 2</a>
+                    <a th:href="@{/user/course_1}" class="list-group-item">장소 3</a>
+                    <a th:href="@{/user/course_1}" class="list-group-item">장소 4</a>
+                    <a th:href="@{/user/course_1}" class="list-group-item">장소 5</a>
+                  </ul>
+                </div>
               </div>
-            <div class="sidenav-backdrop" style="transition: opacity 0.3s ease-out 0s; position: absolute; width: 100%; height: 100%; opacity: 1;"></div></section>
-            
-            
-            
-    
-            
-            
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Accordion Item #2
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Accordion Item #3
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+        <div id="section">
+          <p>section 영역</p>
+          <div data-bs-spy="scroll" data-bs-target="#list-group-item" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
+            <h4 id="scrollspyHeading1">First heading</h4>
+            <p>ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</p>
+            <h4 id="scrollspyHeading2">Second heading</h4>
+            <p>...</p>
+          </div>
+        </div>
+      </div>
+        
     </form>
     
     <th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
