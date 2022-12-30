@@ -1,4 +1,8 @@
-<html layout:decorate="~{layout/layout}">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="/layout/fragments/head :: headFragment(title='Answer')"></th:block>
+<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Answer')"></th:block>
+
 <th:block layout:fragment="content" class="container">
     <h5 class="my-3 border-bottom pb-2">질문등록</h5>
     <form th:object="${questionForm}" method="post">
@@ -15,4 +19,5 @@
         <input type="submit" value="저장하기" class="btn btn-primary my-2">
     </form>
 </th:block>
+<th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
 </html>
