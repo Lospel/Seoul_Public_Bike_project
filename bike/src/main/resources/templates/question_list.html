@@ -36,9 +36,15 @@
                                 <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
                                     <div class="simplebar-content" style="padding: 16px;">
                                         <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">All Threads</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular this week</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular all time</a>
+                                            <nav class="nav-item">
+                                            <a href="/question/list" data-toggle="tab" class="nav-link nav-link-faded has-icon active">Lately</a>
+                                            </nav>
+                                            <nav class="nav-item">
+                                            <a href="#outdated" data-toggle="tab" class="nav-link nav-link-faded has-icon">Outdated</a>
+                                            </nav>
+                                            <nav class="nav-item">
+                                            <a href="#popular" data-toggle="tab" class="nav-link nav-link-faded has-icon">Popular</a>
+                                            </nav>
                                         </nav>
                                     </div>
                                 </div>
@@ -59,10 +65,10 @@
             <!-- Inner main header -->
             <div class="inner-main-header">
                 <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
-                <select class="custom-select custom-select-sm w-auto mr-1">
+                <!-- <select class="custom-select custom-select-sm w-auto mr-1">
                     <option selected="">Latest</option>
                     <option value="1">Popular</option>
-                </select>
+                </select> -->
                 <div class="col-6">
                   <div class="input-group">
                       <input type="text" id="search_kw" class="form-control" th:value="${kw}" placeholder="Search Forum">
