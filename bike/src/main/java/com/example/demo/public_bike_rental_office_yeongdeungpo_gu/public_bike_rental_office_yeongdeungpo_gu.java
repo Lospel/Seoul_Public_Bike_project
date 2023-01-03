@@ -1,5 +1,6 @@
 package com.example.demo.public_bike_rental_office_yeongdeungpo_gu;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;
@@ -11,8 +12,9 @@ import lombok.Setter;
 public class public_bike_rental_office_yeongdeungpo_gu {
     @Id
     private String Rental_Office_Number;
-
-    // private String Rental_Office_Name_KOR;
+    
+    @Column(name = "Rental_Office_Name_KOR")
+    private String placename;
 
     // private String Rental_Office_Name_ENG;
 

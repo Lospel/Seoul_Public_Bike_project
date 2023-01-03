@@ -15,4 +15,8 @@ public class rental_office_Service implements rentalService{
     public List<public_bike_rental_office_yeongdeungpo_gu> getAllrental() {
         return rental_office_Repository.findAll(); // 4
     }
+    @Override
+    public List<public_bike_rental_office_yeongdeungpo_gu> getplace(String keyword) {
+        return rental_office_Repository.findByplacenameContaining(keyword); // 4
+    }
 }

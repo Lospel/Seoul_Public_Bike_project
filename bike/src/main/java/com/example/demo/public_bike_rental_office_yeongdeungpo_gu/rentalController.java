@@ -15,9 +15,9 @@ public class rentalController {
     private final rentalService rentalService;
     
     @GetMapping("/rental_office")
-    public String rental_office(Model model) {
+    public String rental_office(Model model, @RequestParam(value = "keyword", defaultValue = "국회의원회관")String keyword) {
         model.addAttribute("offices", rentalService.getAllrental());
-        // model.addAttribute("place", rentalService.getplaces(keyword));
+        model.addAttribute("place", rentalService.getplace(keyword));
         return "rental_office";
     }
     @GetMapping("/mycourse")
