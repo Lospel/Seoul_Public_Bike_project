@@ -18,14 +18,77 @@
           <input type="button" id="searchBtn" name="searchBtn" value="검색" />
         </div>
       </div>
-      <div id="map" style="width:100%; height:800px;"></div>
+      <div id="map" style="width:100%; height:600px;"></div>
 
     </form>
     <th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
 </th:block>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=bh68qgrdxn"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=75ojy30gbk "></script>
 
-<script type="text/javascript">
+<script  th:inline="javascript">
+	
+  $(function() {
+    
+    initMap();
+    
+  });
+  
+  
+  function initMap() { 
+
+    
+    let markers = new Array(); // 마커 정보를 담는 배열
+    let infoWindows = new Array(); // 정보창을 담는 배열
+    
+    var position = new naver.maps.LatLng(37.52841568, 126.9139175);
+
+    var map = new naver.maps.Map('map', {
+      center: position,
+      zoom: 18
+    });
+
+    var markerOptions = {
+      position: position.destinationPoint(0, 20),
+      map: map,
+      icon: {
+        url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png',
+        size: new naver.maps.Size(50, 52),
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(25, 26)
+      }
+    };
+    
+    var marker = new naver.maps.Marker(markerOptions);
+    
+    
+    
+    /*<![CDATA[*/
+    /*[# th:each="tmp : ${offices}"]*/
+	  noti(/*[[${tmp.Rental_Office_Number}]]*/, /*[[${tmp.latitude}]]*/, /*[[${tmp.longitude}]]*/); //여기 Argument expression expected. 에러 무시해도 됩니다.
+	  /*[/]*/
+	  /*]]>*/
+
+    function noti(numValue, latValue, lngValue){
+      var marker = new naver.maps.Marker({
+              map: map,
+              title: numValue, // 지역구 이름 
+              position: new naver.maps.LatLng(latValue , lngValue) // 지역구의 위도 경도 넣기 
+          });
+    }
+  }
+	// var list = '[[${offices}]]';
+  // var list1 = list.replaceAll("[", "");
+  // var list2 = list1.replaceAll("]", "");
+  // var list3 = list2.replaceAll('"',"");
+  // var list4 = list3.replaceAll(':', ",");
+  // var list5 = list4.replaceAll("{", "");
+  // var list6 = list5.replaceAll("}", "");
+  // var list7 = list6.split(',');
+  //   console.log(list7);
+  
+  
+</script>
+<!-- <script type="text/javascript">
 
   $(function() {
     
@@ -104,5 +167,5 @@
         });
       }
   }
-</script>
+</script> -->
 </html>

@@ -72,12 +72,7 @@ public class UserController {
     public String course_1(){
         return "course_1";
     }
-
-    @GetMapping("/mycourse")
-    public String mycourse(){
-        return "mycourse";
-    }
-
+    
     @GetMapping("/profile/{username}")
     public String profile(Model model, @PathVariable("username") String username) throws Exception {
         SiteUser siteUser = this.userService.getUser(username);

@@ -1,7 +1,9 @@
 package com.example.demo.public_bike_rental_office_yeongdeungpo_gu;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.RequiredArgsConstructor;
@@ -13,7 +15,14 @@ public class rentalController {
     private final rentalService rentalService;
     
     @GetMapping("/rental_office")
-    public String rental_office() {
+    public String rental_office(Model model) {
+        model.addAttribute("offices", rentalService.getAllrental());
+        // model.addAttribute("place", rentalService.getplaces(keyword));
         return "rental_office";
+    }
+    @GetMapping("/mycourse")
+    public String mycourse(Model model) {
+        model.addAttribute("offices", rentalService.getAllrental());
+        return "mycourse";
     }
 }
