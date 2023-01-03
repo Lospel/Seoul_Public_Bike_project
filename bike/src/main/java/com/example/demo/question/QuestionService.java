@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.DataNotFoundException;
 import com.example.demo.user.SiteUser;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -24,10 +25,9 @@ public class QuestionService {
     public Question getQuestion(Integer id) {
         Optional<Question> question = this.questionRepository.findById(id);
         if (question.isPresent()) {
-
             Question question1 = question.get();
-            question1.setView(question1.getView() + 1);
-            this.questionRepository.save(question1);
+            // question1.setView(question1.getView() + 1);
+            // this.questionRepository.save(question1);
             return question1;
 
         } else {
@@ -79,6 +79,11 @@ public class QuestionService {
     public void vote(Question question, SiteUser siteUser) {
         question.getVoter().add(siteUser);
         this.questionRepository.save(question);
+    }
+
+    @Transactional
+    public int updateView(Integer id) {
+        return this.questionRepository.updateView(id);
     }
 
 }
