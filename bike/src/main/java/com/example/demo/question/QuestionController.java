@@ -35,7 +35,7 @@ public class QuestionController {
         @RequestParam(value = "kw", defaultValue = "") String kw) {
         Page<Question> paging = this.questionService.getList(page, kw);
         Page<Question> paging2 = this.questionService.outDated(page, kw);
-        Page<Question> paging3 = this.questionService.Popular(page, kw);
+        Page<Question> paging3 = this.questionService.Views(page, kw);
         model.addAttribute("paging",paging);
         model.addAttribute("paging2", paging2);
         model.addAttribute("paging3", paging3);
@@ -128,4 +128,5 @@ public class QuestionController {
         this.questionService.vote(question, siteUser);
         return String.format("redirect:/question/detail/%s", id);
     }
+
 }
