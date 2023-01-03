@@ -122,7 +122,7 @@
                             </thead>
                             <tbody>
                                 <tr class="text-center" th:each="question, loop : ${paging2}">
-                                    <td th:text="${paging2.getTotalElements - (paging2.number * paging2.size) -1 + loop.index}"></td>
+                                    <td th:text="${loop.index + 1}"></td>
                                     <td class="text-start">
                                         <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
                                         <span class="text-danger small ms-2"
