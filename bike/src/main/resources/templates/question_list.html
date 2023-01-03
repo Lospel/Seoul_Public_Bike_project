@@ -35,11 +35,17 @@
                             <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
                                 <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
                                     <div class="simplebar-content" style="padding: 16px;">
-                                        <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">All Threads</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular this week</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular all time</a>
-                                        </nav>
+                                        <ul class="nav nav-pills nav-gap-y-1 flex-column" id="myPill" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                            <button id="Lately-pill" data-bs-toggle="pill" data-bs-target="#Lately" type="button" role="tab" aria-controls="Lately" aria-selected="true" class="nav-link nav-link-faded has-icon active">Lately</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                            <button id="Outdated-pill" data-bs-toggle="pill" data-bs-target="#Outdated" type="button" role="tab" aria-controls="Outdated" aria-selected="false" class="nav-link nav-link-faded has-icon">Outdated</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                            <button id="Popular-pill" data-bs-toggle="pill" data-bs-target="#Popular" type="button" role="tab" aria-controls="Popular" aria-selected="false" class="nav-link nav-link-faded has-icon">Popular</button>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -58,31 +64,29 @@
         <div class="inner-main">
             <!-- Inner main header -->
             <div class="inner-main-header">
-                <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
-                <select class="custom-select custom-select-sm w-auto mr-1">
-                    <option selected="">Latest</option>
-                    <option value="1">Popular</option>
-                </select>
                 <div class="col-6">
                   <div class="input-group">
-                      <input type="text" id="search_kw" class="form-control" th:value="${kw}" placeholder="Search Forum">
-                      <button class="btn btn-outline-secondary btn-dark" type="button" id="btn_search">찾기</button>
+                      <input type="text" id="search_kw" class="form-control" th:value="${kw}" placeholder="Search Title">
+                      <button class="btn btn-outline-secondary btn-dark" type="button" id="btn_search">Find</button>
                   </div>
               </div>
             </div>
             <!-- /Inner main header -->
 
             <!-- Inner main body -->
-
             <!-- Forum List -->
             <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="Lately" role="tabpanel" aria-labelledby="Lately-tab">
                 <table class="table">
                   <thead class="table-dark">
                       <tr class="text-center">
                         <th>Number</th>
-                        <th style="width:50%;">Title</th>
+                        <th style="width:40%;">Title</th>
                         <th>Author</th>
                         <th>Date</th>
+                        <th>Views</th>
                         <th>Recommendation</th>
                       </tr>
                   </thead>
@@ -98,10 +102,74 @@
                           </td>
                           <td><span th:if="${question.author != null}" th:text="${question.author.username}"></span></td>
                           <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
-                          <td  th:text="${#lists.size(question.voter)}"></td>
+                          <td th:text="${question.view}"></td>
+                          <td  th:text="${#lists.size(question.voter)}"></td>                
                       </tr>
-                  </tbody>
+                  </tbody> 
               </table>
+                </div>
+                    <div class="tab-pane" id="Outdated" role="tabpanel" aria-labelledby="Outdated-tab">
+                        <table class="table">
+                            <thead class="table-dark">
+                                <tr class="text-center">
+                                    <th>Number</th>
+                                    <th style="width:40%;">Title</th>
+                                    <th>Author</th>
+                                    <th>Date</th>
+                                    <th>Views</th>
+                                    <th>Recommendation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center" th:each="question, loop : ${paging2}">
+                                    <td th:text="${paging2.getTotalElements - (paging2.number * paging2.size) -1 + loop.index}"></td>
+                                    <td class="text-start">
+                                        <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+                                        <span class="text-danger small ms-2"
+                                            th:if="${#lists.size(question.answerList) > 0}"
+                                            th:text="${#lists.size(question.answerList)}">
+                                        </span>
+                                    </td>
+                                    <td><span th:if="${question.author != null}" th:text="${question.author.username}"></span></td>
+                                    <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+                                    <td th:text="${question.view}"></td>
+                                    <td  th:text="${#lists.size(question.voter)}"></td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="Popular" role="tabpanel" aria-labelledby="Popular-tab">
+                        <table class="table">
+                            <thead class="table-dark">
+                                <tr class="text-center">
+                                  <th>Number</th>
+                                  <th style="width:40%;">Title</th>
+                                  <th>Author</th>
+                                  <th>Date</th>
+                                  <th>Views</th>
+                                  <th>Recommendation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center" th:each="question, loop : ${paging3}">
+                                    <td th:text="${paging3.getTotalElements - (paging3.number * paging3.size) - loop.index}"></td>
+                                    <td class="text-start">
+                                        <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+                                        <span class="text-danger small ms-2"
+                                            th:if="${#lists.size(question.answerList) > 0}"
+                                            th:text="${#lists.size(question.answerList)}">
+                                        </span>
+                                    </td>
+                                    <td><span th:if="${question.author != null}" th:text="${question.author.username}"></span></td>
+                                    <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+                                    <td th:text="${question.view}"></td>
+                                    <td th:text="${#lists.size(question.voter)}"></td>
+                                </tr>
+                            </tbody> 
+                        </table>
+                    </div>
+                </div>
+
         <!-- 페이징처리 시작 -->
         <div th:if="${!paging.isEmpty()}">
           <ul class="pagination justify-content-center">
@@ -125,9 +193,9 @@
                   </a>
               </li>
           </ul>
-      </div>
+        </div>
       <!-- 페이징처리 끝 -->
-            </div>
+        </div>
             <!-- /Forum List -->
             <!-- /Inner main body -->
         </div>

@@ -18,6 +18,9 @@ import com.example.demo.answer.AnswerForm;
 import com.example.demo.user.SiteUser;
 import com.example.demo.user.UserService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -30,16 +33,51 @@ public class QuestionController {
     private final UserService userService;
 
     @RequestMapping("/list")
-    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
+    public String list(Model model, 
+        @RequestParam(value = "page", defaultValue = "0") int page,
         @RequestParam(value = "kw", defaultValue = "") String kw) {
         Page<Question> paging = this.questionService.getList(page, kw);
+        Page<Question> paging2 = this.questionService.outDated(page, kw);
+        Page<Question> paging3 = this.questionService.Views(page, kw);
         model.addAttribute("paging",paging);
+        model.addAttribute("paging2", paging2);
+        model.addAttribute("paging3", paging3);
         model.addAttribute("kw", kw);
         return "question_list";
     }
 
     @GetMapping(value = "/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
+    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm,
+    HttpServletRequest request,
+    HttpServletResponse response) {
+        
+        Cookie oldCookie = null;
+		Cookie[] cookies = request.getCookies();
+        
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("postView")) {
+					oldCookie = cookie;
+				}
+			}
+		}
+		
+		if (oldCookie != null) {
+			if (!oldCookie.getValue().contains("["+ id.toString() +"]")) {
+				this.questionService.updateView(id);
+				oldCookie.setValue(oldCookie.getValue() + "_[" + id + "]");
+				oldCookie.setPath("/");
+				oldCookie.setMaxAge(60 * 60 * 24); 							// 쿠키 시간
+				response.addCookie(oldCookie);
+			}
+		} else {
+			this.questionService.updateView(id);
+			Cookie newCookie = new Cookie("postView", "[" + id + "]");
+			newCookie.setPath("/");
+			newCookie.setMaxAge(60 * 60 * 24); 								// 쿠키 시간
+			response.addCookie(newCookie);
+		}
+        
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
@@ -123,4 +161,5 @@ public class QuestionController {
         this.questionService.vote(question, siteUser);
         return String.format("redirect:/question/detail/%s", id);
     }
+
 }

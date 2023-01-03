@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.DataNotFoundException;
 import com.example.demo.user.SiteUser;
 
-
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -25,7 +25,11 @@ public class QuestionService {
     public Question getQuestion(Integer id) {
         Optional<Question> question = this.questionRepository.findById(id);
         if (question.isPresent()) {
-            return question.get();
+            Question question1 = question.get();
+            // question1.setView(question1.getView() + 1);
+            // this.questionRepository.save(question1);
+            return question1;
+
         } else {
             throw new DataNotFoundException("question not found");
         }
@@ -47,6 +51,20 @@ public class QuestionService {
         return this.questionRepository.findAllByKeyword(kw, pageable);
     }
 
+    public Page<Question> outDated(int page, String kw){
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.asc("createDate"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+        return this.questionRepository.findAllByKeyword(kw, pageable);
+    }
+
+    public Page<Question> Views(int page, String kw){
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("view"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+        return this.questionRepository.findAllByKeyword(kw, pageable);
+    }
+
     public void modify (Question question, String subject, String content) {
         question.setSubject(subject);
         question.setContent(content);
@@ -61,6 +79,11 @@ public class QuestionService {
     public void vote(Question question, SiteUser siteUser) {
         question.getVoter().add(siteUser);
         this.questionRepository.save(question);
+    }
+
+    @Transactional
+    public int updateView(Integer id) {
+        return this.questionRepository.updateView(id);
     }
 
 }
