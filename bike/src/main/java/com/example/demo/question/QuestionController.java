@@ -50,7 +50,6 @@ public class QuestionController {
     public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm,
     HttpServletRequest request,
     HttpServletResponse response) {
-        Question question = this.questionService.getQuestion(id);
         
         Cookie oldCookie = null;
 		Cookie[] cookies = request.getCookies();
@@ -78,7 +77,8 @@ public class QuestionController {
 			newCookie.setMaxAge(60 * 60 * 24); 								// 쿠키 시간
 			response.addCookie(newCookie);
 		}
-
+        
+        Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
     }
