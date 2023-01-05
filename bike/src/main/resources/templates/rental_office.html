@@ -48,7 +48,7 @@
               <form class="w-100 me-3" role="search">
                 <input type="text" id="keyword" name="keyword" th:value="${keyword}" class="form-control" placeholder="Rental_Office Search" aria-label="Search">
               </form>
-              <button class="btn btn-outline-secondary btn-dark" type="submit" id="btn_search" >Find</button>
+              <input class="btn btn-outline-secondary btn-dark" type="submit" id="btn_search" onclick="create_ptag();">
             </div>
           </div>
           <br>
@@ -56,6 +56,8 @@
           <br>
           <div id="info">
             <img src='https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png'> <strong>: My Location</strong> 
+            <br>
+
           </div>
 
         </div>
@@ -85,6 +87,7 @@
     let markers = new Array(); // 마커 정보를 담는 배열
     let infoWindows = new Array(); // 정보창을 담는 배열
     
+    
      /*<![CDATA[*/
      var list = '[[${place}]]';
      var list1 = list.replaceAll("[", "");
@@ -98,7 +101,7 @@
     
 	  /*]]>*/
 
-    var position = new naver.maps.LatLng(list7[5], list7[7]);
+    var position = new naver.maps.LatLng(list7[7], list7[5]);
 
     var map = new naver.maps.Map('map', {
       center: position,
@@ -138,6 +141,29 @@
       });
     }
 
+  }
+
+  function create_ptag(){
+    /*<![CDATA[*/
+    var list = '[[${place}]]';
+     var list1 = list.replaceAll("[", "");
+     var list2 = list1.replaceAll("]", "");
+     var list3 = list2.replaceAll('"',"");
+     var list4 = list3.replaceAll(':', ",");
+     var list5 = list4.replaceAll("{", "");
+     var list6 = list5.replaceAll("}", "");
+     var list7 = list6.split(',');
+       console.log(list7);
+     var place = list7[1]
+       console.log(place);
+	  /*]]>*/
+    let tagArea = document.getElementById('info');
+    let new_pTag = document.createElement('strong');
+    
+    new_pTag.setAttribute('class', 'pTag');
+    new_pTag.innerHTML = "("+place+")";
+    
+    tagArea.appendChild(new_pTag);
   }
 
   

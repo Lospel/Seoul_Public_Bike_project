@@ -80,7 +80,7 @@
           </div>
         </div>
         <div id="section">
-          <p>section 영역</p>
+          
           <div data-bs-spy="scroll" data-bs-target="#list-group-item" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
             <h4 id="scrollspyHeading1">First heading</h4>
             <div id="map" style="width:100%; height:800px;"></div>
@@ -122,25 +122,70 @@
     
     var position = new naver.maps.LatLng(37.52841568, 126.9139175);
 
-  var map = new naver.maps.Map('map', {
-    center: position,
-    zoom: 17
-  });
+    var map = new naver.maps.Map('map', {
+      center: position,
+      zoom: 17
+    });
 
-  var markerOptions = {
-    position: position.destinationPoint(0, 20),
-    map: map,
-    icon: {
-      url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png',
-      size: new naver.maps.Size(50, 52),
-      origin: new naver.maps.Point(0, 0),
-      anchor: new naver.maps.Point(25, 26)
+    var markerOptions = {
+      position: position.destinationPoint(0, 20),
+      map: map,
+      icon: {
+        url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png',
+        size: new naver.maps.Size(50, 52),
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(25, 26)
+      }
+    };
+
+    var marker = new naver.maps.Marker(markerOptions);
+    
+    var areaArr = new Array();  // 지역을 담는 배열 ( 지역명/위도경도 )
+    areaArr.push(
+        /*지역구 이름*/			/*위도*/					/*경도*/				
+      {location : '강남' , lat : '37.4959854' , lng : '127.0664091'},  // 강남구 중심좌표
+      {location : '강동' , lat : '37.5492077' , lng : '127.1464824'},  // 강동구 중심좌표
+      {location : '강북' , lat : '37.6469954' , lng : '127.0147158'},  // 강북구 중심좌표
+      {location : '강서' , lat : '37.5657617' , lng : '126.8226561'},  // 강서구 중심좌표
+      {location : '관악' , lat : '37.4603732' , lng : '126.9536086'},  // 관악구 중심좌표
+      {location : '광진' , lat : '37.5574120' , lng : '127.0796211'},  // 광진구 중심좌표
+      {location : '구로' , lat : '37.4954856' , lng : '126.858121' },  // 구로구 중심좌표
+      {location : '금천' , lat : '37.4600969' , lng : '126.9001546'},  // 금천구 중심좌표
+      {location : '노원' , lat : '37.6377533' , lng : '127.0754623'},  // 노원구 중심좌표
+      {location : '도봉' , lat : '37.6658609' , lng : '127.0317674'},  // 도봉구 중심좌표
+      {location : '동대문' , lat : '37.5838012' , lng : '127.0507003'},  // 동대문구 중심좌표
+      {location : '동작' , lat : '37.4965037' , lng : '126.9443073'},  // 동작구 중심좌표
+      {location : '마포' , lat : '37.5676507' , lng : '126.8854549'},  // 마포구 중심좌표
+      {location : '서대문' , lat : '37.5820369' , lng : '126.9356665'},  // 서대문구 중심좌표
+      {location : '서초' , lat : '37.4769528' , lng : '127.0378103'},  // 서초구 중심좌표
+      {location : '성동' , lat : '37.5506753' , lng : '127.0409622'},  // 성동구 중심좌표
+      {location : '성북' , lat : '37.606991'  , lng : '127.0232185'},  // 성북구 중심좌표
+      {location : '송파' , lat : '37.5177941' , lng : '127.1127078'},  // 송파구 중심좌표
+      {location : '양천' , lat : '37.5270616' , lng : '126.8561534'},  // 양천구 중심좌표
+      {location : '영등포' , lat : '37.520641'  , lng : '126.9139242'},  // 영등포구 중심좌표
+      {location : '용산' , lat : '37.5311008' , lng : '126.9810742'},  // 용산구 중심좌표
+      {location : '은평' , lat : '37.6176125' , lng : '126.9227004'},  // 은평구 중심좌표
+      {location : '종로' , lat : '37.5990998' , lng : '126.9861493'},  // 종로구 중심좌표
+      {location : '중구' , lat : '37.5579452' , lng : '126.9941904'},  // 중구 중심좌표
+      {location : '중랑구' , lat : '37.598031'  , lng : '127.092931' }   // 중랑구 중심좌표
+    );
+
+    for (var i = 0; i < areaArr.length; i++) {
+		// 지역을 담은 배열의 길이만큼 for문으로 마커와 정보창을 채워주자 !
+
+	    var marker = new naver.maps.Marker({
+	        map: map,
+	        title: areaArr[i].location, // 지역구 이름 
+	        position: new naver.maps.LatLng(areaArr[i].lat , areaArr[i].lng), // 지역구의 위도 경도 넣기 
+          icon: {
+          url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/ico_pin.jpg',
+          size: new naver.maps.Size(25, 34),
+          scaledSize: new naver.maps.Size(25, 34),
+          origin: new naver.maps.Point(0, 0),
+          anchor: new naver.maps.Point(12, 34)
+        }
+	    });
     }
-  };
-
-  var marker = new naver.maps.Marker(markerOptions);
-    
-    
     
     
     /*[# th:each="tmp : ${offices}"]*/
@@ -153,7 +198,30 @@
               map: map, // 지역구 이름 
               position: new naver.maps.LatLng(testValue , tmpValue) // 지역구의 위도 경도 넣기 
           });
+      
     }
+
+    var polylinePath = [
+    new naver.maps.LatLng(37.52841568, 126.9139175),
+    new naver.maps.LatLng(37.53123856, 126.9213333),
+    new naver.maps.LatLng(37.52881622, 126.92453),
+    new naver.maps.LatLng(37.5280571, 126.9187012),
+    new naver.maps.LatLng(37.52816391, 126.9170227)  
+    ];
+
+    var polyline = new naver.maps.Polyline({
+        path: polylinePath,      //선 위치 변수배열
+        strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+        strokeOpacity: 0.8, //선 투명도 0 ~ 1
+        strokeWeight: 6,   //선 두께
+        map: map           //오버레이할 지도
+    });
+
+
+
+
+
+
   }
 
   
