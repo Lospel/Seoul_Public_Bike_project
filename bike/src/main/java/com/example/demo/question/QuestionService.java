@@ -1,15 +1,19 @@
 package com.example.demo.question;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.demo.DataNotFoundException;
 import com.example.demo.user.SiteUser;
 
@@ -35,13 +39,31 @@ public class QuestionService {
         }
     }
 
-    public void create(String subject, String content, SiteUser user) {
+    public void create(String subject, String content, SiteUser user, MultipartFile file) throws Exception {
         Question q = new Question();
-        q.setSubject(subject);
-        q.setContent(content);
-        q.setCreateDate(LocalDateTime.now());
-        q.setAuthor(user);
-        this.questionRepository.save(q);
+        if (file.isEmpty()) {
+            q.setSubject(subject);
+            q.setContent(content);
+            q.setCreateDate(LocalDateTime.now());
+            q.setAuthor(user);
+            this.questionRepository.save(q);
+        } else{
+            String projectPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
+            UUID uuid = UUID.randomUUID();
+            String fileName = uuid + "_" + file.getOriginalFilename();
+            File saveFile = new File(projectPath, fileName);
+            file.transferTo(saveFile);
+            q.setFileName(fileName);
+            q.setFilePath("/files/" + fileName);
+            
+            
+            q.setSubject(subject);
+            q.setContent(content);
+            q.setCreateDate(LocalDateTime.now());
+            q.setAuthor(user);
+            this.questionRepository.save(q);
+        }
+        
     }
 
     public Page<Question> getList(int page, String kw){
@@ -65,11 +87,26 @@ public class QuestionService {
         return this.questionRepository.findAllByKeyword(kw, pageable);
     }
 
-    public void modify (Question question, String subject, String content) {
-        question.setSubject(subject);
-        question.setContent(content);
-        question.setModifyDate(LocalDateTime.now());
-        this.questionRepository.save(question);
+    public void modify (Question question, String subject, String content, MultipartFile file) throws Exception {
+        if (file.isEmpty()) {
+            question.setSubject(subject);
+            question.setContent(content);
+            question.setModifyDate(LocalDateTime.now());
+            this.questionRepository.save(question);
+        } 
+        else {
+            question.setSubject(subject);
+            question.setContent(content);
+            question.setModifyDate(LocalDateTime.now());
+            String projectPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
+            UUID uuid = UUID.randomUUID();
+            String fileName = uuid + "_" + file.getOriginalFilename();
+            File saveFile = new File(projectPath, fileName);
+            file.transferTo(saveFile);
+            question.setFileName(fileName);
+            question.setFilePath("/files/" + fileName);
+            this.questionRepository.save(question);
+        }  
     }
 
     public void delete(Question question) {
