@@ -48,8 +48,7 @@ public class Question {
     
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int view;
-
+    
     private String fileName;
     private String filePath;
-    // private String fileOriName;
 }
