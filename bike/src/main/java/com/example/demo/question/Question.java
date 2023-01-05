@@ -50,6 +50,5 @@ public class Question {
     private int view;
 
     private String fileName;
-    // private List<MultipartFile> fileName;
     private String filePath;
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.answer.AnswerForm;
@@ -93,7 +94,7 @@ public class QuestionController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
     public String questionCreate(@Valid QuestionForm questionForm, 
-        BindingResult bindingResult, Principal principal, MultipartFile file) throws Exception {
+        BindingResult bindingResult, Principal principal, MultipartHttpServletRequest file) throws Exception {
         if (bindingResult.hasErrors()){
             return "question_form";
         }
@@ -123,7 +124,7 @@ public class QuestionController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult,
-        Principal principal, @PathVariable("id") Integer id, MultipartFile file) throws Exception {
+        Principal principal, @PathVariable("id") Integer id, MultipartHttpServletRequest file) throws Exception {
             if (bindingResult.hasErrors()) {
                 return "question_form";
             }
