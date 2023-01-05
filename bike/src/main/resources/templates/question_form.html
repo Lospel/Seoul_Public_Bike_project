@@ -13,7 +13,10 @@
             <input type="text" th:field="*{subject}" class="form-control">
         </div>
         <div class="mb-3">
-            <input type="file" class="form-control" name="file">
+            <p>
+                <label for="file" class="form-label">Files</label>
+                <input type="file" multiple="multiple" class="form-control" name="file">
+            </p>
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
