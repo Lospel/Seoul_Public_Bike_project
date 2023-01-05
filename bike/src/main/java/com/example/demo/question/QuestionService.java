@@ -51,6 +51,7 @@ public class QuestionService {
             String projectPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
             UUID uuid = UUID.randomUUID();
             String fileName = uuid + "_" + file.getOriginalFilename();
+            // List<MultipartFile> fileList = new ArrayList<>();
             File saveFile = new File(projectPath, fileName);
             file.transferTo(saveFile);
             q.setFileName(fileName);
