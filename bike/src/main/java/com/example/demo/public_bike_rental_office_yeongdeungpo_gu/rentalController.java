@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/rental")
 public class rentalController {
     private final rentalService rentalService;
+    private final seoulService seoulService;
     
     @GetMapping("/rental_office")
     public String rental_office(Model model, @RequestParam(value = "keyword", defaultValue = "국회의원회관")String keyword) {
@@ -23,6 +24,7 @@ public class rentalController {
     @GetMapping("/mycourse")
     public String mycourse(Model model) {
         model.addAttribute("offices", rentalService.getAllrental());
+        model.addAttribute("places", seoulService.getAllplaces());
         return "mycourse";
     }
 }

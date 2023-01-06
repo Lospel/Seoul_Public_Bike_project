@@ -101,7 +101,7 @@
     
 	  /*]]>*/
 
-    var position = new naver.maps.LatLng(list7[7], list7[5]);
+    var position = new naver.maps.LatLng(list7[5], list7[7]);
 
     var map = new naver.maps.Map('map', {
       center: position,
@@ -127,7 +127,7 @@
 	  noti(/*[[${tmp.placename}]]*/, /*[[${tmp.latitude}]]*/, /*[[${tmp.longitude}]]*/); //여기 Argument expression expected. 에러 무시해도 됩니다.
 	  /*[/]*/
 	  /*]]>*/
-
+    
     function noti(numValue, latValue, lngValue){
       var marker = new naver.maps.Marker({
               map: map,
@@ -138,6 +138,11 @@
       naver.maps.Event.addListener(marker, 'click', function(e){
       map.panTo(e.coord);
       console.log(e.coord);
+      console.log(e.coord.x);
+      position = marker.getPosition(); //클릭이벤트시 해당 마커의 위치정보
+      console.log(position.x);
+      locations.push(position);
+      console.log(locations);
       });
     }
 
