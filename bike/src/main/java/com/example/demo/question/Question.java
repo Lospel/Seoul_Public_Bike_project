@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.example.demo.answer.Answer;
 import com.example.demo.user.SiteUser;
 
@@ -53,5 +51,9 @@ public class Question {
     
     private String fileName;
     private String filePath;
+    private String fileName2;
+    private String filePath2;
+    private String fileName3;
+    private String filePath3;
 
 }

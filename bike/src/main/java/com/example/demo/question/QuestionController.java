@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-// import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.answer.AnswerForm;
@@ -94,13 +93,13 @@ public class QuestionController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
     public String questionCreate(@Valid QuestionForm questionForm, 
-        BindingResult bindingResult, Principal principal, MultipartHttpServletRequest file) throws Exception {
+        BindingResult bindingResult, Principal principal, MultipartFile file, MultipartFile file2, MultipartFile file3) throws Exception {
         if (bindingResult.hasErrors()){
             return "question_form";
         }
         SiteUser siteUser = this.userService.getUser(principal.getName());
         this.questionService.create(questionForm.getSubject(), 
-            questionForm.getContent(), siteUser, file);// 질문을 저장한다.
+            questionForm.getContent(), siteUser, file, file2, file3);// 질문을 저장한다.
         return "redirect:/question/list"; // 질문 저장후 질문 목록으로 이동한다.
     }
 
@@ -124,7 +123,7 @@ public class QuestionController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult,
-        Principal principal, @PathVariable("id") Integer id, MultipartHttpServletRequest file) throws Exception {
+        Principal principal, @PathVariable("id") Integer id, MultipartFile file) throws Exception {
             if (bindingResult.hasErrors()) {
                 return "question_form";
             }
