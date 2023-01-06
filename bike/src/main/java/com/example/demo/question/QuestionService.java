@@ -38,38 +38,21 @@ public class QuestionService {
         }
     }
 
-    public void create(String subject, String content, SiteUser user, @RequestParam("file") MultipartFile file,
-    @RequestParam("file2") MultipartFile file2, @RequestParam("file3") MultipartFile file3) throws Exception {
+    public void create(String subject, String content, SiteUser user) throws Exception {
         Question q = new Question();
         q.setSubject(subject);
         q.setContent(content);
         q.setCreateDate(LocalDateTime.now());
         q.setAuthor(user);
-        if (!file.isEmpty()) {
-            String projectPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
-            UUID uuid = UUID.randomUUID();
-            String originFileName = uuid + "_" + file.getOriginalFilename();
-            File saveFile = new File(projectPath, originFileName);
-            file.transferTo(saveFile);
-            q.setFileName(originFileName);
-            q.setFilePath("/files/" + originFileName);
-        } if(!file2.isEmpty()) {
-            String projectPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
-            UUID uuid = UUID.randomUUID();
-            String originFileName = uuid + "_" + file2.getOriginalFilename();
-            File saveFile = new File(projectPath, originFileName);
-            file2.transferTo(saveFile);
-            q.setFileName2(originFileName);
-            q.setFilePath2("/files/" + originFileName);
-        } if(!file3.isEmpty()) {
-            String projectPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
-            UUID uuid = UUID.randomUUID();
-            String originFileName = uuid + "_" + file3.getOriginalFilename();
-            File saveFile = new File(projectPath, originFileName);
-            file3.transferTo(saveFile);
-            q.setFileName3(originFileName);
-            q.setFilePath3("/files/" + originFileName);
-        }
+        // if (!file.isEmpty()) {
+        //     String projectPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
+        //     UUID uuid = UUID.randomUUID();
+        //     String originFileName = uuid + "_" + file.getOriginalFilename();
+        //     File saveFile = new File(projectPath, originFileName);
+        //     file.transferTo(saveFile);
+        //     q.setFileName(originFileName);
+        //     q.setFilePath("/files/" + originFileName);
+        // }
         this.questionRepository.save(q);
         
     }
@@ -95,27 +78,27 @@ public class QuestionService {
         return this.questionRepository.findAllByKeyword(kw, pageable);
     }
 
-    public void modify (Question question, String subject, String content, MultipartFile file) throws Exception {
-        if (file.isEmpty()) {
-            question.setSubject(subject);
-            question.setContent(content);
-            question.setModifyDate(LocalDateTime.now());
-            this.questionRepository.save(question);
-        } 
-        else {
-            question.setSubject(subject);
-            question.setContent(content);
-            question.setModifyDate(LocalDateTime.now());
+    public void modify (Question question, String subject, String content) throws Exception {
+        
+        question.setSubject(subject);
+        question.setContent(content);
+        question.setModifyDate(LocalDateTime.now()); 
 
-            String projectPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
-            UUID uuid = UUID.randomUUID();
-            String originFileName = uuid + "_" + file.getOriginalFilename();
-            File saveFile = new File(projectPath, originFileName);
-            file.transferTo(saveFile);
-            question.setFileName(originFileName);
-            question.setFilePath("/files/" + originFileName);
-            this.questionRepository.save(question);
-        }  
+        // if (!file.isEmpty()) {
+        //     question.setSubject(subject);
+        //     question.setContent(content);
+        //     question.setModifyDate(LocalDateTime.now());
+
+        //     String projectPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
+        //     UUID uuid = UUID.randomUUID();
+        //     String originFileName = uuid + "_" + file.getOriginalFilename();
+        //     File saveFile = new File(projectPath, originFileName);
+        //     file.transferTo(saveFile);
+        //     question.setFileName(originFileName);
+        //     question.setFilePath("/files/" + originFileName);
+        // }  
+
+        this.questionRepository.save(question);
     }
 
     public void delete(Question question) {

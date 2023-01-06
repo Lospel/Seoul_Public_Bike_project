@@ -2,33 +2,55 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:replace="/layout/fragments/head :: headFragment(title='Question')"></th:block>
 <th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Question')"></th:block>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+<style>
+    .ck.ck-editor {
+        width: 80%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .ck-editor__editable {
+        height: 50%;
+    }
 
+    form {
+	text-align: center;
+    }
+    </style>
 <th:block layout:fragment="content" class="container">
-    <h5 class="my-3 border-bottom pb-2">New Discussion</h5>
+    <h5 style="text-align: center; width: 80%; max-width: 800px; margin: 0 auto;" class="my-3 border-bottom pb-2">New Discussion</h5>
     <form th:object="${questionForm}" method="post" enctype="multipart/form-data">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
         <div class="mb-3">
             <label for="subject" class="form-label">Title</label>
-            <input type="text" th:field="*{subject}" class="form-control">
+            <input style="width: 80%; max-width: 800px; margin: 0 auto;" type="text" th:field="*{subject}" class="form-control">
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <p>
                 <label for="file" class="form-label">Files</label>
                 <input type="file" class="form-control" name="file" 
                 accept="image/gif, image/jpeg, image/png, image/jpg">
-                <input type="file" class="form-control" name="file2" 
-                accept="image/gif, image/jpeg, image/png, image/jpg">
-                <input type="file" class="form-control" name="file3" 
-                accept="image/gif, image/jpeg, image/png, image/jpg">
             </p>
-        </div>
+        </div> -->
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
-            <textarea th:field="*{content}" class="form-control" rows="10"></textarea>
+            <textarea id="editor" th:field="*{content}" rows="10"></textarea>
         </div>
+
         <input type="submit" value="Save" class="btn btn-primary my-2">
     </form>
 </th:block>
+<script>		
+	ClassicEditor
+	.create(document.querySelector('#editor'))
+	.then(editor => {
+		console.log('Editor was initialized');
+	})
+	.catch(error => {
+		console.error(error);
+	});
+ </script>
 <th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
 </html>

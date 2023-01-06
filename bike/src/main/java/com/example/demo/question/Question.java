@@ -33,6 +33,12 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    // @Column(columnDefinition = "TEXT")
+    // private String content2;
+
+    // @Column(columnDefinition = "TEXT")
+    // private String content3;
+
     private LocalDateTime createDate;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
