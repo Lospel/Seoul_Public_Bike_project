@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 @Configuration
 @EnableWebSecurity
@@ -47,4 +48,9 @@ public class SecurityConfig {
         throws Exception {
             return authenticationConfiguration.getAuthenticationManager();
         }
+    
+    @Bean
+    MappingJackson2JsonView jsonView() {
+        return new MappingJackson2JsonView();
+    }
 }
