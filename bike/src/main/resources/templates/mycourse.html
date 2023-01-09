@@ -28,6 +28,28 @@
             <button type="button" class="btn btn-success" id="savebtn" style="width: 100%;">+ Add My Course</button>
           </div>
           <br>
+          <button type="List" class="btn btn-light" style="width: 100%;"><strong> [ My List ] </strong></button>
+          <!-- <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Make My Course
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body" >
+                  <ul class="list-group" id="add_place">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item">A fourth item</li>
+                    <li class="list-group-item">And a fifth one</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+          </div> -->
         </div>
         <div id="section">
           <!-- //지도 API 사용 -->
@@ -108,8 +130,8 @@
       naver.maps.Event.addListener(marker, 'click', function(e){
         var contentString = [
         '<div class="test">',
-        '   <input type="button" id="savebtn" name="savebtn" value="장소추가" onclick="location_save();">',
-        '   <input type="button" id="removebtn" name="removebtn" value="장소삭제" onclick="location_remove();">',
+        '   <input type="button" id="savebtn" name="savebtn" class="btn btn-warning" value="장소추가" onclick="location_save();">',
+        '   <input type="button" id="removebtn" name="removebtn" class="btn btn-danger" value="장소삭제" onclick="location_remove();">',
         '</div>'
         ].join('');
         var infowindow = new naver.maps.InfoWindow({
@@ -124,23 +146,36 @@
         
         window.location_save = function(){
           var position = marker.getPosition(); //클릭이벤트시 해당 마커의 위치정보
+          var title = marker.getTitle();
+          console.log(title);
           let location = new Array();
-          location.push(position.x,position.y);
+          location.push(title,position.x,position.y);
           locations.push(location);
           console.log(locations);
           // console.log(locations[0][0]);
           var result = locations.reduce((acc, val) => [ ...acc, ...val ], []) // 이중배열 풀기
           console.log(result);
           marker.setIcon('https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png'); //클릭시 마커 이미지 변경
+          
+          // let tagArea = document.getElementById('add_place');
+          // let new_pTag = document.createElement('li');
+          
+          // new_pTag.setAttribute('class', 'list-group-item');
+          
+          // new_pTag.innerHTML = "장소";
+          // tagArea.appendChild(new_pTag);
+
+          
         }
         
         window.location_remove = function(){
           var position = marker.getPosition(); //클릭이벤트시 해당 마커의 위치정보
+          var title = marker.getTitle();
           let location = new Array();
-          location.push(position.x,position.y);
+          location.push(title,position.x,position.y);
           for(var i = 0; i < locations.length; i++){
             for(var j=0; j < locations[i].length; j++){
-              if (locations[i][j] === position.x || locations[i][j] === position.y ) { 
+              if (locations[i][j] === title || locations[i][j] === position.x || locations[i][j] === position.y ) { 
                 locations[i].splice(j, 1); 
                 j--; 
 
