@@ -2,7 +2,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:replace="/layout/fragments/head :: headFragment(title='Question')"></th:block>
 <th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Question')"></th:block>
-<script type="text/javascript" src="/js/ckeditor.js"></script>
+
 <style>
     .ck.ck-editor {
         width: 80%;
@@ -37,7 +37,7 @@
         <a href="/question/create"><input type="button" value="Cancel" class="btn btn-secondary my-2"></a>
     </form>
 </th:block>
-
+<script type="text/javascript" src="/js/ckeditor.js"></script>
 <script>	
 ClassicEditor
 .create( document.querySelector( '#editor' ), {
