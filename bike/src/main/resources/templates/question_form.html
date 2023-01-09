@@ -2,8 +2,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:replace="/layout/fragments/head :: headFragment(title='Question')"></th:block>
 <th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Question')"></th:block>
-<script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
-
+<script type="text/javascript" src="/js/ckeditor.js"></script>
 <style>
     .ck.ck-editor {
         width: 80%;
@@ -19,6 +18,7 @@
 	text-align: center;
     }
     </style>
+    
 <th:block layout:fragment="content" class="container">
     <h5 style="text-align: center; width: 80%; max-width: 800px; margin: 0 auto;" class="my-3 border-bottom pb-2">New Discussion</h5>
     <form th:object="${questionForm}" method="post" enctype="multipart/form-data">
@@ -37,20 +37,29 @@
         <a href="/question/create"><input type="button" value="Cancel" class="btn btn-secondary my-2"></a>
     </form>
 </th:block>
+
 <script>	
-	ClassicEditor
-	.create(document.querySelector('#editor'), {
-        ckfinder: {
-            // Upload the images to the server using the CKFinder QuickUpload command.
-            uploadUrl: '/question/create'
-        }
-    })
-	.then(editor => {
-		console.log('Editor was initialized');
-	})
-	.catch(error => {
-		console.error(error);
-	});
- </script>
+ClassicEditor
+.create( document.querySelector( '#editor' ), {
+					
+					licenseKey: '',
+					
+					
+					
+				} )
+				.then( editor => {
+					window.editor = editor;
+			
+					
+					
+					
+				} )
+				.catch( error => {
+					console.error( 'Oops, something went wrong!' );
+					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+					console.warn( 'Build id: ia47t6hg9pi0-lk1a0ar3wfg9' );
+					console.error( error );
+				} );
+		</script>
 <th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
 </html>
