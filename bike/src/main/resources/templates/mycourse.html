@@ -25,75 +25,18 @@
       <div id="center">
         <div id="nav">
           <div class="addBtn" >
-            <a th:href="@{/question/create}" class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus mr-2">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-              ADD MY COURSE
-            </a>
+            <button type="button" class="btn btn-success" id="savebtn" style="width: 100%;">+ Add My Course</button>
           </div>
           <br>
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  나만의 코스 1
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul class="list-group list-group-flush">
-                    <a th:href="@{#scrollspyHeading1}" class="list-group-item">장소 1</a>
-                    <a th:href="@{#scrollspyHeading2}" class="list-group-item">장소 2</a>
-                    <a th:href="@{#scrollspyHeading3}" class="list-group-item">장소 3</a>
-                    <a th:href="@{#scrollspyHeading4}" class="list-group-item">장소 4</a>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Accordion Item #2
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Accordion Item #3
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <div id="section">
-          
-          <div data-bs-spy="scroll" data-bs-target="#list-group-item" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
-            <h4 id="scrollspyHeading1">First heading</h4>
-            <div id="map" style="width:100%; height:800px;"></div>
-            <h4 id="scrollspyHeading2">Second heading</h4>
-            <p>
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-              ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-            </p>
-            <h4 id="scrollspyHeading3">Third heading</h4>
-            <p>ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</p>
-            <h4 id="scrollspyHeading4">Fourth heading</h4>
-            <p>
-              ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-            </p>
+          <!-- //지도 API 사용 -->
+          <div id="map" style="width:100%; height:1100px;"></div>
+          <div id="info" style="text-align:right;">
+            <img src="/files/basic_pin.png" > <strong>: Rental_office</strong> 
+            <img src='https://navermaps.github.io/maps.js.ncp/docs/img/example/ico_pin.jpg' style="width:20px; height:25px;"> <strong>: THE SIGHTS</strong> 
+            <br>
+            <img src="https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png" style="width:30px;height:35px;"> <strong>: My Location</strong>
           </div>
         </div>
       </div>
@@ -186,6 +129,8 @@
           locations.push(location);
           console.log(locations);
           // console.log(locations[0][0]);
+          var result = locations.reduce((acc, val) => [ ...acc, ...val ], []) // 이중배열 풀기
+          console.log(result);
           marker.setIcon('https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png'); //클릭시 마커 이미지 변경
         }
         
@@ -193,31 +138,29 @@
           var position = marker.getPosition(); //클릭이벤트시 해당 마커의 위치정보
           let location = new Array();
           location.push(position.x,position.y);
-          // for(var i = 0; i < locations.length; i++){
-          //   for(var j=0; j < locations[i].length; j++){
-          //     if (locations[i][j] === position.x || locations[i][j] === position.y ) { 
-          //       locations[i].splice(j, 1); 
-          //       j--; 
+          for(var i = 0; i < locations.length; i++){
+            for(var j=0; j < locations[i].length; j++){
+              if (locations[i][j] === position.x || locations[i][j] === position.y ) { 
+                locations[i].splice(j, 1); 
+                j--; 
 
-          //       }
-          //   }
-          //   i--;
-          // }
+                }
+              
+             }
+    
+          }
           
           console.log(location);
+          
           // console.log(locations[0][0]);
-          var markerOptions = {
-            position: position.destinationPoint(0, 20),
-            map: map,
-            icon: {
+          
+          marker.setIcon({
               url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/ico_pin.jpg',
               size: new naver.maps.Size(25, 34),
               scaledSize: new naver.maps.Size(25, 34),
               origin: new naver.maps.Point(0, 0),
               anchor: new naver.maps.Point(12, 34)
-            }
-          };
-          marker.setIcon('https://navermaps.github.io/maps.js.ncp/docs/img/example/ico_pin.jpg'); //클릭시 마커 이미지 변경
+          }); //클릭시 마커 이미지 변경
         }
 
       });
@@ -241,22 +184,22 @@
 
     
 
+    //경로 표시
+    // var polylinePath = [
+    // new naver.maps.LatLng(37.52841568, 126.9139175),
+    // new naver.maps.LatLng(37.53123856, 126.9213333),
+    // new naver.maps.LatLng(37.52881622, 126.92453),
+    // new naver.maps.LatLng(37.5280571, 126.9187012),
+    // new naver.maps.LatLng(37.52816391, 126.9170227)  
+    // ];
 
-    var polylinePath = [
-    new naver.maps.LatLng(37.52841568, 126.9139175),
-    new naver.maps.LatLng(37.53123856, 126.9213333),
-    new naver.maps.LatLng(37.52881622, 126.92453),
-    new naver.maps.LatLng(37.5280571, 126.9187012),
-    new naver.maps.LatLng(37.52816391, 126.9170227)  
-    ];
-
-    var polyline = new naver.maps.Polyline({
-        path: polylinePath,      //선 위치 변수배열
-        strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
-        strokeOpacity: 0.8, //선 투명도 0 ~ 1
-        strokeWeight: 6,   //선 두께
-        map: map           //오버레이할 지도
-    });
+    // var polyline = new naver.maps.Polyline({
+    //     path: polylinePath,      //선 위치 변수배열
+    //     strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+    //     strokeOpacity: 0.8, //선 투명도 0 ~ 1
+    //     strokeWeight: 6,   //선 두께
+    //     map: map           //오버레이할 지도
+    // });
 
     
 

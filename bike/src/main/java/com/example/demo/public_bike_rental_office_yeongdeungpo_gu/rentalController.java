@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -26,5 +27,9 @@ public class rentalController {
         model.addAttribute("offices", rentalService.getAllrental());
         model.addAttribute("places", seoulService.getAllplaces());
         return "mycourse";
+    }
+    @GetMapping("/save")
+    public String save(){
+        return "redirect:/rental/mycourse";
     }
 }
