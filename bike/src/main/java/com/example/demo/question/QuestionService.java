@@ -1,23 +1,16 @@
 package com.example.demo.question;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.example.demo.DataNotFoundException;
 import com.example.demo.user.SiteUser;
-
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -97,7 +90,7 @@ public class QuestionService {
         //     question.setFileName(originFileName);
         //     question.setFilePath("/files/" + originFileName);
         // }  
-
+        
         this.questionRepository.save(question);
     }
 
