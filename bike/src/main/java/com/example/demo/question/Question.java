@@ -33,12 +33,6 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    // @Column(columnDefinition = "TEXT")
-    // private String content2;
-
-    // @Column(columnDefinition = "TEXT")
-    // private String content3;
-
     private LocalDateTime createDate;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
@@ -57,9 +51,5 @@ public class Question {
     
     private String fileName;
     private String filePath;
-    private String fileName2;
-    private String filePath2;
-    private String fileName3;
-    private String filePath3;
 
 }

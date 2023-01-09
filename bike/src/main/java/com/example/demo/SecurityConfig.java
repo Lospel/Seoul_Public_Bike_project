@@ -49,8 +49,4 @@ public class SecurityConfig {
             return authenticationConfiguration.getAuthenticationManager();
         }
     
-    @Bean
-    MappingJackson2JsonView jsonView() {
-        return new MappingJackson2JsonView();
-    }
 }

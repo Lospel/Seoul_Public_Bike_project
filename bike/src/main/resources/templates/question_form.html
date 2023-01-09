@@ -3,6 +3,7 @@
 <th:block th:replace="/layout/fragments/head :: headFragment(title='Question')"></th:block>
 <th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Question')"></th:block>
 <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+
 <style>
     .ck.ck-editor {
         width: 80%;
@@ -27,6 +28,7 @@
             <label for="subject" class="form-label">Title</label>
             <input style="width: 80%; max-width: 800px; margin: 0 auto;" type="text" th:field="*{subject}" class="form-control">
         </div>
+
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
             <textarea id="editor" th:field="*{content}" rows="10"></textarea>
@@ -35,12 +37,13 @@
         <a href="/question/create"><input type="button" value="Cancel" class="btn btn-secondary my-2"></a>
     </form>
 </th:block>
-<script>		
+<script>	
 	ClassicEditor
-	.create(document.querySelector('#editor'),{
+	.create(document.querySelector('#editor'), {
         ckfinder: {
-			uploadUrl : '/image/upload'
-		}
+            // Upload the images to the server using the CKFinder QuickUpload command.
+            uploadUrl: '/question/create'
+        }
     })
 	.then(editor => {
 		console.log('Editor was initialized');

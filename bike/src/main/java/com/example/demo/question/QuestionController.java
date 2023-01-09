@@ -1,6 +1,7 @@
 package com.example.demo.question;
 
 import java.security.Principal;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.answer.AnswerForm;
@@ -92,13 +94,13 @@ public class QuestionController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
     public String questionCreate(@Valid QuestionForm questionForm, 
-        BindingResult bindingResult, Principal principal) throws Exception {
+        BindingResult bindingResult, Principal principal, MultipartFile file) throws Exception {
         if (bindingResult.hasErrors()){
             return "question_form";
         }
         SiteUser siteUser = this.userService.getUser(principal.getName());
         this.questionService.create(questionForm.getSubject(), 
-            questionForm.getContent(), siteUser);// 질문을 저장한다.
+            questionForm.getContent(), siteUser, file);// 질문을 저장한다.
         return "redirect:/question/list"; // 질문 저장후 질문 목록으로 이동한다.
     }
 
@@ -122,19 +124,19 @@ public class QuestionController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
     public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult,
-        Principal principal, @PathVariable("id") Integer id) throws Exception {
+        Principal principal, @PathVariable("id") Integer id, MultipartFile file) throws Exception {
             if (bindingResult.hasErrors()) {
                 return "question_form";
             }
             Question question = this.questionService.getQuestion(id);
             if (principal.getName().equals("admin")){
-                this.questionService.modify(question, questionForm.getSubject(), questionForm.getContent());
+                this.questionService.modify(question, questionForm.getSubject(), questionForm.getContent(), file);
                 return String.format("redirect:/question/detail/%s", id);
             }
             else if (!question.getAuthor().getUsername().equals(principal.getName())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"수정권한이 없습니다.");
             }
-            this.questionService.modify(question, questionForm.getSubject(), questionForm.getContent());
+            this.questionService.modify(question, questionForm.getSubject(), questionForm.getContent(), file);
             return String.format("redirect:/question/detail/%s", id);
         }
     
