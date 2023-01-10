@@ -111,7 +111,7 @@
 	  /*[/]*/
 	  /*]]>*/
     let locations = new Array();
-    
+    let result = new Array();
 
     function noti2(place, latitude, longitude){
       var marker = new naver.maps.Marker({
@@ -154,7 +154,7 @@
           console.log(locations[0]);
           // console.log(locations[0][0]);
           result = locations.reduce((acc, val) => [ ...acc, ...val ], []) // 이중배열 풀기
-          console.log(result);
+          
           marker.setIcon('https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png'); //클릭시 마커 이미지 변경
           
           // let tagArea = document.getElementById('add_place');
@@ -198,16 +198,29 @@
           }); //클릭시 마커 이미지 변경
         }
 
-        window.savedata = function(){
-          $.get('http://localhost:8080/course/savedata',
-            {name:result[0],longitude:result[1], latitude:result[2]},
-              function(){
-                console.log('name: '+result[0]);
-          },'json');
     
-     }
 
       });
+      // window.savedata = function(){
+      //     console.log(result);
+      //     $.get('http://localhost:8080/rental/save',
+      //     {name1 : result[0], longitude1 : result[1], latitude1 : result[2]},
+      //       function(){
+      //       console.log('결과: '+result);
+              
+      //   },'json');
+    
+      // };
+      window.savedata = function(){
+          console.log(result);
+          $.get('http://localhost:8080/rental/save',
+          {result : result},
+            function(){
+            console.log('결과: '+result);
+              
+        },'json');
+    
+      };
 
       
     }
