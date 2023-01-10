@@ -25,7 +25,7 @@
       <div id="center">
         <div id="nav">
           <div class="addBtn" >
-            <button type="button" class="btn btn-success" id="savebtn" style="width: 100%;">+ Add My Course</button>
+            <button type="button" class="btn btn-success" id="savebtn" style="width: 100%;" onclick="savedata();">+ Add My Course</button>
           </div>
           <br>
           <button type="List" class="btn btn-light" style="width: 100%;"><strong> [ My List ] </strong></button>
@@ -126,7 +126,7 @@
           anchor: new naver.maps.Point(12, 34)
         }
 	    });
-    
+      
       naver.maps.Event.addListener(marker, 'click', function(e){
         var contentString = [
         '<div class="test">',
@@ -151,9 +151,9 @@
           let location = new Array();
           location.push(title,position.x,position.y);
           locations.push(location);
-          console.log(locations);
+          console.log(locations[0]);
           // console.log(locations[0][0]);
-          var result = locations.reduce((acc, val) => [ ...acc, ...val ], []) // 이중배열 풀기
+          result = locations.reduce((acc, val) => [ ...acc, ...val ], []) // 이중배열 풀기
           console.log(result);
           marker.setIcon('https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png'); //클릭시 마커 이미지 변경
           
@@ -198,6 +198,15 @@
           }); //클릭시 마커 이미지 변경
         }
 
+        window.savedata = function(){
+          $.get('http://localhost:8080/course/savedata',
+            {name:result[0],longitude:result[1], latitude:result[2]},
+              function(){
+                console.log('name: '+result[0]);
+          },'json');
+    
+     }
+
       });
 
       
@@ -216,6 +225,9 @@
           });
       
     }
+    
+    
+    
 
     
 
