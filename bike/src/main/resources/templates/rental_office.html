@@ -28,9 +28,9 @@
         }
 
       </style>      
-<th:block th:replace="/layout/fragments/head :: headFragment(title='Rental Office')"></th:block>
+<th:block th:replace="layout/fragments/head :: headFragment(title='Rental Office')"></th:block>
 <!-- 사이드바 -->
-<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Rental Office')"></th:block>
+<th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Rental Office')"></th:block>
 
 <th:block layout:fragment="content" class="container my-3">
   
@@ -69,7 +69,7 @@
       
 
     </form>
-    <th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
+    <th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </th:block>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=75ojy30gbk "></script>
 

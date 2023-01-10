@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<th:block th:replace="/layout/fragments/head :: headFragment(title='Signup')"></th:block>
-<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Signup')"></th:block>
+<th:block th:replace="layout/fragments/head :: headFragment(title='Signup')"></th:block>
+<th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Signup')"></th:block>
 <th:block layout:fragment="content" class="container my-3">
     <section class="vh-100">
         <div class="container h-100">
@@ -59,9 +59,9 @@
                         </div>
       
                         <div class="form-check d-flex justify-content-center mb-5">
-                          <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                          <label class="form-check-label" for="form2Example3">
-                            I agree all statements in <a href="#!">Terms of service</a>
+                          <input class="form-check-input me-2" th:field="*{agreeTerms}" type="checkbox"/>
+                          <label class="form-check-label" for="agreeTerms">
+                            I agree all statements in <a href="https://policies.google.com/terms?hl=en-US">Terms of service</a>
                           </label>
                         </div>
       
@@ -87,5 +87,5 @@
       </section>
 
 </th:block>
-<th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
+<th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </html>

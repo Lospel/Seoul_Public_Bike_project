@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
-<th:block th:replace="/layout/fragments/head :: headFragment(title='Seoul Public Bicycle Ttareungi')"></th:block>
-<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Seoul Public Bicycle Ttareungi')"></th:block>
+<th:block th:replace="layout/fragments/head :: headFragment(title='Seoul Public Bicycle Ttareungi')"></th:block>
+<th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Seoul Public Bicycle Ttareungi')"></th:block>
 <th:block layout:fragment="content">
     <!-- Begin Page Content -->
     <div class="container-fluid text-center">
@@ -117,5 +117,5 @@
 
 </div>
 </th:block>
-<th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
+<th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </html>

@@ -1,9 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="~{layout/layout}">
-<th:block th:replace="/layout/fragments/head :: headFragment(title='코스확인')"></th:block>
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="layout/fragments/head :: headFragment(title='코스확인')"></th:block>
 <th:block layout:fragment="content" class="container my-3">
     <h1>코스1 확인</h1>
-<th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
+<th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </th:block>
 </html>

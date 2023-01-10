@@ -1,8 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       >
-<th:block th:replace="/layout/fragments/head :: headFragment(title='Forum')"></th:block>
-<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Forum')"></th:block>
+<th:block th:replace="layout/fragments/head :: headFragment(title='Forum')"></th:block>
+<th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Forum')"></th:block>
 
 <div layout:fragment="content" class="container my-3">
 <link rel="stylesheet" href="/css/mdb.min.forum.css">
@@ -221,5 +221,5 @@ btn_search.addEventListener("click", function() {
     document.getElementById("searchForm").submit();
 });
 </script>
-<th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
+<th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </html>

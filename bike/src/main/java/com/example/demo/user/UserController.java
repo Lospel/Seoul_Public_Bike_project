@@ -34,6 +34,11 @@ public class UserController {
             "2개의 패스워드가 일치하지 않습니다.");
             return "signup_form";
         }
+        if (userCreateForm.getAgreeTerms().equals(false)) {
+            bindingResult.rejectValue("agreeTerms", "notAgreeTerms",
+            "이용약관에 동의하지 않으셨습니다.");
+            return "signup_form";
+        }
         
         try {
             userService.create(userCreateForm.getNickname(),

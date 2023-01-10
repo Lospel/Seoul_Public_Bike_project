@@ -27,4 +27,6 @@ public class UserCreateForm {
     @Email
     private String email;
 
+    private Boolean agreeTerms;
+
 }
