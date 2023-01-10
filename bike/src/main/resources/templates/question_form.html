@@ -31,7 +31,7 @@
 
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
-            <textarea id="editor" th:field="*{content}" rows="10"></textarea>
+            <textarea id="editor" th:field="*{content}"></textarea>
         </div>
         <input style="margin-right: 80px;" type="submit" value="Save" class="btn btn-primary my-2">
         <a href="/question/create"><input type="button" value="Cancel" class="btn btn-secondary my-2"></a>
@@ -41,22 +41,24 @@
 <script>	
 ClassicEditor
 .create( document.querySelector( '#editor' ), {
-					
 					licenseKey: '',
-                    
-	
+                    mediaEmbed: {
+                        previewsInData: true
+                    }
 				} )
+
 				.then( editor => {
 					window.editor = editor;
 
-					
 				} )
+
 				.catch( error => {
 					console.error( 'Oops, something went wrong!' );
 					console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
 					console.warn( 'Build id: ia47t6hg9pi0-lk1a0ar3wfg9' );
 					console.error( error );
 				} );
+
 		</script>
 <th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
 </html>

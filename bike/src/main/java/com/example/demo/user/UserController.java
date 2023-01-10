@@ -58,10 +58,6 @@ public class UserController {
         return "login_form";
     }
 
-    // @GetMapping("/rental_office")
-    // public String rental_office() {
-    //     return "rental_office";
-    // }
 
     @GetMapping("/course")
     public String course(){
