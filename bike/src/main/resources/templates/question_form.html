@@ -31,7 +31,7 @@
 
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
-            <textarea id="editor" th:field="*{content}" rows="10"></textarea>
+            <textarea id="editor" th:field="*{content}"></textarea>
         </div>
         <input style="margin-right: 80px;" type="submit" value="Save" class="btn btn-primary my-2">
         <a href="/question/create"><input type="button" value="Cancel" class="btn btn-secondary my-2"></a>
@@ -42,7 +42,9 @@
 ClassicEditor
 .create( document.querySelector( '#editor' ), {
 					licenseKey: '',
-
+                    mediaEmbed: {
+                        previewsInData: true
+                    }
 				} )
 
 				.then( editor => {
