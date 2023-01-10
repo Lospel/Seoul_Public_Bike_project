@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<th:block th:replace="/layout/fragments/head :: headFragment(title='Signup')"></th:block>
-<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Signup')"></th:block>
+<th:block th:replace="layout/fragments/head :: headFragment(title='Signup')"></th:block>
+<th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Signup')"></th:block>
 <th:block layout:fragment="content" class="container my-3">
     <section class="vh-100">
         <div class="container h-100">
@@ -87,5 +87,5 @@
       </section>
 
 </th:block>
-<th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
+<th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </html>

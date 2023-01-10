@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<th:block th:replace="/layout/fragments/head :: headFragment(title='Question')"></th:block>
-<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Questioin')"></th:block>
+<th:block th:replace="layout/fragments/head :: headFragment(title='Question')"></th:block>
+<th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Questioin')"></th:block>
 <style>
     img {
         width: 50%;
@@ -152,5 +152,5 @@ ClassicEditor
 				} );
 
 		</script>
-<th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
+<th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </html>

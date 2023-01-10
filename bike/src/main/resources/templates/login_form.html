@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<th:block th:replace="/layout/fragments/head :: headFragment(title='Login')"></th:block>
-<th:block th:replace="/layout/fragments/sidebar :: sidebarFragment(current='Login')"></th:block>
+<th:block th:replace="layout/fragments/head :: headFragment(title='Login')"></th:block>
+<th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Login')"></th:block>
 
 <section layout:fragment="content" class="vh-100" >
     <div class="container py-5 h-100">
@@ -50,5 +50,5 @@
     </div>
   </section>
 
-<th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
+<th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </html>
