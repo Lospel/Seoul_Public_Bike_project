@@ -3,6 +3,9 @@
 <th:block th:replace="layout/fragments/head :: headFragment(title='Login')"></th:block>
 <th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Login')"></th:block>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
+<!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script> -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v15.0&appId=500776535511628&autoLogAppEvents=1" nonce="BAzVeNQS"></script>
 <section layout:fragment="content" class="vh-100" >
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -44,7 +47,7 @@
             data-itp_support="true"
             data-callback="gLogin">
           </div>   
-          <div class="g_id_signin btn btn-lg btn-block btn-primary"
+          <div class="g_id_signin btn btn-lg btn-block btn-primary mb-2"
               data-type="standard"
               data-shape="rectangular"
               data-theme="filled_blue"
@@ -55,10 +58,20 @@
               >
           </div>
 
-            <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998; font-size: 15px;"
-                type="button"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button>
-            </form>
-            
+            <!-- <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998; font-size: 15px;"
+                type="button"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button> -->
+
+              <div class="fb-login-button btn btn-lg btn-block btn-primary mb-2" 
+              data-width="" 
+              data-size="large" 
+              data-button-type="login_with" 
+              data-layout="default" 
+              data-auto-logout-link="false" 
+              data-use-continue-as="false"
+              scope="public_profile,email" 
+                onlogin="checkLoginState();"
+              ></div>
+          </form>
             </div>
           </div>
         </div>
@@ -66,7 +79,8 @@
     </div>
   </section>
 
-  <script>
+<!-- google -->
+<script>
     function parseJwt (token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -81,12 +95,12 @@ function gLogin(response) {
 
     const responsePayload = parseJwt(response.credential);
 
-    console.log("ID: " + responsePayload.sub);
-    console.log('Full Name: ' + responsePayload.name);
-    console.log('Given Name: ' + responsePayload.given_name);
-    console.log('Family Name: ' + responsePayload.family_name);
-    console.log("Image URL: " + responsePayload.picture);
-    console.log("Email: " + responsePayload.email); 
+    // console.log("ID: " + responsePayload.sub);
+    // console.log('Full Name: ' + responsePayload.name);
+    // console.log('Given Name: ' + responsePayload.given_name);
+    // console.log('Family Name: ' + responsePayload.family_name);
+    // console.log("Image URL: " + responsePayload.picture);
+    // console.log("Email: " + responsePayload.email); 
     
     var form = document.getElementById("form");
     document.getElementById("username").value = responsePayload.email;
@@ -95,6 +109,42 @@ function gLogin(response) {
 
     };
 
-  </script>
+</script>
+
+<!-- Facebook -->
+<script>
+  
+ function statusChangeCallback(response) {  
+
+    accessToken = response.authResponse.accessToken;
+                userId = response.authResponse.userID; 
+
+                FB.api('/me', {
+                        fields: 'name,email,gender,birthday'
+                    },
+
+                    function (response) {
+                        $("#username").val(response.email);
+                        $("#password").val(response.id);
+                        document.getElementById("login").click();
+                    }); 
+  }
+
+  function checkLoginState() {               
+    FB.getLoginStatus(function(response) {   
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '500776535511628',
+      cookie     : true,                     
+      xfbml      : true, 
+      version    : 'v15.0'    
+    });
+  }
+</script>
+
 <th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </html>

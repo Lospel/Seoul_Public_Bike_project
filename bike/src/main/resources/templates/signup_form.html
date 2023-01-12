@@ -2,6 +2,29 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:replace="layout/fragments/head :: headFragment(title='Signup')"></th:block>
 <th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Signup')"></th:block>
+<style>
+  .divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+</style>
 <th:block layout:fragment="content" class="container my-3">
     <section class="vh-100">
         <div class="container h-100">
@@ -67,15 +90,19 @@
       
                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           <button id="register" type="submit" class="btn btn-primary" style="font-size: 18px; margin-right: 10px;">Register</button>
-                          
-                          <div id="g_id_onload"
+                        </div>
+                        <p class="divider-text">
+                          <span class="bg-light">OR</span>
+                        </p>
+                        <div class="row">
+                            <div id="g_id_onload"
                             data-client_id="326886684802-c3imk4d0ghpu913qv14r45g0833qpafm.apps.googleusercontent.com"
                             data-context="signup" 
                             data-ux_mode="popup"
                             data-itp_support="true"
                             data-callback="gSignup">
                           </div>   
-                          <div class="g_id_signin btn btn-primary"
+                          <div class="g_id_signin btn btn-block btn-google"
                               data-type="standard"
                               data-shape="rectangular"
                               data-theme="filled_blue"
@@ -84,7 +111,16 @@
                               data-locale="en"
                               data-logo_alignment="left">
                           </div>
-                        
+                          <div class="fb-login-button btn btn-block btn-facebook"  
+                          data-width="" 
+                          data-size="large" 
+                          data-button-type="continue_with" 
+                          data-layout="default" 
+                          data-auto-logout-link="false" 
+                          data-use-continue-as="false"
+                          scope="public_profile,email" 
+                          onlogin="checkLoginState();">
+                        </div>
                         </div>
                         
                           
@@ -135,5 +171,45 @@ function gSignup(response) {
   };
 
 </script>
+
+<!-- Facebook -->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<script>
+  
+  function statusChangeCallback(response) {  
+ 
+     accessToken = response.authResponse.accessToken;
+                 userId = response.authResponse.userID; 
+ 
+                 FB.api('/me', {
+                         fields: 'name,email,gender,birthday'
+                     },
+ 
+                     function (response) {
+                         $("#username").val(response.email);
+                         $("#nickname").val(response.name);
+                         $("#email").val(response.email);
+                         $("#password1").val(response.id);
+                         $("#password2").val(response.id);
+                         $("input:checkbox[id='agreeTerms1']").prop("checked", true);
+                         document.getElementById("register").click();
+                     }); 
+   }
+ 
+   function checkLoginState() {               
+     FB.getLoginStatus(function(response) {   
+       statusChangeCallback(response);
+     });
+   }
+ 
+   window.fbAsyncInit = function() {
+     FB.init({
+       appId      : '500776535511628',
+       cookie     : true,                     
+       xfbml      : true, 
+       version    : 'v15.0'    
+     });
+   }
+ </script>
 <th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </html>
