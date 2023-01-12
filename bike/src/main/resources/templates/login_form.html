@@ -50,13 +50,10 @@
             data-client_id="326886684802-c3imk4d0ghpu913qv14r45g0833qpafm.apps.googleusercontent.com"
             data-context="signin" 
             data-ux_mode="popup"
-            data-state_cookie_domain="/"
-            data-login_uri="/user/login"
             data-itp_support="true"
-            data-native_id_param="username"
-            data-native_password_param="password">
-          </div>
-          
+            data-callback="test">
+            <!-- data-login_uri="/user/login" -->
+          </div>   
 
           <div class="g_id_signin"
               data-type="standard"
@@ -66,7 +63,8 @@
               data-size="large"
               data-locale="en"
               data-logo_alignment="left"
-              data-click_listener="test">
+              >
+              <!-- data-click_listener="test" -->
 
           </div>
         </div>
@@ -74,9 +72,26 @@
     </div>
   </section>
   <script>
-    function test() {
-      console.log("test")
-    }
+    function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};
+
+function test(response) {
+    const responsePayload = parseJwt(response.credential);
+
+    console.log("ID: " + responsePayload.sub);
+    console.log('Full Name: ' + responsePayload.name);
+    console.log('Given Name: ' + responsePayload.given_name);
+    console.log('Family Name: ' + responsePayload.family_name);
+    console.log("Image URL: " + responsePayload.picture);
+    console.log("Email: " + responsePayload.email); 
+    };
   </script>
 <th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </html>
