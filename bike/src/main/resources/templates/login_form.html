@@ -2,7 +2,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:replace="layout/fragments/head :: headFragment(title='Login')"></th:block>
 <th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Login')"></th:block>
-
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <section layout:fragment="content" class="vh-100" >
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -38,17 +38,45 @@
             <hr class="my-4">
 
             <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39; font-size: 15px;"
-                type="button"><i class="fab fa-google me-2"></i> Sign in with google</button>
+                type="button">
+                <i class="fab fa-google me-2"></i> Sign in with google</button>
             <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998; font-size: 15px;"
                 type="button"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button>
             </form>
             </div>
           </div>
+          <!-- test _ signin signup use -->
+          <div id="g_id_onload"
+            data-client_id="326886684802-c3imk4d0ghpu913qv14r45g0833qpafm.apps.googleusercontent.com"
+            data-context="signin" 
+            data-ux_mode="popup"
+            data-state_cookie_domain="/"
+            data-login_uri="/user/login"
+            data-itp_support="true"
+            data-native_id_param="username"
+            data-native_password_param="password">
+          </div>
+          
 
+          <div class="g_id_signin"
+              data-type="standard"
+              data-shape="rectangular"
+              data-theme="filled_blue"
+              data-text="signin_with"
+              data-size="large"
+              data-locale="en"
+              data-logo_alignment="left"
+              data-click_listener="test">
+
+          </div>
         </div>
       </div>
     </div>
   </section>
-
+  <script>
+    function test() {
+      console.log("test")
+    }
+  </script>
 <th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </html>

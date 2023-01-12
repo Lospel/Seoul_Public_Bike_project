@@ -28,7 +28,8 @@ public class SecurityConfig {
             new AntPathRequestMatcher("/h2-console/**")
         ).and().headers().addHeaderWriter(new XFrameOptionsHeaderWriter(
             XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN
-        )).and().formLogin()
+        )).and()
+                .formLogin()
                 .loginPage("/user/login")
                 .defaultSuccessUrl("/")
         .and()
@@ -40,8 +41,9 @@ public class SecurityConfig {
             .rememberMeParameter("remember-me")
             .tokenValiditySeconds(43200)
             .alwaysRemember(false)
-            .userDetailsService(userDetailsService);
-            
+            .userDetailsService(userDetailsService)
+        .and().cors()
+        .and().csrf().disable();
         return http.build();
     }
 
