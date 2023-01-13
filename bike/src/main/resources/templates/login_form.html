@@ -3,8 +3,29 @@
 <th:block th:replace="layout/fragments/head :: headFragment(title='Login')"></th:block>
 <th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Login')"></th:block>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script> -->
-<div id="fb-root"></div>
+<style>
+  .divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+</style>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v15.0&appId=500776535511628&autoLogAppEvents=1" nonce="BAzVeNQS"></script>
 <section layout:fragment="content" class="vh-100" >
     <div class="container py-5 h-100">
@@ -36,33 +57,37 @@
                 <label class="form-check-label" for="remember-me"> Remember Me </label>
             </div>
 
-            <button id="login" class="btn btn-primary btn-lg btn-block" type="submit" style="font-size: 15px;">Login</button>
-            <a th:href="@{/user/signup}" class="btn btn-primary btn-lg btn-block" style="font-size: 15px;">Signup</a>
-            <hr class="my-4">
+            <button id="login" class="btn btn-success btn-lg btn-block" type="submit" style="font-size: 15px;">Login</button>
+            <a th:href="@{/user/signup}" class="btn btn-success btn-lg btn-block" style="font-size: 15px;">Signup</a>
+            <p class="divider-text">
+              <span class="bg-light">OR</span>
+            </p>
 
           <div id="g_id_onload"
             data-client_id="326886684802-c3imk4d0ghpu913qv14r45g0833qpafm.apps.googleusercontent.com"
             data-context="signin" 
             data-ux_mode="popup"
             data-itp_support="true"
-            data-callback="gLogin">
+            data-callback="gLogin"
+            >
           </div>   
-          <div class="g_id_signin btn btn-lg btn-block btn-primary mb-2"
+          <div class="g_id_signin btn btn-lg mb-2"
               data-type="standard"
               data-shape="rectangular"
-              data-theme="filled_blue"
+              data-theme="filled_black"
               data-text="signin_with"
               data-size="large"
               data-locale="en"
-              data-logo_alignment="left"
-              >
+              data-logo_alignment="center"
+              data-width=320
+              style="background-color: #202124;">
           </div>
 
             <!-- <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998; font-size: 15px;"
                 type="button"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button> -->
 
-              <div class="fb-login-button btn btn-lg btn-block btn-primary mb-2" 
-              data-width="" 
+              <div class="fb-login-button btn btn-lg mb-2" 
+              data-width="320"
               data-size="large" 
               data-button-type="login_with" 
               data-layout="default" 
@@ -70,7 +95,8 @@
               data-use-continue-as="false"
               scope="public_profile,email" 
                 onlogin="checkLoginState();"
-              ></div>
+              style="background-color: #1877f2;"></div>
+
           </form>
             </div>
           </div>
