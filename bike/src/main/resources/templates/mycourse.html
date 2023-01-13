@@ -29,14 +29,16 @@
           </div>
           <br>
           <button type="List" class="btn btn-light" style="width: 100%;"><strong> [ My List ] </strong></button>
+          
           <!-- <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Make My Course
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+                  mycourse
                 </button>
               </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+               -->
+              <!-- <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body" >
                   <ul class="list-group" id="add_place">
                     <li class="list-group-item">An item</li>
@@ -46,12 +48,13 @@
                     <li class="list-group-item">And a fifth one</li>
                   </ul>
                 </div>
-              </div>
+              </div> -->
             </div>
             
-          </div> -->
+          </div>
         </div>
         <div id="section">
+          <h5 style="color:red;">*장소선택은 5개까지만 가능합니다*</h5>
           <!-- //지도 API 사용 -->
           <div id="map" style="width:100%; height:1100px;"></div>
           <div id="info" style="text-align:right;">
@@ -151,10 +154,9 @@
           let location = new Array();
           location.push(title,position.x,position.y);
           locations.push(location);
-          console.log(locations[0]);
           // console.log(locations[0][0]);
           result = locations.reduce((acc, val) => [ ...acc, ...val ], []) // 이중배열 풀기
-          
+          infowindow.close();
           marker.setIcon('https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png'); //클릭시 마커 이미지 변경
           
           // let tagArea = document.getElementById('add_place');
@@ -188,7 +190,7 @@
           console.log(location);
           
           // console.log(locations[0][0]);
-          
+          infowindow.close();
           marker.setIcon({
               url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/ico_pin.jpg',
               size: new naver.maps.Size(25, 34),
@@ -198,29 +200,223 @@
           }); //클릭시 마커 이미지 변경
         }
 
+        let make = 1;
+        window.savedata = function(){
+            console.log(result.length);
+            length = result.length;
+            switch(length){
+              case 3 :
+                  $.get('http://localhost:8080/rental/save',
+                  { "name1" : result[0],
+                  "lat1" : result[1],
+                  "lng1" : result[2],
+                  "name2" : null,
+                  "lat2" : null,
+                  "lng2" : null,
+                  "name3" : null,
+                  "lat3" : null,
+                  "lng3" : null,
+                  "name4" : null,
+                  "lat4" : null,
+                  "lng4" : null,
+                  "name5" : null,
+                  "lat5" : null,
+                  "lng5" : null},
+                    function(){
+                    console.log('성공적으로 실행하였습니다.');
+                  },'json');
+                  break;
+              case 6 :
+                $.get('http://localhost:8080/rental/save',
+                    { "name1" : result[0],
+                    "lat1" : result[1],
+                    "lng1" : result[2],
+                    "name2" : result[3],
+                    "lat2" : result[4],
+                    "lng2" : result[5],
+                    "name3" : null,
+                    "lat3" : null,
+                    "lng3" : null,
+                    "name4" : null,
+                    "lat4" : null,
+                    "lng4" : null,
+                    "name5" : null,
+                    "lat5" : null,
+                    "lng5" : null},
+                      function(){
+                      console.log('성공적으로 실행하였습니다.');
+                    },'json');
+                    break;
+              case 9 : 
+                $.get('http://localhost:8080/rental/save',
+                      { "name1" : result[0],
+                      "lat1" : result[1],
+                      "lng1" : result[2],
+                      "name2" : result[3],
+                      "lat2" : result[4],
+                      "lng2" : result[5],
+                      "name3" : result[6],
+                      "lat3" : result[7],
+                      "lng3" : result[8],
+                      "name4" : null,
+                      "lat4" : null,
+                      "lng4" : null,
+                      "name5" : null,
+                      "lat5" : null,
+                      "lng5" : null},
+                        function(){
+                        console.log('성공적으로 실행하였습니다.');
+                      },'json');
+                      break;
+              case 12 : 
+                $.get('http://localhost:8080/rental/save',
+                        { "name1" : result[0],
+                        "lat1" : result[1],
+                        "lng1" : result[2],
+                        "name2" : result[3],
+                        "lat2" : result[4],
+                        "lng2" : result[5],
+                        "name3" : result[6],
+                        "lat3" : result[7],
+                        "lng3" : result[8],
+                        "name4" : result[9],
+                        "lat4" : result[10],
+                        "lng4" : result[11],
+                        "name5" : null,
+                        "lat5" : null,
+                        "lng5" : null},
+                          function(){
+                          console.log('성공적으로 실행하였습니다.');
+                        },'json');
+                        break;
+              case 15 : 
+                  $.get('http://localhost:8080/rental/save',
+                  { "name1" : result[0],
+                  "lat1" : result[1],
+                  "lng1" : result[2],
+                  "name2" : result[3],
+                  "lat2" : result[4],
+                  "lng2" : result[5],
+                  "name3" : result[6],
+                  "lat3" : result[7],
+                  "lng3" : result[8],
+                  "name4" : result[9],
+                  "lat4" : result[10],
+                  "lng4" : result[11],
+                  "name5" : result[12],
+                  "lat5" : result[13],
+                  "lng5" : result[14]},
+                    function(){
+                    console.log('결과: '+result[0]);
+                      
+                  },'json');
+                  break;
+
+            }
+          //   $.get('http://localhost:8080/rental/save',
+          //   { "name1" : result[0],
+          //   "lat1" : result[1],
+          //   "lng1" : result[2],
+          //   "name2" : result[3],
+          //   "lat2" : result[4],
+          //   "lng2" : result[5],
+          //   "name3" : result[6],
+          //   "lat3" : result[7],
+          //   "lng3" : result[8],
+          //   "name4" : result[9],
+          //   "lat4" : result[10],
+          //   "lng4" : result[11],
+          //   "name5" : result[12],
+          //   "lat5" : result[13],
+          //   "lng5" : result[14]},
+          //     function(){
+          //     console.log('결과: '+result[0]);
+                
+          // },'json');
+          //경로 표시
+          switch(length){
+            case 6 : 
+              var polylinePath = [
+                new naver.maps.LatLng(result[2], result[1]),
+                new naver.maps.LatLng(result[5], result[4])
+              ];
+              var polyline = new naver.maps.Polyline({
+                    path: polylinePath,      //선 위치 변수배열
+                    strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+                    strokeOpacity: 0.8, //선 투명도 0 ~ 1
+                    strokeWeight: 6,   //선 두께
+                    map: map           //오버레이할 지도
+                });
+              break;
+            case 9 : 
+                var polylinePath = [
+                new naver.maps.LatLng(result[2], result[1]),
+                new naver.maps.LatLng(result[5], result[4]),
+                new naver.maps.LatLng(result[8], result[7])
+                ];
+                var polyline = new naver.maps.Polyline({
+                    path: polylinePath,      //선 위치 변수배열
+                    strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+                    strokeOpacity: 0.8, //선 투명도 0 ~ 1
+                    strokeWeight: 6,   //선 두께
+                    map: map           //오버레이할 지도
+                });
+                break;
+            case 12 : 
+                var polylinePath = [
+                new naver.maps.LatLng(result[2], result[1]),
+                new naver.maps.LatLng(result[5], result[4]),
+                new naver.maps.LatLng(result[8], result[7]),
+                new naver.maps.LatLng(result[11], result[10])
+                ];
+                var polyline = new naver.maps.Polyline({
+                    path: polylinePath,      //선 위치 변수배열
+                    strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+                    strokeOpacity: 0.8, //선 투명도 0 ~ 1
+                    strokeWeight: 6,   //선 두께
+                    map: map           //오버레이할 지도
+                });
+                break;
+            case 15 : 
+                var polylinePath = [
+                new naver.maps.LatLng(result[2], result[1]),
+                new naver.maps.LatLng(result[5], result[4]),
+                new naver.maps.LatLng(result[8], result[7]),
+                new naver.maps.LatLng(result[11], result[10]),
+                new naver.maps.LatLng(result[14], result[13])  
+                ];
+                console.log(polylinePath);
+
+                var polyline = new naver.maps.Polyline({
+                    path: polylinePath,      //선 위치 변수배열
+                    strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+                    strokeOpacity: 0.8, //선 투명도 0 ~ 1
+                    strokeWeight: 6,   //선 두께
+                    map: map           //오버레이할 지도
+                });
+           }
+          // var polylinePath = [
+          // new naver.maps.LatLng(37.52841568, 126.9139175),
+          // new naver.maps.LatLng(37.53123856, 126.9213333),
+          // new naver.maps.LatLng(37.52881622, 126.92453),
+          // new naver.maps.LatLng(37.5280571, 126.9187012),
+          // new naver.maps.LatLng(37.52816391, 126.9170227)  
+          // ];
+          // console.log(polylinePath);
+          // var polyline = new naver.maps.Polyline({
+          //     path: polylinePath,      //선 위치 변수배열
+          //     strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+          //     strokeOpacity: 0.8, //선 투명도 0 ~ 1
+          //     strokeWeight: 6,   //선 두께
+          //     map: map           //오버레이할 지도
+          // });
+      };
+
     
 
       });
-      // window.savedata = function(){
-      //     console.log(result);
-      //     $.get('http://localhost:8080/rental/save',
-      //     {name1 : result[0], longitude1 : result[1], latitude1 : result[2]},
-      //       function(){
-      //       console.log('결과: '+result);
-              
-      //   },'json');
-    
-      // };
-      window.savedata = function(){
-          console.log(result);
-          $.get('http://localhost:8080/rental/save',
-          {result : result},
-            function(){
-            console.log('결과: '+result);
-              
-        },'json');
-    
-      };
+      
+      
 
       
     }
@@ -238,6 +434,7 @@
           });
       
     }
+
     
     
     
