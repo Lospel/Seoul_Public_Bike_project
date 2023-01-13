@@ -58,7 +58,7 @@
             </div>
 
             <button id="login" class="btn btn-success btn-lg btn-block" type="submit" style="font-size: 15px;">Login</button>
-            <a th:href="@{/user/signup}" class="btn btn-success btn-lg btn-block" style="font-size: 15px;">Signup</a>
+            <!-- <a th:href="@{/user/signup}" class="btn btn-success btn-lg btn-block" style="font-size: 15px;">Signup</a> -->
             <p class="divider-text">
               <span class="bg-light">OR</span>
             </p>
@@ -96,8 +96,11 @@
               scope="public_profile,email" 
                 onlogin="checkLoginState();"
               style="background-color: #1877f2;"></div>
-
           </form>
+          <hr class="my-4">
+          <small class="text-muted">
+            Not registered? <cite title="Source Title"><a th:href="@{/user/signup}">Create an Account</a></cite>
+          </small>
             </div>
           </div>
         </div>
