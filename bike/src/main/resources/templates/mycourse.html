@@ -29,14 +29,16 @@
           </div>
           <br>
           <button type="List" class="btn btn-light" style="width: 100%;"><strong> [ My List ] </strong></button>
+          
           <!-- <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Make My Course
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+                  mycourse
                 </button>
               </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+               -->
+              <!-- <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body" >
                   <ul class="list-group" id="add_place">
                     <li class="list-group-item">An item</li>
@@ -46,12 +48,13 @@
                     <li class="list-group-item">And a fifth one</li>
                   </ul>
                 </div>
-              </div>
+              </div> -->
             </div>
             
-          </div> -->
+          </div>
         </div>
         <div id="section">
+          <h5 style="color:red;">*장소선택은 5개까지만 가능합니다*</h5>
           <!-- //지도 API 사용 -->
           <div id="map" style="width:100%; height:1100px;"></div>
           <div id="info" style="text-align:right;">
@@ -151,7 +154,6 @@
           let location = new Array();
           location.push(title,position.x,position.y);
           locations.push(location);
-          console.log(locations[0]);
           // console.log(locations[0][0]);
           result = locations.reduce((acc, val) => [ ...acc, ...val ], []) // 이중배열 풀기
           
@@ -198,29 +200,43 @@
           }); //클릭시 마커 이미지 변경
         }
 
+        let make = 1;
+        window.savedata = function(){
+            console.log(result);
+            $.get('http://localhost:8080/rental/save',
+            { "name1" : result[0],
+            "lat1" : result[1],
+            "lng1" : result[2],
+            "name2" : result[3],
+            "lat2" : result[4],
+            "lng2" : result[5],
+            "name3" : result[6],
+            "lat3" : result[7],
+            "lng3" : result[8],
+            "name4" : result[9],
+            "lat4" : result[10],
+            "lng4" : result[11],
+            "name5" : result[12],
+            "lat5" : result[13],
+            "lng5" : result[14]},
+              function(){
+              console.log('결과: '+result[0]);
+                
+          },'json');
+          // marker.setIcon({
+          //       url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/ico_pin.jpg',
+          //       size: new naver.maps.Size(25, 34),
+          //       scaledSize: new naver.maps.Size(25, 34),
+          //       origin: new naver.maps.Point(0, 0),
+          //       anchor: new naver.maps.Point(12, 34)
+          //   }); //클릭시 마커 이미지 변경
+      };
+
     
 
       });
-      // window.savedata = function(){
-      //     console.log(result);
-      //     $.get('http://localhost:8080/rental/save',
-      //     {name1 : result[0], longitude1 : result[1], latitude1 : result[2]},
-      //       function(){
-      //       console.log('결과: '+result);
-              
-      //   },'json');
-    
-      // };
-      window.savedata = function(){
-          console.log(result);
-          $.get('http://localhost:8080/rental/save',
-          {result : result},
-            function(){
-            console.log('결과: '+result);
-              
-        },'json');
-    
-      };
+      
+      
 
       
     }
@@ -238,6 +254,7 @@
           });
       
     }
+
     
     
     
