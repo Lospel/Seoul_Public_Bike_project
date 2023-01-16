@@ -33,6 +33,7 @@ public class rentalController {
     private final rentalService rentalService;
     private final seoulService seoulService;
     private final courseRepository courseRepository;
+
     
     
     @GetMapping("/rental_office")
@@ -42,9 +43,17 @@ public class rentalController {
         return "rental_office";
     }
     @GetMapping("/mycourse")
-    public String mycourse(Model model) {
+    public String mycourse(Model model, Principal principal) {
         model.addAttribute("offices", rentalService.getAllrental());
         model.addAttribute("places", seoulService.getAllplaces());
+        model.addAttribute("test", "hello");
+        SiteUser siteUser = this.userService.getUser(principal.getName());
+        model.addAttribute("course", courseRepository.findByAuthor(siteUser));
+        // model.addAttribute("course", courseRepository.selectall());
+        // System.out.println(courseRepository.selectall());
+
+        // List<course> course = courseRepository.selectall();
+        // model.addAttribute("course",course);
         return "mycourse";
     }
     @GetMapping("/save")
@@ -75,7 +84,7 @@ public class rentalController {
         SiteUser siteUser = this.userService.getUser(principal.getName());
         course entity = course.builder().name1(name1).lat1(lat1).lng1(lng1).name2(name2).lat2(lat2).lng2(lng2).name3(name3).lat3(lat3).lng3(lng3).name4(name4).lat4(lat4).lng4(lng4).name5(name5).lat5(lat5).lng5(lng5).author(siteUser).build();
         courseRepository.save(entity);
-        model.addAttribute("test", "hello");
+        
         // model.addAttribute("course", courseRepository.findByAuthor(siteUser));
         // System.out.println("내 코스는 : "+courseRepository.findByAuthor(siteUser));
         return "redirect:/rental/mycourse";
