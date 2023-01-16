@@ -32,7 +32,7 @@ public class public_bike_rental_office_yeongdeungpo_gu {
 
     private String Longitude;
 
-//     private String Holder_LCD;
+    private String Holder_LCD;
 
-//     private String Holder_QR;
+    private String Holder_QR;
 }

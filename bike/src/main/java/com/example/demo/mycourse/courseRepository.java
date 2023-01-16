@@ -11,7 +11,7 @@ public interface courseRepository extends JpaRepository<course, Integer>{
 
     List<course> findByAuthor(SiteUser siteUser);
 
-    @Query(nativeQuery = true, value = "SELECT * FROM course")
-    public List<course> selectall();
+    List<course> findByIdAndAuthor(Integer id, SiteUser siteUser);
+
     
 }

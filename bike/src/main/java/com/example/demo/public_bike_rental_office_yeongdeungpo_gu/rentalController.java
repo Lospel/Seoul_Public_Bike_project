@@ -49,13 +49,15 @@ public class rentalController {
         model.addAttribute("test", "hello");
         SiteUser siteUser = this.userService.getUser(principal.getName());
         model.addAttribute("course", courseRepository.findByAuthor(siteUser));
-        // model.addAttribute("course", courseRepository.selectall());
-        // System.out.println(courseRepository.selectall());
-
-        // List<course> course = courseRepository.selectall();
-        // model.addAttribute("course",course);
         return "mycourse";
     }
+    @GetMapping("/detail/{id}")
+    public String detail(Model model,@PathVariable("id") Integer id,Principal principal) {
+        SiteUser siteUser = this.userService.getUser(principal.getName());
+        model.addAttribute("detail", courseRepository.findByIdAndAuthor(id,siteUser));
+        return "course_detail";
+    }
+
     @GetMapping("/save")
     public String save(@RequestParam(value="name1") String name1,
                         @RequestParam(value="lat1") String lat1,
