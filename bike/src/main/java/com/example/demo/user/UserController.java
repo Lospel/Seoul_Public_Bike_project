@@ -69,9 +69,9 @@ public class UserController {
         return "course";
     }
 
-    @GetMapping("/course_1")
-    public String course_1(){
-        return "course_1";
+    @GetMapping("/Yeouido")
+    public String Yeouido(){
+        return "Yeouido";
     }
     
     @GetMapping("/profile/{username}")
