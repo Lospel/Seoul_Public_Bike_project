@@ -2,11 +2,11 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="sidebarFragment(current)">
-  <body data-home-page="Ttareungyi.html" data-home-page-title="Ttareungyi" class="u-body u-xl-mode" data-lang="en">
+  <body class="u-body u-xl-mode" data-lang="en">
     <header class="u-black u-clearfix u-header u-header" id="sec-2d81">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <a href="/" class="u-image u-logo u-image-1">
-          <img src="/images/default-logo.png" class="u-logo-image u-logo-image-1">
+        <a href="/" class="u-align-left u-image u-logo u-image-1">
+          <img src="/images/004.png" class="u-logo-image u-logo-image-1">
         </a>
         <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
@@ -70,12 +70,13 @@
             </ul>
           </div>
         </nav>
-        <a class="u-login u-login-1" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
-        <a class="u-login u-login-1" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">Logout</a>
-        <a class="u-text u-text-default u-text-1" th:href="@{/user/signup}">Signup</a>
+        <div class="u-clearfix u-group-elements u-group-elements-1">
+          <a class="u-login u-login-1" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
+          <a class="u-login u-login-1" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">Logout</a>
+          <a class="u-text u-text-default u-text-1" th:href="@{/user/signup}">Signup</a>
+        </div>
       </div>
     </header>
-
+   
 </th:block>
-
 </html>
