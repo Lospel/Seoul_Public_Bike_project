@@ -3,11 +3,35 @@
       >
 <th:block th:replace="layout/fragments/head :: headFragment(title='Forum')"></th:block>
 <th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Forum')"></th:block>
-
-<div layout:fragment="content" class="container my-3">
+<link rel="stylesheet" href="/css/Forum.css" media="screen">
 <link rel="stylesheet" href="/css/mdb.min.forum.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
-<div class="container">
+
+<body class="u-body u-xl-mode" data-lang="en">
+    <section class="u-align-center u-clearfix u-palette-2-light-1 u-section-1" id="carousel_12c2">
+        <div class="u-clearfix u-sheet u-sheet-1">
+          <h2 class="u-align-center u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1"> Free to share Bike Courses and Q&amp;A.</h2>
+          <div class="u-form u-radius-50 u-white u-form-1">
+            <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" source="email" name="form" style="padding: 32px;">
+              
+                <div class="u-form-group u-form-name u-label-none">
+                <label for="name-6796" class="u-label">Search</label>
+                <input type="text" th:value="${kw}" placeholder="Search Title" id="search_kw" name="Search" class="u-grey-5 u-input u-input-rectangle u-radius-20" required="">
+              </div>
+              <div class="u-align-left u-form-group u-form-submit u-label-none">
+                <a href="#" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-palette-2-base u-radius-20 u-btn-1">Find</a>
+                <input type="submit" value="submit" class="u-form-control-hidden" id="btn_search">
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      
+</body>
+
+
+<div layout:fragment="content" class="my-3">
+<div>
 <div class="main-body p-0">
     <div class="inner-wrapper">
         <!-- Inner sidebar -->
@@ -62,16 +86,7 @@
 
         <!-- Inner main -->
         <div class="inner-main">
-            <!-- Inner main header -->
-            <div class="inner-main-header">
-                <div class="col-6">
-                  <div class="input-group">
-                      <input type="text" id="search_kw" class="form-control" th:value="${kw}" placeholder="Search Title">
-                      <button class="btn btn-outline-secondary btn-dark" type="button" id="btn_search">Find</button>
-                  </div>
-              </div>
-            </div>
-            <!-- /Inner main header -->
+            
 
             <!-- Inner main body -->
             <!-- Forum List -->
@@ -196,8 +211,6 @@
         </div>
       <!-- 페이징처리 끝 -->
         </div>
-            <!-- /Forum List -->
-            <!-- /Inner main body -->
         </div>
         <!-- /Inner main -->
         <form th:action="@{/question/list}" method="get" id="searchForm">
@@ -205,6 +218,18 @@
           <input type="hidden" id="page" name="page" th:value="${paging.number}">
       </form>
     </div>
+
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/html-templates" target="_blank">
+        <span>HTML Template</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="https://nicepage.com/static-site-generator" target="_blank">
+        <span>Static Website Generator</span>
+      </a>. 
+    </section>
 
 <script layout:fragment="script" type="text/javascript">
 const page_elements = document.getElementsByClassName("page-link");
