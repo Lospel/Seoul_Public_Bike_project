@@ -49,7 +49,7 @@
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body" >
                   <ul class="list-group" id="add_place" th:each="item : ${course}">
-                    <a th:href="@{|/rental/detail/${item.id}|}" th:text="${item.id}"></a>
+                    <a th:href="@{|/rental/detail/${item.id}|}">course</a>
                     <li class="list-group-item" th:text="${item.name1}">An item</li>
                     <li class="list-group-item" th:text="${item.name2}">A second item</li>
                     <li class="list-group-item" th:text="${item.name3}">A third item</li>
