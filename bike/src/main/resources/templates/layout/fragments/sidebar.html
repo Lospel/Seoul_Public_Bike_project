@@ -2,65 +2,80 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="sidebarFragment(current)">
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">
-            <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="20" alt="MDB Logo"
-              loading="lazy" />
-          </a>
-          <a class="navbar-brand" href="/">Ttareungi Trip</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="nav navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" sec:authorize="isAnonymous()"  th:href="@{/user/login}">
-                  Rental Office
-                </a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" aria-current="page" th:href="@{/rental/rental_office}" th:classappend="${current == 'Rental Office'} ? active">
-                  Rental Office
-                </a>
+  <body data-home-page="Ttareungyi.html" data-home-page-title="Ttareungyi" class="u-body u-xl-mode" data-lang="en">
+    <header class="u-black u-clearfix u-header u-header" id="sec-2d81">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <a href="/" class="u-image u-logo u-image-1">
+          <img src="/images/default-logo.png" class="u-logo-image u-logo-image-1">
+        </a>
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+              href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+              </svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px"
+                xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <rect y="1" width="16" height="2"></rect>
+                  <rect y="7" width="16" height="2"></rect>
+                  <rect y="13" width="16" height="2"></rect>
+                </g>
+              </svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-unstyled u-nav-1">
+              <li class="u-nav-item"><a
+                  class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/"
+                  style="padding: 10px 20px;">Ttareungyi</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">
-                  Check out the Course
-                </a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/course}" th:classappend="${current == 'Check out the Course'} ? active">
-                  Check out the Course
-                </a>
+              <li class="u-nav-item"><a
+                  class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                  style="padding: 10px 20px;"
+                  sec:authorize="isAnonymous()" th:href="@{/user/login}">Rental Office</a>
+                  <a
+                  class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                  style="padding: 10px 20px;"
+                  sec:authorize="isAuthenticated()" aria-current="page" th:href="@{/rental/rental_office}" th:classappend="${current == 'Rental Office'} ? active">Rental Office</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">
-                  Create a Daily Course
-                </a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/rental/mycourse}" th:classappend="${current == 'Create a Daily Course'} ? active">
-                  Create a Daily Course
-                </a>
+              <li class="u-nav-item"><a
+                  class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                  style="padding: 10px 20px;"
+                  sec:authorize="isAnonymous()" th:href="@{/user/login}">Check Course</a>
+                  <a
+                  class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                  style="padding: 10px 20px;"
+                  sec:authorize="isAuthenticated()" th:href="@{/user/course}" th:classappend="${current == 'Check out the Course'} ? active">Check Course</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">
-                  Forum
-                </a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/question/list}" th:classappend="${current == 'Forum'} ? active">
-                  Forum
-                </a>
+              <li class="u-nav-item"><a
+                  class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                  style="padding: 10px 20px;"
+                  sec:authorize="isAnonymous()" th:href="@{/user/login}">Create Course</a>
+                  <a
+                  class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                  style="padding: 10px 20px;"
+                  sec:authorize="isAuthenticated()" th:href="@{/rental/mycourse}" th:classappend="${current == 'Create a Daily Course'} ? active">Create Course</a>
               </li>
-            </ui>
-            </div>
-            <ul class="nav navbar-nav" >
-              <li class="nav-item">
-                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{|/user/profile/${#authentication.getPrincipal().getUsername()}|}">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
-                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">Logout</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/user/signup}">Signup</a>
+              <li class="u-nav-item"><a
+                  class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                  style="padding: 10px 20px;"
+                  sec:authorize="isAnonymous()" th:href="@{/user/login}">Forum</a>
+                  <a
+                  class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                  style="padding: 10px 20px;"
+                  sec:authorize="isAuthenticated()" th:href="@{/question/list}" th:classappend="${current == 'Forum'} ? active">Forum</a>
               </li>
             </ul>
-        </div>
-      </nav>
+          </div>
+        </nav>
+        <a class="u-login u-login-1" sec:authorize="isAnonymous()" th:href="@{/user/login}">Login</a>
+        <a class="u-login u-login-1" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">Logout</a>
+        <a class="u-text u-text-default u-text-1" th:href="@{/user/signup}">Signup</a>
+      </div>
+    </header>
+
 </th:block>
+
 </html>
