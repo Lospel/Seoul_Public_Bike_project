@@ -29,26 +29,36 @@
           </div>
           <br>
           <button type="List" class="btn btn-light" style="width: 100%;"><strong> [ My List ] </strong></button>
+          <!-- <tr th:each="item : ${course}">
+            <td th:text="${item.name1}">no1</td>
+            <td th:text="${item.name2}">no2</td>
+            <td th:text="${item.name3}">no3</td>
+            <td th:text="${item.name4}">no4</td>
+            <td th:text="${item.name5}">no5</td>
+            <br>
+          </tr> -->
           
-          <!-- <div class="accordion" id="accordionExample">
+          <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
                   mycourse
                 </button>
               </h2>
-               -->
-              <!-- <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body" >
-                  <ul class="list-group" id="add_place">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
+                  <ul class="list-group" id="add_place" th:each="item : ${course}">
+                    <li class="list-group-item" th:text="${item.id}">no</li>
+                    <li class="list-group-item" th:text="${item.name1}">An item</li>
+                    <li class="list-group-item" th:text="${item.name2}">A second item</li>
+                    <li class="list-group-item" th:text="${item.name3}">A third item</li>
+                    <li class="list-group-item" th:text="${item.name4}">A fourth item</li>
+                    <li class="list-group-item" th:text="${item.name5}">And a fifth one</li>
+                    <br>
                   </ul>
                 </div>
-              </div> -->
+              </div>
             </div>
             
           </div>
@@ -202,7 +212,7 @@
 
         let make = 1;
         window.savedata = function(){
-            console.log(result.length);
+            console.log(result);
             length = result.length;
             switch(length){
               case 3 :

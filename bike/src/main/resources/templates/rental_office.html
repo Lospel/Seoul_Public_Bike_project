@@ -89,38 +89,38 @@
     let infoWindows = new Array(); // 정보창을 담는 배열
     
     
-     /*<![CDATA[*/
-     var list = '[[${place}]]';
-     var list1 = list.replaceAll("[", "");
-     var list2 = list1.replaceAll("]", "");
-     var list3 = list2.replaceAll('"',"");
-     var list4 = list3.replaceAll(':', ",");
-     var list5 = list4.replaceAll("{", "");
-     var list6 = list5.replaceAll("}", "");
-     var list7 = list6.split(',');
-       console.log(list7);
+    //  /*<![CDATA[*/
+    //  var list = '[[${place}]]';
+    //  var list1 = list.replaceAll("[", "");
+    //  var list2 = list1.replaceAll("]", "");
+    //  var list3 = list2.replaceAll('"',"");
+    //  var list4 = list3.replaceAll(':', ",");
+    //  var list5 = list4.replaceAll("{", "");
+    //  var list6 = list5.replaceAll("}", "");
+    //  var list7 = list6.split(',');
+    //    console.log(list7);
+    //    console.log(list);
     
-	  /*]]>*/
-
-    var position = new naver.maps.LatLng(list7[3], list7[7]);
+    
+	  // /*]]>*/
 
     var map = new naver.maps.Map('map', {
-      center: position,
-      zoom: 17
+      center: new naver.maps.LatLng(37.52251816, 126.9072189),
+      zoom: 15
     });
 
-    var markerOptions = {
-      position: position.destinationPoint(0, 20),
-      map: map,
-      icon: {
-        url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png',
-        size: new naver.maps.Size(50, 52),
-        origin: new naver.maps.Point(0, 0),
-        anchor: new naver.maps.Point(25, 26)
-      }
-    };
+    // var markerOptions = {
+    //   position: position.destinationPoint(0, 20),
+    //   map: map,
+    //   icon: {
+    //     url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png',
+    //     size: new naver.maps.Size(50, 52),
+    //     origin: new naver.maps.Point(0, 0),
+    //     anchor: new naver.maps.Point(25, 26)
+    //   }
+    // };
 
-    var marker = new naver.maps.Marker(markerOptions);
+    // var marker = new naver.maps.Marker(markerOptions);
 
     
     /*<![CDATA[*/
@@ -142,13 +142,35 @@
       console.log(e.coord.x);
       position = marker.getPosition(); //클릭이벤트시 해당 마커의 위치정보
       console.log(position.x);
-      locations.push(position);
-      console.log(locations);
+      
       });
     }
+    /*<![CDATA[*/
+    /*[# th:each="tmp : ${place}"]*/
+	  noti2(/*[[${tmp.Latitude}]]*/, /*[[${tmp.Longitude}]]*/); //여기 Argument expression expected. 에러 무시해도 됩니다.
+	  /*[/]*/
+	  /*]]>*/
 
+    function noti2(latValue, lngValue){
+      var position = new naver.maps.LatLng(latValue, lngValue);
+      var markerOptions = {
+          position: position.destinationPoint(0, 20),
+          center: position,
+          map: map,
+          icon: {
+            url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png',
+            size: new naver.maps.Size(50, 52),
+            origin: new naver.maps.Point(0, 0),
+            anchor: new naver.maps.Point(25, 26)
+          }
+      };
+
+      var marker = new naver.maps.Marker(markerOptions);
+
+    }
+
+    
   }
-
   function create_ptag(){
     /*<![CDATA[*/
     var list = '[[${place}]]';
