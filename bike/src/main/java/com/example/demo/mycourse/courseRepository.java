@@ -13,5 +13,7 @@ public interface courseRepository extends JpaRepository<course, Integer>{
 
     List<course> findByIdAndAuthor(Integer id, SiteUser siteUser);
 
+    void deleteByIdAndAuthor(Integer id, SiteUser siteUser);
+
     
 }

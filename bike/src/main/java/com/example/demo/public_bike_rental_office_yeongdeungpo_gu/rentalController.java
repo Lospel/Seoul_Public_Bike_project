@@ -57,6 +57,12 @@ public class rentalController {
         model.addAttribute("detail", courseRepository.findByIdAndAuthor(id,siteUser));
         return "course_detail";
     }
+    @GetMapping("/delete/{id}")
+    public String delete(Model model,@PathVariable("id") Integer id,Principal principal) {
+        SiteUser siteUser = this.userService.getUser(principal.getName());
+        courseRepository.deleteByIdAndAuthor(id,siteUser);
+        return "mycourse";
+    }
 
     @GetMapping("/save")
     public String save(@RequestParam(value="name1") String name1,
