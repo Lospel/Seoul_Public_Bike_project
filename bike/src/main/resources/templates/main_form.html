@@ -6,7 +6,33 @@
 <th:block th:replace="layout/fragments/head :: headFragment(title='Seoul Public Bicycle Ttareungyi')"></th:block>
 <th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Seoul Public Bicycle Ttareungi')"></th:block>
 <th:block layout:fragment="content">
-
+    <div id="sec-abba"
+    style="background-color : #db545a; padding : 5px;color : black; height : 90px; padding-left: 47px;">
+        <div style="float : left;">
+            <div class="weather_icon"></div>
+        </div><br>
+        <div style="margin-right: 58px;">
+            <div style="float : right; margin : -25px 0px 0px 60px; font-size : 11pt">
+                <div class="wind"></div>
+                <div class="cloud"></div>
+            </div>
+            <div style="float : right; margin : -25px 0px 0px 60px; font-size : 11pt">
+                <div class="temp_min"></div>
+                <div class="temp_max"></div>
+                <div class="humidity"></div>
+            </div>
+        </div>
+        <div style="float : left; margin-top : -45px;">
+            <div class="current_temp" style="font-size : 50pt"></div>
+        </div>
+        <div style="float : left; margin-top : -15px; margin-left: 5px;">
+            <div class="weather_description" style="font-size : 20pt;"></div>
+            <div class="city" style="font-size : 13pt"></div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/OpenWeather.js"></script>
+    
     <body data-home-page="Ttareungyi.html" data-home-page-title="Ttareungyi" class="u-body u-xl-mode" data-lang="en">
         <section class="u-clearfix u-image u-shading u-section-1" id="sec-dde2" data-image-width="1280"
             data-image-height="853">
@@ -31,10 +57,10 @@
                                 <div class="u-layout-row">
                                     <div class="u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-2">
                                         <div class="u-container-layout u-container-layout-2">
-                                            <h4 class="u-text u-text-body-color u-text-3">Seoul Weather</h4>
-                                            <p class="u-text u-text-white u-text-4">Check the Weather in Seoul</p>
+                                            <h4 class="u-text u-text-body-color u-text-3">What is Ttareungyi</h4>
+                                            <p class="u-text u-text-white u-text-4">Check Ttareungyi in Seoul</p>
                                             <span class="u-align-left u-file-icon u-icon u-text-palette-3-base u-icon-1"
-                                                data-href="#sec-abba"><img src="/images/8335984-62a29225.png"
+                                                data-href="#sec-a50f"><img src="/images/8335984-62a29225.png"
                                                     alt=""></span>
                                         </div>
                                     </div>
@@ -301,28 +327,7 @@
             </div>
         </section> -->
 
-        <div id="sec-abba"
-        style="background-color : #db545a; padding : 40px;color : black; height : 220px">
-            <div style="float : left;">
-                <div class="weather_icon"></div>
-            </div><br>
-
-            <div style="float : right; margin : -5px 0px 0px 60px; font-size : 11pt">
-                <div class="temp_min"></div>
-                <div class="temp_max"></div>
-                <div class="humidity"></div>
-                <div class="wind"></div>
-                <div class="cloud"></div>
-            </div>
-            <div style="float : right; margin-top : -45px;">
-                <div class="current_temp" style="font-size : 50pt"></div>
-                <div class="weather_description" style="font-size : 20pt"></div>
-                <div class="city" style="font-size : 13pt"></div>
-            </div>
-        </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script type="text/javascript" src="/js/OpenWeather.js"></script>
-
+        
     </body>
 
     <footer>

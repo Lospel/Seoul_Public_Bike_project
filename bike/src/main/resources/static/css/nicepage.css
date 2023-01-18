@@ -20536,7 +20536,7 @@ a.pswp__share--download:hover {
 }
 .u-layout-grid .u-gallery-inner {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(1, auto);
   min-height: 100%;
 }
 .u-layout-thumbnails,
