@@ -5,7 +5,7 @@
     width:100%
   }
   #nav{
-    background-color:rgb(247, 243, 243);
+    background-color:rgb(255, 255, 255);
     width:20%;
     height: 100%;
     float:left;
@@ -25,18 +25,10 @@
       <div id="center">
         <div id="nav">
           <div class="addBtn" >
-            <button type="button" class="btn btn-success" id="savebtn" style="width: 100%;" onclick="savedata();">+ Add My Course</button>
+            <button type="button" class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1" id="savebtn" style="width: 100%;" onclick="savedata();">+ Add My Course</button>
           </div>
           <br>
-          <button type="List" class="btn btn-light" style="width: 100%;"><strong> [ My List ] </strong></button>
-          <!-- <tr th:each="item : ${course}">
-            <td th:text="${item.name1}">no1</td>
-            <td th:text="${item.name2}">no2</td>
-            <td th:text="${item.name3}">no3</td>
-            <td th:text="${item.name4}">no4</td>
-            <td th:text="${item.name5}">no5</td>
-            <br>
-          </tr> -->
+          <button type="hidden" class="btn btn-light" style="width: 100%;"><strong> [ My List ] </strong></button>
           
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
@@ -62,16 +54,17 @@
             </div>
             
           </div>
+          
         </div>
         <div id="section">
           <h5 style="color:red;">*장소선택은 5개까지만 가능합니다*</h5>
+          
           <!-- //지도 API 사용 -->
           <div id="map" style="width:100%; height:1100px;"></div>
           <div id="info" style="text-align:right;">
             <img src="/files/basic_pin.png" > <strong>: Rental_office</strong> 
             <img src='https://navermaps.github.io/maps.js.ncp/docs/img/example/ico_pin.jpg' style="width:20px; height:25px;"> <strong>: THE SIGHTS</strong> 
-            <br>
-            <img src="https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png" style="width:30px;height:35px;"> <strong>: My Location</strong>
+            <img src="https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png" style="width:20px;height:25px;"> <strong>: My Location</strong>
           </div>
         </div>
       </div>
@@ -210,7 +203,6 @@
           }); //클릭시 마커 이미지 변경
         }
 
-        let make = 1;
         window.savedata = function(){
             console.log(result);
             length = result.length;
@@ -405,21 +397,7 @@
                     map: map           //오버레이할 지도
                 });
            }
-          // var polylinePath = [
-          // new naver.maps.LatLng(37.52841568, 126.9139175),
-          // new naver.maps.LatLng(37.53123856, 126.9213333),
-          // new naver.maps.LatLng(37.52881622, 126.92453),
-          // new naver.maps.LatLng(37.5280571, 126.9187012),
-          // new naver.maps.LatLng(37.52816391, 126.9170227)  
-          // ];
-          // console.log(polylinePath);
-          // var polyline = new naver.maps.Polyline({
-          //     path: polylinePath,      //선 위치 변수배열
-          //     strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
-          //     strokeOpacity: 0.8, //선 투명도 0 ~ 1
-          //     strokeWeight: 6,   //선 두께
-          //     map: map           //오버레이할 지도
-          // });
+          
       };
 
     
@@ -447,32 +425,6 @@
 
     
     
-    
-
-    
-
-    //경로 표시
-    // var polylinePath = [
-    // new naver.maps.LatLng(37.52841568, 126.9139175),
-    // new naver.maps.LatLng(37.53123856, 126.9213333),
-    // new naver.maps.LatLng(37.52881622, 126.92453),
-    // new naver.maps.LatLng(37.5280571, 126.9187012),
-    // new naver.maps.LatLng(37.52816391, 126.9170227)  
-    // ];
-
-    // var polyline = new naver.maps.Polyline({
-    //     path: polylinePath,      //선 위치 변수배열
-    //     strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
-    //     strokeOpacity: 0.8, //선 투명도 0 ~ 1
-    //     strokeWeight: 6,   //선 두께
-    //     map: map           //오버레이할 지도
-    // });
-
-    
-
-
-
-
   }
 
   
