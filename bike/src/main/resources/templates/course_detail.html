@@ -17,9 +17,15 @@
             <td th:text="${item.name4} ">no4</td>
             <td>=></td>
             <td th:text="${item.name5} ">no5</td>
+            <br>
+            <br>
+            <form th:action="@{|/rental/delete/${item.id}|}" method="GET">
+                <input type="submit" id="removebtn" name="removebtn" class="btn btn-danger" value="Course Remove">
+            </form> 
+            
             <!-- <a href="http://map.naver.com/index.nhn?slng='${item.lat1}'&slat='${item.lng1}'&stext='${item.name1}'&elng='${item.lng2}'&elat='${item.lat2}'&etext='${item.name2}'&menu=route&pathType=1">길찾기</a> -->
         </tr>
-        <br>
+        
         <!-- <a th:href="@{|/rental/delete/${item.id}|}" class="btn btn-danger" value="Course Remove"></a> -->
         <!-- <input type="submit" id="removebtn" name="removebtn" class="btn btn-danger" value="Course Remove" onclick="location_remove();"> -->
         <br>
@@ -63,7 +69,7 @@ function initMap() {
             
             );
             //본인 위치 표시
-            var position = new naver.maps.LatLng(lng3, lat3);
+            var position = new naver.maps.LatLng(lng1, lat1);
 
             var map = new naver.maps.Map('map', {
             center: position,
@@ -79,20 +85,80 @@ function initMap() {
                     position: new naver.maps.LatLng(areaArr[i].lat , areaArr[i].lng) // 지역구의 위도 경도 넣기 
                 });
             }
-            var polylinePath = [
-                new naver.maps.LatLng(lng1, lat1),
-                new naver.maps.LatLng(lng2, lat2),
-                new naver.maps.LatLng(lng3, lat3),
-                new naver.maps.LatLng(lng4, lat4),
-                new naver.maps.LatLng(lng5, lat5)
-              ];
-            var polyline = new naver.maps.Polyline({
-                    path: polylinePath,      //선 위치 변수배열
-                    strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
-                    strokeOpacity: 0.8, //선 투명도 0 ~ 1
-                    strokeWeight: 6,   //선 두께
-                    map: map           //오버레이할 지도
-                });
+            // var polylinePath = [
+            //             new naver.maps.LatLng(lng1, lat1),
+            //             new naver.maps.LatLng(lng2, lat2),
+            //             new naver.maps.LatLng(lng3, lat3),
+            //             new naver.maps.LatLng(lng4, lat4),
+            //             new naver.maps.LatLng(lng5, lat5)
+            //         ];
+            // var polyline = new naver.maps.Polyline({
+            //                 path: polylinePath,      //선 위치 변수배열
+            //                 strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+            //                 strokeOpacity: 0.8, //선 투명도 0 ~ 1
+            //                 strokeWeight: 6,   //선 두께
+            //                 map: map           //오버레이할 지도
+            //             });
+            
+            if(lng3 == "" && lng4 == "" && lng5 == ""){
+                var polylinePath = [
+                    new naver.maps.LatLng(lng1, lat1),
+                    new naver.maps.LatLng(lng2, lat2)
+                ];
+                var polyline = new naver.maps.Polyline({
+                        path: polylinePath,      //선 위치 변수배열
+                        strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+                        strokeOpacity: 0.8, //선 투명도 0 ~ 1
+                        strokeWeight: 6,   //선 두께
+                        map: map           //오버레이할 지도
+                    }); 
+            }
+            else if(lng4 == "" && lng5 == ""){
+                var polylinePath = [
+                        new naver.maps.LatLng(lng1, lat1),
+                        new naver.maps.LatLng(lng2, lat2),
+                        new naver.maps.LatLng(lng3, lat3)
+                    ];
+                    var polyline = new naver.maps.Polyline({
+                            path: polylinePath,      //선 위치 변수배열
+                            strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+                            strokeOpacity: 0.8, //선 투명도 0 ~ 1
+                            strokeWeight: 6,   //선 두께
+                            map: map           //오버레이할 지도
+                        });
+            }
+            else if(lng5 == ""){
+                var polylinePath = [
+                        new naver.maps.LatLng(lng1, lat1),
+                        new naver.maps.LatLng(lng2, lat2),
+                        new naver.maps.LatLng(lng3, lat3),
+                        new naver.maps.LatLng(lng4, lat4)
+                    ];
+                    var polyline = new naver.maps.Polyline({
+                            path: polylinePath,      //선 위치 변수배열
+                            strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+                            strokeOpacity: 0.8, //선 투명도 0 ~ 1
+                            strokeWeight: 6,   //선 두께
+                            map: map           //오버레이할 지도
+                        });
+            }
+            else{
+                var polylinePath = [
+                        new naver.maps.LatLng(lng1, lat1),
+                        new naver.maps.LatLng(lng2, lat2),
+                        new naver.maps.LatLng(lng3, lat3),
+                        new naver.maps.LatLng(lng4, lat4),
+                        new naver.maps.LatLng(lng5, lat5)
+                    ];
+                    var polyline = new naver.maps.Polyline({
+                            path: polylinePath,      //선 위치 변수배열
+                            strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+                            strokeOpacity: 0.8, //선 투명도 0 ~ 1
+                            strokeWeight: 6,   //선 두께
+                            map: map           //오버레이할 지도
+                        });
+            }
+            
             // var marker1 = new naver.maps.Marker({
 	        // map: map,
 	        // title: name1, // 지역구 이름 
