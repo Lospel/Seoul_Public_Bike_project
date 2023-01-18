@@ -61,7 +61,7 @@ public class rentalController {
     public String delete(Model model,@PathVariable("id") Integer id,Principal principal) {
         SiteUser siteUser = this.userService.getUser(principal.getName());
         courseRepository.deleteByIdAndAuthor(id,siteUser);
-        return "mycourse";
+        return "redirect:/rental/mycourse";
     }
 
     @GetMapping("/save")
