@@ -1,7 +1,10 @@
 package com.example.demo.question;
 
+import java.io.File;
 import java.security.Principal;
+import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,7 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.answer.AnswerForm;
 import com.example.demo.user.SiteUser;
@@ -163,4 +169,22 @@ public class QuestionController {
         return String.format("redirect:/question/detail/%s", id);
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/create/upload")
+    public ModelAndView imageUpload(MultipartHttpServletRequest request) throws Exception {
+        ModelAndView mav = new ModelAndView("jsonView");
+        MultipartFile uploadFile = request.getFile("upload");
+        String originalFileName = uploadFile.getOriginalFilename();
+        String ext = originalFileName.substring(originalFileName.indexOf("."));
+		String newFileName = UUID.randomUUID() + ext;
+		String realPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
+        String savePath = realPath + "/upload/" + newFileName;
+        String uploadPath = savePath;
+		File file = new File(savePath);
+		uploadFile.transferTo(file);
+        
+        mav.addObject("uploaded", true);
+        mav.addObject("url", uploadPath);
+        return mav;
+    }
 }

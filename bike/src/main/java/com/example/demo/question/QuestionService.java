@@ -37,15 +37,6 @@ public class QuestionService {
         q.setContent(content);
         q.setCreateDate(LocalDateTime.now());
         q.setAuthor(user);
-        // if (!file.isEmpty()) {
-        //     String projectPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
-        //     UUID uuid = UUID.randomUUID();
-        //     String originFileName = uuid + "_" + file.getOriginalFilename();
-        //     File saveFile = new File(projectPath, originFileName);
-        //     file.transferTo(saveFile);
-        //     q.setFileName(originFileName);
-        //     q.setFilePath("/files/" + originFileName);
-        // }
         this.questionRepository.save(q);
         
     }
@@ -76,21 +67,6 @@ public class QuestionService {
         question.setSubject(subject);
         question.setContent(content);
         question.setModifyDate(LocalDateTime.now()); 
-
-        // if (!file.isEmpty()) {
-        //     question.setSubject(subject);
-        //     question.setContent(content);
-        //     question.setModifyDate(LocalDateTime.now());
-
-        //     String projectPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
-        //     UUID uuid = UUID.randomUUID();
-        //     String originFileName = uuid + "_" + file.getOriginalFilename();
-        //     File saveFile = new File(projectPath, originFileName);
-        //     file.transferTo(saveFile);
-        //     question.setFileName(originFileName);
-        //     question.setFilePath("/files/" + originFileName);
-        // }  
-        
         this.questionRepository.save(question);
     }
 
