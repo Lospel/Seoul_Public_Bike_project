@@ -78,6 +78,10 @@ public class UserController {
     public String Bukchon_Hanok_Village(){
         return "Bukchon_Hanok_Village";
     }
+    @GetMapping("/Cheonggyecheon_Stream")
+    public String Cheonggyecheon_Stream(){
+        return "Cheonggyecheon_Stream";
+    }
     
     @GetMapping("/profile/{username}")
     public String profile(Model model, @PathVariable("username") String username) throws Exception {
