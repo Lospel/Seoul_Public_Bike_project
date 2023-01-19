@@ -4,7 +4,7 @@ import java.io.File;
 import java.security.Principal;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,6 +30,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
 
 @RequestMapping("/question")
 @RequiredArgsConstructor
@@ -168,6 +169,11 @@ public class QuestionController {
         this.questionService.vote(question, siteUser);
         return String.format("redirect:/question/detail/%s", id);
     }
+    // @Value("${image.upload.path}")
+    // private String uploadPath;
+    
+    @Value("${resource.handler}")
+    private String resourceHandler;
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/upload")
@@ -177,14 +183,15 @@ public class QuestionController {
         String originalFileName = uploadFile.getOriginalFilename();
         String ext = originalFileName.substring(originalFileName.indexOf("."));
 		String newFileName = UUID.randomUUID() + ext;
-		String realPath = System.getProperty("user.dir") + "\\bike\\src\\main\\resources\\static\\files";
+		String realPath = "C:/Users/Pictures";
         String savePath = realPath + "/upload/" + newFileName;
-        String uploadPath = savePath;
+        String uploadPath = "/Users/Pictures/" + newFileName;
 		File file = new File(savePath);
 		uploadFile.transferTo(file);
-        
+
         mav.addObject("uploaded", true);
         mav.addObject("url", uploadPath);
         return mav;
     }
+
 }

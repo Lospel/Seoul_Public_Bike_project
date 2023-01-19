@@ -63,5 +63,4 @@ public class SecurityConfig {
     MappingJackson2JsonView jsonView() {
         return new MappingJackson2JsonView();
     }
-
 }
