@@ -36,56 +36,7 @@
         <a href="/question/create"><input type="button" value="Cancel" class="btn btn-secondary my-2"></a>
     </form>
 
-        <div id="center">
-            <div id="nav">         
-              <div class="accordion" id="accordionExample">
-                  <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-                      Course List
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body" >
-                      <ul class="list-group" id="add_place" th:each="item, loop : ${course}">
-                        <button th:text="|test ${loop.count}|" onclick="test()"></button>
-                        <li class="list-group-item" th:text="${item.name1}"></li>
-                        <li class="list-group-item" th:text="${item.name2}"></li>
-                        <li class="list-group-item" th:text="${item.name3}"></li>
-                        <li class="list-group-item" th:text="${item.name4}"></li>
-                        <li class="list-group-item" th:text="${item.name5}"></li>
-                        <br>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            </div>
-
 </th:block>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script th:inline="javascript">
-/*<![CDATA[*/
-let itemArray = new Array();
-
-var item = [[${course}]];
-function test() {
-    for(var i =0; i<item.length; i++){
-            console.log(item[i].name1);
-            console.log(item[i].name2);
-            console.log(item[i].name3);
-            console.log(item[i].name4);
-            console.log(item[i].name5);
-            itemArray.push(item[i].name1 + "->" + item[i].name2 + "->"
-            + item[i].name3 + "->" + item[i].name4 + "->" + item[i].name5);
-            // editor.setData(item[i].name1 + "<br>" + item[i].name2 + "<br>"
-            // + item[i].name3 + "<br>" + item[i].name4 + "<br>" + item[i].name5);
-        }
-        console.log(itemArray)
-        editor.setData(itemArray[0] + "<br>" +itemArray[1])
-}
-    /*]]>*/
-
-</script>
 <script type="text/javascript" src="/js/ckeditor.js"></script>
 <script>
 class MyUploadAdapter {
