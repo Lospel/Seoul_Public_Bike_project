@@ -31,22 +31,19 @@
     <form th:action="@{/rental/mycourse}" method="GET">
       <div id="center">
         <div id="nav">
-          <div class="addBtn" >
-            <button type="button" class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1" id="savebtn" style="width: 100%;" onclick="savedata();">+ Add My Course</button>
-          </div>
+          <button type="hidden" class="btn btn-light" id="refresh" style="width: 100%;"></button>
           <br>
-          <button type="hidden" class="btn btn-light" style="width: 100%;"><img src="/images/refresh_icon-icons.com_50052.png" style="width:30px; height:30px;"></button>
-          
+          <br>
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-                  mycourse
+                  My Course-List
                 </button>
               </h2>
               
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body" id="content" >
+                <div class="accordion-body" id="content" style="overflow:auto; height:950px;">
                   <ul class="list-group list-group-flush" id="add_place" th:each="item : ${course}">
                     <a th:href="@{|/rental/detail/${item.id}|}">check the course</a>
                     <li class="list-group-item" th:text="${item.name1}">An item</li>
@@ -61,14 +58,18 @@
             </div>
             
           </div>
+          <br>
+          <div class="addBtn" >
+            <button type="button" class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1" id="savebtn" style="width: 100%;" onclick="savedata();">+ Add My Course</button>
+          </div>
           
         </div>
         <div id="section">
           <h5 style="color:red;">*You can choose up to five locations.*</h5>
           
           <!-- //지도 API 사용 -->
-          <div id="map" style="width:100%; height:1100px;">
-            <button id="route" type="button" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-palette-2-base u-radius-20 u-btn-1" onclick="route();">route check</button>
+          <div id="map" style="width:100%; height:1150px;">
+            <button id="route" type="button" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-palette-2-base u-radius-20 u-btn-1" onClick="location.href='https://map.naver.com/v5/directions/-/-/-/bike?c=15,0,0,0,dh'">Naver map</button>
           </div>
           <div id="info" style="text-align:right;">
             <img src="/files/basic_pin.png" > <strong>: Rental_office</strong> 
@@ -199,6 +200,8 @@
     
           }
           
+
+          
           console.log(location);
           
           // console.log(locations[0][0]);
@@ -211,71 +214,11 @@
               anchor: new naver.maps.Point(12, 34)
           }); //클릭시 마커 이미지 변경
         }
-
-        // window.route = function(){
+        
+        // window.route_check = function(){
         //   length = result.length;
         //   //경로 표시
-        //   switch(length){
-        //     case 6 : 
-        //       var polylinePath = [
-        //         new naver.maps.LatLng(result[2], result[1]),
-        //         new naver.maps.LatLng(result[5], result[4])
-        //       ];
-        //       var polyline = new naver.maps.Polyline({
-        //             path: polylinePath,      //선 위치 변수배열
-        //             strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
-        //             strokeOpacity: 0.8, //선 투명도 0 ~ 1
-        //             strokeWeight: 3,   //선 두께
-        //             map: map           //오버레이할 지도
-        //         });
-        //       break;
-        //     case 9 : 
-        //         var polylinePath = [
-        //         new naver.maps.LatLng(result[2], result[1]),
-        //         new naver.maps.LatLng(result[5], result[4]),
-        //         new naver.maps.LatLng(result[8], result[7])
-        //         ];
-        //         var polyline = new naver.maps.Polyline({
-        //             path: polylinePath,      //선 위치 변수배열
-        //             strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
-        //             strokeOpacity: 0.8, //선 투명도 0 ~ 1
-        //             strokeWeight: 3,   //선 두께
-        //             map: map           //오버레이할 지도
-        //         });
-        //         break;
-        //     case 12 : 
-        //         var polylinePath = [
-        //         new naver.maps.LatLng(result[2], result[1]),
-        //         new naver.maps.LatLng(result[5], result[4]),
-        //         new naver.maps.LatLng(result[8], result[7]),
-        //         new naver.maps.LatLng(result[11], result[10])
-        //         ];
-        //         var polyline = new naver.maps.Polyline({
-        //             path: polylinePath,      //선 위치 변수배열
-        //             strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
-        //             strokeOpacity: 0.8, //선 투명도 0 ~ 1
-        //             strokeWeight: 3,   //선 두께
-        //             map: map           //오버레이할 지도
-        //         });
-        //         break;
-        //     case 15 : 
-        //         var polylinePath = [
-        //         new naver.maps.LatLng(result[2], result[1]),
-        //         new naver.maps.LatLng(result[5], result[4]),
-        //         new naver.maps.LatLng(result[8], result[7]),
-        //         new naver.maps.LatLng(result[11], result[10]),
-        //         new naver.maps.LatLng(result[14], result[13])  
-        //         ];
-        //         console.log(polylinePath);
-
-        //         var polyline = new naver.maps.Polyline({
-        //             path: polylinePath,      //선 위치 변수배열
-        //             strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
-        //             strokeOpacity: 0.8, //선 투명도 0 ~ 1
-        //             strokeWeight: 3,   //선 두께
-        //             map: map           //오버레이할 지도
-        //         });
-        //    }
+        //   url: 'http://map.naver.com/index.nhn?slng=127&slat=37.5&stext=출발지명&elng=127.5&elat=37.4&pathType=0&showMap=true&etext=도착지명&menu=route'
         // };
 
         window.savedata = function(){
@@ -473,6 +416,7 @@
                 });
            }
           
+           $("#refresh").trigger('click'); 
       };
 
     
