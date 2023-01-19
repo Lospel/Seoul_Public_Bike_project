@@ -1,7 +1,10 @@
 package com.example.demo.question;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -178,17 +181,25 @@ public class QuestionController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/upload")
     public ModelAndView imageUpload(MultipartHttpServletRequest request) throws Exception {
+        LocalDate now = LocalDate.now();
         ModelAndView mav = new ModelAndView("jsonView");
         MultipartFile uploadFile = request.getFile("upload");
         String originalFileName = uploadFile.getOriginalFilename();
         String ext = originalFileName.substring(originalFileName.indexOf("."));
 		String newFileName = UUID.randomUUID() + ext;
-		String realPath = "C:/Users/Pictures";
-        String savePath = realPath + "/upload/" + newFileName;
-        String uploadPath = "/Users/Pictures/" + newFileName;
+		String realPath = "C:/Users/Pictures/";
+        String savePath = realPath + now + "/" + newFileName;
+        String uploadPath = "/Users/Pictures/" + now + "/" + newFileName;
 		File file = new File(savePath);
+        if (!file.exists()) {
+            try{
+                Files.createDirectories(Paths.get(savePath));
+                } 
+                catch(Exception e){
+                e.getStackTrace();
+            }        
+        }
 		uploadFile.transferTo(file);
-
         mav.addObject("uploaded", true);
         mav.addObject("url", uploadPath);
         return mav;
