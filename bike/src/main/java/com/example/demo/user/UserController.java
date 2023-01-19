@@ -83,11 +83,4 @@ public class UserController {
         return "Cheonggyecheon_Stream";
     }
     
-    @GetMapping("/profile/{username}")
-    public String profile(Model model, @PathVariable("username") String username) throws Exception {
-        SiteUser siteUser = this.userService.getUser(username);
-        model.addAttribute("siteUser", siteUser);
-        return "profile_form";
-    }
-
 }

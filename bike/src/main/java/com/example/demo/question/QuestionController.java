@@ -1,7 +1,10 @@
 package com.example.demo.question;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +34,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import com.example.demo.mycourse.courseRepository;
+import com.example.demo.public_bike_rental_office_yeongdeungpo_gu.rentalService;
+import com.example.demo.public_bike_rental_office_yeongdeungpo_gu.seoulService;
 
 @RequestMapping("/question")
 @RequiredArgsConstructor
@@ -91,9 +97,19 @@ public class QuestionController {
         return "question_detail";
     }
 
+    private final rentalService rentalService;
+    private final seoulService seoulService;
+    private final courseRepository courseRepository;
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
-    public String questionCreate(QuestionForm questionForm) {
+    public String questionCreate(QuestionForm questionForm, Model model, Principal principal) {
+        model.addAttribute("offices", rentalService.getAllrental());
+        model.addAttribute("places", seoulService.getAllplaces());
+        model.addAttribute("test", "hello");
+        SiteUser siteUser = this.userService.getUser(principal.getName());
+        model.addAttribute("course", courseRepository.findByAuthor(siteUser));
+       
         return "question_form";
     }
 
@@ -169,8 +185,6 @@ public class QuestionController {
         this.questionService.vote(question, siteUser);
         return String.format("redirect:/question/detail/%s", id);
     }
-    // @Value("${image.upload.path}")
-    // private String uploadPath;
     
     @Value("${resource.handler}")
     private String resourceHandler;
@@ -178,17 +192,25 @@ public class QuestionController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/upload")
     public ModelAndView imageUpload(MultipartHttpServletRequest request) throws Exception {
+        LocalDate now = LocalDate.now();
         ModelAndView mav = new ModelAndView("jsonView");
         MultipartFile uploadFile = request.getFile("upload");
         String originalFileName = uploadFile.getOriginalFilename();
         String ext = originalFileName.substring(originalFileName.indexOf("."));
 		String newFileName = UUID.randomUUID() + ext;
-		String realPath = "C:/Users/Pictures";
-        String savePath = realPath + "/upload/" + newFileName;
-        String uploadPath = "/Users/Pictures/" + newFileName;
+		String realPath = "C:/Users/Pictures/";
+        String savePath = realPath + now + "/" + newFileName;
+        String uploadPath = "/Users/Pictures/" + now + "/" + newFileName;
 		File file = new File(savePath);
+        if (!file.exists()) {
+            try{
+                Files.createDirectories(Paths.get(savePath));
+                } 
+                catch(Exception e){
+                e.getStackTrace();
+            }        
+        }
 		uploadFile.transferTo(file);
-
         mav.addObject("uploaded", true);
         mav.addObject("url", uploadPath);
         return mav;

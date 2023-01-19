@@ -73,10 +73,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div> -->
                     </div>
-                    <!-- <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
-                    <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div> -->
                 </div>
             </div>
             <!-- /Inner sidebar body -->
@@ -136,7 +133,7 @@
                             </thead>
                             <tbody>
                                 <tr class="text-center" th:each="question, loop : ${paging2}">
-                                    <td th:text="${loop.index + 1}"></td>
+                                    <td th:text="${loop.count}"></td>
                                     <td class="text-start">
                                         <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
                                         <span class="text-danger small ms-2"
@@ -219,16 +216,16 @@
     </div>
 
     <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/html-templates" target="_blank">
-        <span>HTML Template</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="https://nicepage.com/static-site-generator" target="_blank">
-        <span>Static Website Generator</span>
-      </a>. 
-    </section>
+        <p class="u-text">
+          <span>Make with Kim</span>
+        </p>,
+        <p class="u-text">
+            <span>Make with Yee</span>
+        </p>,
+        <p class="u-text">
+            <span>Make with Jeong</span>
+        </p>
+      </section>
 
 <script layout:fragment="script" type="text/javascript">
 const page_elements = document.getElementsByClassName("page-link");

@@ -17,16 +17,15 @@
     form {
 	text-align: center;
     }
-    </style>
+</style>
     
 <th:block layout:fragment="content" class="container">
     <h5 style="text-align: center; width: 80%; max-width: 800px; margin: 0 auto;" class="my-3 border-bottom pb-2">New Discussion</h5>
     <form th:object="${questionForm}" method="post" enctype="multipart/form-data">
-        <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
         <div class="mb-3">
             <label for="subject" class="form-label">Title</label>
-            <input style="width: 80%; max-width: 800px; margin: 0 auto;" type="text" th:field="*{subject}" class="form-control">
+            <input id="title" style="width: 80%; max-width: 800px; margin: 0 auto;" type="text" th:field="*{subject}" class="form-control">
         </div>
 
         <div class="mb-3">
@@ -36,16 +35,64 @@
         <input style="margin-right: 80px;" type="submit" value="Save" class="btn btn-primary my-2">
         <a href="/question/create"><input type="button" value="Cancel" class="btn btn-secondary my-2"></a>
     </form>
+
+        <div id="center">
+            <div id="nav">         
+              <div class="accordion" id="accordionExample">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+                      Course List
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body" >
+                      <ul class="list-group" id="add_place" th:each="item, loop : ${course}">
+                        <button th:text="|test ${loop.count}|" onclick="test()"></button>
+                        <li class="list-group-item" th:text="${item.name1}"></li>
+                        <li class="list-group-item" th:text="${item.name2}"></li>
+                        <li class="list-group-item" th:text="${item.name3}"></li>
+                        <li class="list-group-item" th:text="${item.name4}"></li>
+                        <li class="list-group-item" th:text="${item.name5}"></li>
+                        <br>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+
 </th:block>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script th:inline="javascript">
+/*<![CDATA[*/
+let itemArray = new Array();
+
+var item = [[${course}]];
+function test() {
+    for(var i =0; i<item.length; i++){
+            console.log(item[i].name1);
+            console.log(item[i].name2);
+            console.log(item[i].name3);
+            console.log(item[i].name4);
+            console.log(item[i].name5);
+            itemArray.push(item[i].name1 + "->" + item[i].name2 + "->"
+            + item[i].name3 + "->" + item[i].name4 + "->" + item[i].name5);
+            // editor.setData(item[i].name1 + "<br>" + item[i].name2 + "<br>"
+            // + item[i].name3 + "<br>" + item[i].name4 + "<br>" + item[i].name5);
+        }
+        console.log(itemArray)
+        editor.setData(itemArray[0] + "<br>" +itemArray[1])
+}
+    /*]]>*/
+
+</script>
 <script type="text/javascript" src="/js/ckeditor.js"></script>
 <script>
 class MyUploadAdapter {
     constructor( loader ) {
-        // The file loader instance to use during the upload.
         this.loader = loader;
     }
 
-    // Starts the upload process.
     upload() {
         return this.loader.file
             .then( file => new Promise( ( resolve, reject ) => {
@@ -55,26 +102,19 @@ class MyUploadAdapter {
             } ) );
     }
 
-    // Aborts the upload process.
     abort() {
         if ( this.xhr ) {
             this.xhr.abort();
         }
     }
 
-    // Initializes the XMLHttpRequest object using the URL passed to the constructor.
     _initRequest() {
         const xhr = this.xhr = new XMLHttpRequest();
 
-        // Note that your request may look different. It is up to you and your editor
-        // integration to choose the right communication channel. This example uses
-        // a POST request with JSON as a data structure but your configuration
-        // could be different.
         xhr.open( 'POST', '/question/create/upload', true );
         xhr.responseType = 'json';
     }
 
-    // Initializes XMLHttpRequest listeners.
     _initListeners( resolve, reject, file ) {
         const xhr = this.xhr;
         const loader = this.loader;
@@ -85,28 +125,15 @@ class MyUploadAdapter {
         xhr.addEventListener( 'load', () => {
             const response = xhr.response;
 
-            // This example assumes the XHR server's "response" object will come with
-            // an "error" which has its own "message" that can be passed to reject()
-            // in the upload promise.
-            //
-            // Your integration may handle upload errors in a different way so make sure
-            // it is done properly. The reject() function must be called when the upload fails.
             if ( !response || response.error ) {
                 return reject( response && response.error ? response.error.message : genericErrorText );
             }
 
-            // If the upload is successful, resolve the upload promise with an object containing
-            // at least the "default" URL, pointing to the image on the server.
-            // This URL will be used to display the image in the content. Learn more in the
-            // UploadAdapter#upload documentation.
             resolve( {
                 default: response.url
             } );
         } );
 
-        // Upload progress when it is supported. The file loader has the #uploadTotal and #uploaded
-        // properties which are used e.g. to display the upload progress bar in the editor
-        // user interface.
         if ( xhr.upload ) {
             xhr.upload.addEventListener( 'progress', evt => {
                 if ( evt.lengthComputable ) {
@@ -117,26 +144,17 @@ class MyUploadAdapter {
         }
     }
 
-    // Prepares the data and sends the request.
     _sendRequest( file ) {
-        // Prepare the form data.
         const data = new FormData();
 
         data.append( 'upload', file );
 
-        // Important note: This is the right place to implement security mechanisms
-        // like authentication and CSRF protection. For instance, you can use
-        // XMLHttpRequest.setRequestHeader() to set the request headers containing
-        // the CSRF token generated earlier by your application.
-
-        // Send the request.
         this.xhr.send( data );
     }
 }
 
     function MyCustomUploadAdapterPlugin(editor) {
         editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
-        // Configure the URL to the upload script in your back-end here!
         return new MyUploadAdapter( loader );
     };
 }
@@ -147,7 +165,7 @@ ClassicEditor
                     mediaEmbed: {
                         previewsInData: true
                     },
-                    extraPlugins: [ MyCustomUploadAdapterPlugin ],
+                    extraPlugins: [ MyCustomUploadAdapterPlugin ]
 				} )
 
 				.then( editor => {
@@ -162,6 +180,6 @@ ClassicEditor
 					console.error( error );
 				} );
 
-		</script>
+</script>
 <th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </html>
