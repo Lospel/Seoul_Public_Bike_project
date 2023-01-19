@@ -97,19 +97,9 @@ public class QuestionController {
         return "question_detail";
     }
 
-    private final rentalService rentalService;
-    private final seoulService seoulService;
-    private final courseRepository courseRepository;
-
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
-    public String questionCreate(QuestionForm questionForm, Model model, Principal principal) {
-        model.addAttribute("offices", rentalService.getAllrental());
-        model.addAttribute("places", seoulService.getAllplaces());
-        model.addAttribute("test", "hello");
-        SiteUser siteUser = this.userService.getUser(principal.getName());
-        model.addAttribute("course", courseRepository.findByAuthor(siteUser));
-       
+    public String questionCreate(QuestionForm questionForm, Model model, Principal principal) {  
         return "question_form";
     }
 
