@@ -3,27 +3,53 @@
     <th:block th:replace="layout/fragments/head :: headFragment(title='Create a Daily Course')"></th:block>
       <!-- 사이드바 -->
     <th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Create a Daily Course')"></th:block>
+    <style>
+        #center{
+          width: 100%;
+        }
+        #main{
+            width:60%;
+            float:left;
+            text-align: center;
+        }
+        #side{
+            width:40%;
+            float:right;
+        }
+      </style>
     <th:block layout:fragment="content" class="container my-3">
+        <div id="center" th:each="item : ${detail}">
+            <div id="main" >
+                <div id="capture_area" >
+                    <h2 class="fw-bold">My Course</h2>
+                    <tr class="text-center" >
+                        <span class="badge rounded-pill text-bg-danger">Start!</span>
+                        <td th:text="${item.name1}">no1</td>
+                        &nbsp;&nbsp;
+                        <td th:text="${item.name2} ">no2</td>
+                        &nbsp;&nbsp;
+                        <td th:text="${item.name3} ">no3</td>
+                        &nbsp;&nbsp;
+                        <td th:text="${item.name4} ">no4</td>
+                        &nbsp;&nbsp;
+                        <td th:text="${item.name5} ">no5</td>
+                        <br>
+                        <br>
+                    </tr>
+                </div>
+                        
+            </div>  
+            <div id="side">
+                <br>
+                <button type="button" id="btn_download" class="btn btn-light"><img src="/images/1904659-arrow-backup-down-download-save-storage-transfer_122509.png" style="width:30px; height:30px;"></button>
+                <form th:action="@{|/rental/delete/${item.id}|}" method="GET">
+                    <input type="submit" id="removebtn" name="removebtn" class="btn btn-danger" value="Course Remove">    
+                </form> 
+            </div>
+        </div>
         
-        <h2>My Course</h2>
-        <tr class="text-center" th:each="item : ${detail}">
-            <td th:text="${item.name1}">no1</td>
-            <td>=></td>
-            <td th:text="${item.name2} ">no2</td>
-            <td>=></td>
-            <td th:text="${item.name3} ">no3</td>
-            <td>=></td>
-            <td th:text="${item.name4} ">no4</td>
-            <td>=></td>
-            <td th:text="${item.name5} ">no5</td>
-            <br>
-            <br>
-            <form th:action="@{|/rental/delete/${item.id}|}" method="GET">
-                <input type="submit" id="removebtn" name="removebtn" class="btn btn-danger" value="Course Remove">
-            </form> 
             
-            <!-- <a href="http://map.naver.com/index.nhn?slng='${item.lat1}'&slat='${item.lng1}'&stext='${item.name1}'&elng='${item.lng2}'&elat='${item.lat2}'&etext='${item.name2}'&menu=route&pathType=1">길찾기</a> -->
-        </tr>
+        
         
         <!-- <a th:href="@{|/rental/delete/${item.id}|}" class="btn btn-danger" value="Course Remove"></a> -->
         <!-- <input type="submit" id="removebtn" name="removebtn" class="btn btn-danger" value="Course Remove" onclick="location_remove();"> -->
@@ -38,13 +64,23 @@
     </th:block>
 
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=75ojy30gbk "></script>
-
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script  th:inline="javascript">
 
 $(function() {
         
     initMap();
         
+});
+$(function(){
+    $("#btn_download").click(function(e){
+        html2canvas(document.getElementById("capture_area")).then(function(canvas) {
+            var el = document.createElement("a")
+            el.href = canvas.toDataURL("image/jpeg")
+            el.download = 'course.jpg' //다운로드 할 파일명 설정
+            el.click()
+        })
+    })
 });
     
     
@@ -85,6 +121,7 @@ function initMap() {
                     title: areaArr[i].location, // 지역구 이름 
                     position: new naver.maps.LatLng(areaArr[i].lat , areaArr[i].lng) // 지역구의 위도 경도 넣기 
                 });
+                
             }
             // var polylinePath = [
             //             new naver.maps.LatLng(lng1, lat1),
@@ -110,7 +147,7 @@ function initMap() {
                         path: polylinePath,      //선 위치 변수배열
                         strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
                         strokeOpacity: 0.8, //선 투명도 0 ~ 1
-                        strokeWeight: 6,   //선 두께
+                        strokeWeight: 3,   //선 두께
                         map: map           //오버레이할 지도
                     }); 
             }
@@ -124,7 +161,7 @@ function initMap() {
                             path: polylinePath,      //선 위치 변수배열
                             strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
                             strokeOpacity: 0.8, //선 투명도 0 ~ 1
-                            strokeWeight: 6,   //선 두께
+                            strokeWeight: 3,   //선 두께
                             map: map           //오버레이할 지도
                         });
             }
@@ -139,7 +176,7 @@ function initMap() {
                             path: polylinePath,      //선 위치 변수배열
                             strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
                             strokeOpacity: 0.8, //선 투명도 0 ~ 1
-                            strokeWeight: 6,   //선 두께
+                            strokeWeight: 3,   //선 두께
                             map: map           //오버레이할 지도
                         });
             }
@@ -155,7 +192,7 @@ function initMap() {
                             path: polylinePath,      //선 위치 변수배열
                             strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
                             strokeOpacity: 0.8, //선 투명도 0 ~ 1
-                            strokeWeight: 6,   //선 두께
+                            strokeWeight: 3,   //선 두께
                             map: map           //오버레이할 지도
                         });
             }

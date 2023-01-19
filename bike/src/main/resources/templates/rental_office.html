@@ -11,6 +11,7 @@
   #info{
     text-align: right;
   }
+  
 </style>
 <th:block layout:fragment="content" class="container my-3">
   
@@ -69,7 +70,12 @@
             </tbody> 
           </table>
           <br>
-          <div id="map" style="width:100%; height:900px;"></div>
+          <div id="section">
+            <div id="side1"></div>
+            <div id="map" style="width:100%; height:900px;"></div>
+            <div id="side2"></div>
+          </div>
+          
           
           
 
@@ -114,6 +120,17 @@
               title: numValue, // 지역구 이름 
               position: new naver.maps.LatLng(latValue , lngValue) // 지역구의 위도 경도 넣기 
           });
+      //정보창
+      Title = marker.getTitle();
+      var contentString = [
+        '<div class="iw_inner">',
+        '   <h5>' + Title + '</h5>',
+        '</div>'
+          ].join('');
+
+      var infowindow = new naver.maps.InfoWindow({
+          content: contentString
+      });
 
       naver.maps.Event.addListener(marker, 'click', function(e){
       map.panTo(e.coord);
@@ -121,6 +138,11 @@
       console.log(e.coord.x);
       position = marker.getPosition(); //클릭이벤트시 해당 마커의 위치정보
       console.log(position.x);
+      if (infowindow.getMap()) {
+              infowindow.close();
+          } else {
+              infowindow.open(map, marker);
+        }
       
       });
     }
@@ -146,6 +168,26 @@
       };
 
       var marker = new naver.maps.Marker(markerOptions);
+      //정보창
+      Title = marker.getTitle();
+      var contentString = [
+        '<div class="iw_inner">',
+        '   <h5>' + Title + '</h5>',
+        '</div>'
+          ].join('');
+
+      var infowindow = new naver.maps.InfoWindow({
+          content: contentString
+      });
+      naver.maps.Event.addListener(marker, 'click', function(e){
+        map.panTo(e.coord);
+        if (infowindow.getMap()) {
+                infowindow.close();
+            } else {
+                infowindow.open(map, marker);
+          }
+      
+      });
 
     }
 
@@ -167,24 +209,8 @@
     
     tagArea.appendChild(new_pTag);
   }
-  //rest api 사용
-//   const settings = {
-//   "async": true,
-//   "crossDomain": true,
-//   "url": "https://naveropenapi.apigw-pub.fin-ntruss.com/map-direction/v1/driving?start=127.1058342%2C37.359708&goal=129.075986%2C35.179470&option=trafast",
-//   "method": "GET",
-//   "headers": {
-//     "user-agent": "vscode-restclient",
-//     "x-ncp-apigw-api-key-id": "75ojy30gbk",
-//     "x-ncp-apigw-api-key": "8GdB8Abg2usz6I49VdVBDqFLLh8bvfFWAjBXawN3"
-//   }
-// };
 
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-// });
 
-  
 	
 </script>
 
