@@ -36,6 +36,32 @@
         <input style="margin-right: 80px;" type="submit" value="Save" class="btn btn-primary my-2">
         <a href="/question/create"><input type="button" value="Cancel" class="btn btn-secondary my-2"></a>
     </form>
+    <form th:action="@{/rental/mycourse}" method="GET">
+        <div id="center">
+            <div id="nav">         
+              <div class="accordion" id="accordionExample">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+                      Course List
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body" >
+                      <ul class="list-group" id="add_place" th:each="item, loop : ${course}">
+                        <li class="list-group-item" th:text="${loop.count}"></li>
+                        <li class="list-group-item" th:text="${item.name1}"></li>
+                        <li class="list-group-item" th:text="${item.name2}"></li>
+                        <li class="list-group-item" th:text="${item.name3}"></li>
+                        <li class="list-group-item" th:text="${item.name4}"></li>
+                        <li class="list-group-item" th:text="${item.name5}"></li>
+                        <br>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+    </form>
 </th:block>
 
 <script type="text/javascript" src="/js/ckeditor.js"></script>
@@ -117,7 +143,7 @@ ClassicEditor
                     mediaEmbed: {
                         previewsInData: true
                     },
-                    extraPlugins: [ MyCustomUploadAdapterPlugin ],
+                    extraPlugins: [ MyCustomUploadAdapterPlugin ]
 				} )
 
 				.then( editor => {

@@ -34,6 +34,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import com.example.demo.mycourse.courseRepository;
+import com.example.demo.public_bike_rental_office_yeongdeungpo_gu.rentalService;
+import com.example.demo.public_bike_rental_office_yeongdeungpo_gu.seoulService;
 
 @RequestMapping("/question")
 @RequiredArgsConstructor
@@ -94,9 +97,19 @@ public class QuestionController {
         return "question_detail";
     }
 
+    private final rentalService rentalService;
+    private final seoulService seoulService;
+    private final courseRepository courseRepository;
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
-    public String questionCreate(QuestionForm questionForm) {
+    public String questionCreate(QuestionForm questionForm, Model model, Principal principal) {
+        model.addAttribute("offices", rentalService.getAllrental());
+        model.addAttribute("places", seoulService.getAllplaces());
+        model.addAttribute("test", "hello");
+        SiteUser siteUser = this.userService.getUser(principal.getName());
+        model.addAttribute("course", courseRepository.findByAuthor(siteUser));
+       
         return "question_form";
     }
 
@@ -172,8 +185,6 @@ public class QuestionController {
         this.questionService.vote(question, siteUser);
         return String.format("redirect:/question/detail/%s", id);
     }
-    // @Value("${image.upload.path}")
-    // private String uploadPath;
     
     @Value("${resource.handler}")
     private String resourceHandler;

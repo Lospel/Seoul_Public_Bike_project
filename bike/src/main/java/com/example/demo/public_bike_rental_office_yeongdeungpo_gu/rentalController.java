@@ -14,7 +14,6 @@ import com.example.demo.mycourse.courseRepository;
 import com.example.demo.user.SiteUser;
 import com.example.demo.user.UserService;
 
-
 import jakarta.persistence.Id;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
