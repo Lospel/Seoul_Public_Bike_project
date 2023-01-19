@@ -16,6 +16,13 @@
     float:left;
     padding: 10px;
   }
+  #route {
+  position:absolute;
+  top:0;
+  left:0;
+  padding:5px;
+  z-index:10;
+}
 </style>
 <th:block th:replace="layout/fragments/head :: headFragment(title='Create a Daily Course')"></th:block>
 <!-- 사이드바 -->
@@ -28,7 +35,7 @@
             <button type="button" class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1" id="savebtn" style="width: 100%;" onclick="savedata();">+ Add My Course</button>
           </div>
           <br>
-          <button type="hidden" class="btn btn-light" style="width: 100%;"><strong> [ My List ] </strong></button>
+          <button type="hidden" class="btn btn-light" style="width: 100%;"><img src="/images/refresh_icon-icons.com_50052.png" style="width:30px; height:30px;"></button>
           
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
@@ -39,8 +46,8 @@
               </h2>
               
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body" >
-                  <ul class="list-group" id="add_place" th:each="item : ${course}">
+                <div class="accordion-body" id="content" >
+                  <ul class="list-group list-group-flush" id="add_place" th:each="item : ${course}">
                     <a th:href="@{|/rental/detail/${item.id}|}">check the course</a>
                     <li class="list-group-item" th:text="${item.name1}">An item</li>
                     <li class="list-group-item" th:text="${item.name2}">A second item</li>
@@ -48,7 +55,7 @@
                     <li class="list-group-item" th:text="${item.name4}">A fourth item</li>
                     <li class="list-group-item" th:text="${item.name5}">And a fifth one</li>
                     <br>
-                  </ul>
+                  </ul> 
                 </div>
               </div>
             </div>
@@ -57,10 +64,12 @@
           
         </div>
         <div id="section">
-          <h5 style="color:red;">*장소선택은 5개까지만 가능합니다*</h5>
+          <h5 style="color:red;">*You can choose up to five locations.*</h5>
           
           <!-- //지도 API 사용 -->
-          <div id="map" style="width:100%; height:1100px;"></div>
+          <div id="map" style="width:100%; height:1100px;">
+            <button id="route" type="button" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-palette-2-base u-radius-20 u-btn-1" onclick="route();">route check</button>
+          </div>
           <div id="info" style="text-align:right;">
             <img src="/files/basic_pin.png" > <strong>: Rental_office</strong> 
             <img src='https://navermaps.github.io/maps.js.ncp/docs/img/example/ico_pin.jpg' style="width:20px; height:25px;"> <strong>: THE SIGHTS</strong> 
@@ -202,6 +211,72 @@
               anchor: new naver.maps.Point(12, 34)
           }); //클릭시 마커 이미지 변경
         }
+
+        // window.route = function(){
+        //   length = result.length;
+        //   //경로 표시
+        //   switch(length){
+        //     case 6 : 
+        //       var polylinePath = [
+        //         new naver.maps.LatLng(result[2], result[1]),
+        //         new naver.maps.LatLng(result[5], result[4])
+        //       ];
+        //       var polyline = new naver.maps.Polyline({
+        //             path: polylinePath,      //선 위치 변수배열
+        //             strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+        //             strokeOpacity: 0.8, //선 투명도 0 ~ 1
+        //             strokeWeight: 3,   //선 두께
+        //             map: map           //오버레이할 지도
+        //         });
+        //       break;
+        //     case 9 : 
+        //         var polylinePath = [
+        //         new naver.maps.LatLng(result[2], result[1]),
+        //         new naver.maps.LatLng(result[5], result[4]),
+        //         new naver.maps.LatLng(result[8], result[7])
+        //         ];
+        //         var polyline = new naver.maps.Polyline({
+        //             path: polylinePath,      //선 위치 변수배열
+        //             strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+        //             strokeOpacity: 0.8, //선 투명도 0 ~ 1
+        //             strokeWeight: 3,   //선 두께
+        //             map: map           //오버레이할 지도
+        //         });
+        //         break;
+        //     case 12 : 
+        //         var polylinePath = [
+        //         new naver.maps.LatLng(result[2], result[1]),
+        //         new naver.maps.LatLng(result[5], result[4]),
+        //         new naver.maps.LatLng(result[8], result[7]),
+        //         new naver.maps.LatLng(result[11], result[10])
+        //         ];
+        //         var polyline = new naver.maps.Polyline({
+        //             path: polylinePath,      //선 위치 변수배열
+        //             strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+        //             strokeOpacity: 0.8, //선 투명도 0 ~ 1
+        //             strokeWeight: 3,   //선 두께
+        //             map: map           //오버레이할 지도
+        //         });
+        //         break;
+        //     case 15 : 
+        //         var polylinePath = [
+        //         new naver.maps.LatLng(result[2], result[1]),
+        //         new naver.maps.LatLng(result[5], result[4]),
+        //         new naver.maps.LatLng(result[8], result[7]),
+        //         new naver.maps.LatLng(result[11], result[10]),
+        //         new naver.maps.LatLng(result[14], result[13])  
+        //         ];
+        //         console.log(polylinePath);
+
+        //         var polyline = new naver.maps.Polyline({
+        //             path: polylinePath,      //선 위치 변수배열
+        //             strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
+        //             strokeOpacity: 0.8, //선 투명도 0 ~ 1
+        //             strokeWeight: 3,   //선 두께
+        //             map: map           //오버레이할 지도
+        //         });
+        //    }
+        // };
 
         window.savedata = function(){
             console.log(result);
@@ -346,7 +421,7 @@
                     path: polylinePath,      //선 위치 변수배열
                     strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
                     strokeOpacity: 0.8, //선 투명도 0 ~ 1
-                    strokeWeight: 6,   //선 두께
+                    strokeWeight: 3,   //선 두께
                     map: map           //오버레이할 지도
                 });
               break;
@@ -360,7 +435,7 @@
                     path: polylinePath,      //선 위치 변수배열
                     strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
                     strokeOpacity: 0.8, //선 투명도 0 ~ 1
-                    strokeWeight: 6,   //선 두께
+                    strokeWeight: 3,   //선 두께
                     map: map           //오버레이할 지도
                 });
                 break;
@@ -375,7 +450,7 @@
                     path: polylinePath,      //선 위치 변수배열
                     strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
                     strokeOpacity: 0.8, //선 투명도 0 ~ 1
-                    strokeWeight: 6,   //선 두께
+                    strokeWeight: 3,   //선 두께
                     map: map           //오버레이할 지도
                 });
                 break;
@@ -393,7 +468,7 @@
                     path: polylinePath,      //선 위치 변수배열
                     strokeColor: '#FF0000', //선 색 빨강 #빨강,초록,파랑
                     strokeOpacity: 0.8, //선 투명도 0 ~ 1
-                    strokeWeight: 6,   //선 두께
+                    strokeWeight: 3,   //선 두께
                     map: map           //오버레이할 지도
                 });
            }

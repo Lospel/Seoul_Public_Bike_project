@@ -18,7 +18,8 @@ import com.example.demo.user.UserService;
 import jakarta.persistence.Id;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-
+// import org.springframework.web.bind.annotation.RequestMethod;
+// import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -26,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
+// @CrossOrigin(origins = "*", methods = RequestMethod.GET) 
 @RequestMapping("/rental")
 public class rentalController {
     private static final SiteUser SiteUser = null;
