@@ -25,8 +25,8 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	// runtimeOnly 'com.h2database:h2' // H2
-	implementation 'mysql:mysql-connector-java' // mysql
-	// implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0' // mariaDB
+	// implementation 'mysql:mysql-connector-java' // mysql
+	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0' // mariaDB
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
