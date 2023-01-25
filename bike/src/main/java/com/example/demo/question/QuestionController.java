@@ -189,7 +189,7 @@ public class QuestionController {
 		String newFileName = UUID.randomUUID() + ext;
 		String realPath = "C:/Users/Pictures/";
         String savePath = realPath + now + "/" + newFileName;
-        String uploadPath = "/Users/Pictures/" + now + "/" + newFileName;
+        // String uploadPath = "/Users/Pictures/" + now + "/" + newFileName;
 		File file = new File(savePath);
         if (!file.exists()) {
             try{
@@ -207,7 +207,7 @@ public class QuestionController {
         filesService.save(img);
 
         mav.addObject("uploaded", true);
-        mav.addObject("url", uploadPath);
+        mav.addObject("url", savePath);
         return mav;
     }
 
