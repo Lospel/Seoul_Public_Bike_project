@@ -7,6 +7,7 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,8 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.answer.AnswerForm;
+import com.example.demo.file.FilesService;
+import com.example.demo.file.Image;
 import com.example.demo.user.SiteUser;
 import com.example.demo.user.UserService;
 
@@ -34,9 +37,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-import com.example.demo.mycourse.courseRepository;
-import com.example.demo.public_bike_rental_office_yeongdeungpo_gu.rentalService;
-import com.example.demo.public_bike_rental_office_yeongdeungpo_gu.seoulService;
 
 @RequestMapping("/question")
 @RequiredArgsConstructor
@@ -179,6 +179,9 @@ public class QuestionController {
     @Value("${resource.handler}")
     private String resourceHandler;
 
+    @Autowired
+	FilesService filesService;
+    
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/create/upload")
     public ModelAndView imageUpload(MultipartHttpServletRequest request) throws Exception {
@@ -201,8 +204,15 @@ public class QuestionController {
             }        
         }
 		uploadFile.transferTo(file);
+        Image img = new Image();
+        img.setFilename(newFileName);
+        img.setFileOriName(originalFileName);
+        img.setFileurl(uploadPath);
+        // img.setData(uploadFile.getBytes());
+        filesService.save(img);
+
         mav.addObject("uploaded", true);
-        mav.addObject("url", uploadPath);
+        mav.addObject("url", img.getFileurl());
         return mav;
     }
 
