@@ -189,8 +189,7 @@ class MyUploadAdapter {
         const data = new FormData();
 
         data.set("key","a7876d9e576821376d84368db0398063");
-        data.append( 'upload', file );
-
+        data.append("image", file);
         this.xhr.send( data );
     }
 }
