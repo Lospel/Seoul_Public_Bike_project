@@ -27,7 +27,6 @@
             <label for="subject" class="form-label">Title</label>
             <input id="title" style="width: 80%; max-width: 800px; margin: 0 auto;" type="text" th:field="*{subject}" class="form-control">
         </div>
-
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
             <textarea id="editor" th:field="*{content}"></textarea>
@@ -62,8 +61,10 @@ class MyUploadAdapter {
     _initRequest() {
         const xhr = this.xhr = new XMLHttpRequest();
 
-        xhr.open( 'POST', '/question/create/upload', true );
-        xhr.responseType = 'json';
+        // xhr.open( 'POST', '/question/create/upload', true );
+        xhr.open( 'POST',"https://api.imgbb.com/1/upload", true );
+        // xhr.responseType = 'json';
+
     }
 
     _initListeners( resolve, reject, file ) {
@@ -97,9 +98,9 @@ class MyUploadAdapter {
 
     _sendRequest( file ) {
         const data = new FormData();
-
-        data.append( 'upload', file );
-
+        data.set("key","a7876d9e576821376d84368db0398063");
+        data.append("upload", file);
+        // console.log(data);
         this.xhr.send( data );
     }
 }
