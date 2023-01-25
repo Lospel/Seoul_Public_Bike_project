@@ -207,7 +207,7 @@ public class QuestionController {
         filesService.save(img);
 
         mav.addObject("uploaded", true);
-        mav.addObject("url", savePath);
+        mav.addObject("url", img.getFileurl());
         return mav;
     }
 
