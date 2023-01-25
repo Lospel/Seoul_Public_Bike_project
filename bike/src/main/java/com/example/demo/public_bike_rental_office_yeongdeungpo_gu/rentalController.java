@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
-// @CrossOrigin(origins = "*", methods = RequestMethod.GET) 
+// @CrossOrigin(origins = "https://naveropenapi.apigw.ntruss.com") 
 @RequestMapping("/rental")
 public class rentalController {
     private static final SiteUser SiteUser = null;
