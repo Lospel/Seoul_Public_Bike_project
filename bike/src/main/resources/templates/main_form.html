@@ -6,8 +6,7 @@
 <th:block th:replace="layout/fragments/head :: headFragment(title='Seoul Public Bicycle Ttareungyi')"></th:block>
 <th:block th:replace="layout/fragments/sidebar :: sidebarFragment(current='Seoul Public Bicycle Ttareungi')"></th:block>
 <th:block layout:fragment="content">
-    <section style="position:static;">
-        <div id="sec-abba"
+    <div id="sec-abba"
         style="background-color : #db545a; padding : 5px;color : black; height : 90px; padding-left: 47px;">
             <div style="float : left;">
                 <div class="weather_icon"></div>
@@ -31,7 +30,16 @@
                 <div class="city" style="font-size : 13pt"></div>
             </div>
         </div>
-    </section>
+        <!-- test -->
+        <!-- <div class="weather_icon"></div>
+        <div class="wind"></div>
+        <div class="cloud"></div>
+        <div class="temp_min"></div>
+        <div class="temp_max"></div>
+        <div class="humidity"></div>
+        <div class="current_temp"></div>
+        <div class="weather_description"></div>
+        <div class="city"></div> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/OpenWeather.js"></script>
     
