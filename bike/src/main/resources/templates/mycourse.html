@@ -203,7 +203,7 @@
 
           
           console.log(location);
-          
+          result = locations.reduce((acc, val) => [ ...acc, ...val ], []) // 이중배열 풀기
           // console.log(locations[0][0]);
           infowindow.close();
           marker.setIcon({
