@@ -146,8 +146,8 @@
       naver.maps.Event.addListener(marker, 'click', function(e){
         var contentString = [
         '<div class="test">',
-        '   <input type="button" id="savebtn" name="savebtn" class="btn btn-warning" value="장소추가" onclick="location_save();">',
-        '   <input type="button" id="removebtn" name="removebtn" class="btn btn-danger" value="장소삭제" onclick="location_remove();">',
+        '   <input type="button" id="savebtn" name="savebtn" class="btn btn-warning" value="Add" onclick="location_save();">',
+        '   <input type="button" id="removebtn" name="removebtn" class="btn btn-danger" value="Remove" onclick="location_remove();">',
         '</div>'
         ].join('');
         var infowindow = new naver.maps.InfoWindow({
