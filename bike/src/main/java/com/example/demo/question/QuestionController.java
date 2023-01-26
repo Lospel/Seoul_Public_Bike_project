@@ -179,8 +179,9 @@ public class QuestionController {
         LocalDate now = LocalDate.now();
         ModelAndView mav = new ModelAndView("jsonView");
         MultipartFile uploadFile = request.getFile("upload");
-        String originalFileName = uploadFile.getOriginalFilename();
-        String ext = originalFileName.substring(originalFileName.indexOf("."));
+        // String originalFileName = uploadFile.getOriginalFilename();
+        // String ext = originalFileName.substring(originalFileName.indexOf("."));
+        String ext = ".png";
 		String newFileName = UUID.randomUUID() + ext;
 		String realPath = "C:/Users/Pictures/";
         String savePath = realPath + now + "/" + newFileName;
