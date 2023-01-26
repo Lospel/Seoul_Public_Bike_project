@@ -45,7 +45,7 @@ public class UserController {
             userCreateForm.getPassword1());
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
-            bindingResult.reject("singupFailed","이미 등록된 사용자입니다.");
+            bindingResult.reject("singupFailed"," Already a registered user.");
             return "signup_form";
         } catch (Exception e) {
             e.printStackTrace();
