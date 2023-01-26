@@ -22,8 +22,8 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 public class SecurityConfig {
     private UserDetailsService userDetailsService;
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity https) throws Exception {
-        https.authorizeHttpRequests().requestMatchers(
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests().requestMatchers(
             new AntPathRequestMatcher("/**")
         ).permitAll().and().csrf().ignoringRequestMatchers(
             new AntPathRequestMatcher("/h2-console/**")
@@ -45,7 +45,7 @@ public class SecurityConfig {
             .userDetailsService(userDetailsService)
         .and().cors()
         .and().csrf().disable();
-        return https.build();
+        return http.build();
     }
 
     @Bean

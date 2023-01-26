@@ -54,7 +54,7 @@ public class AnswerController {
             return "answer_form";
         }
         else if (!answer.getAuthor().getUsername().equals(principal.getName())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"수정 권한이 없습니다.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"You do not have permission to modify.");
         }
         answerForm.setContent(answer.getContent());
         return "answer_form";
@@ -74,7 +74,7 @@ public class AnswerController {
                     answer.getQuestion().getId(), answer.getId());
             }
             else if (!answer.getAuthor().getUsername().equals(principal.getName())){
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"수정 권한이 없습니다.");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"You do not have permission to modify.");
             }
             this.answerService.modify(answer, answerForm.getContent());
             return String.format("redirect:/question/detail/%s#answer_%s", 
@@ -90,7 +90,7 @@ public class AnswerController {
             return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
         }
         else if (!answer.getAuthor().getUsername().equals(principal.getName())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"삭제 권한이 없습니다.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"You do not have permission to delete.");
         }
         this.answerService.delete(answer);
         return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());

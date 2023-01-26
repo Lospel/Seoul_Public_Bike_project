@@ -6,9 +6,6 @@ import java.nio.file.Paths;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,8 +23,6 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.answer.AnswerForm;
-import com.example.demo.file.FilesService;
-import com.example.demo.file.Image;
 import com.example.demo.user.SiteUser;
 import com.example.demo.user.UserService;
 
@@ -35,7 +30,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
-import javassist.bytecode.ByteArray;
 import lombok.RequiredArgsConstructor;
 
 
@@ -177,40 +171,34 @@ public class QuestionController {
         return String.format("redirect:/question/detail/%s", id);
     }
 
-    // @Autowired
-	// FilesService filesService;
+   
     
-    // @PreAuthorize("isAuthenticated()")
-    // @PostMapping("/create/upload")
-    // public ModelAndView imageUpload(MultipartHttpServletRequest request) throws Exception {
-    //     LocalDate now = LocalDate.now();
-    //     ModelAndView mav = new ModelAndView("jsonView");
-    //     MultipartFile uploadFile = request.getFile("upload");
-    //     String originalFileName = uploadFile.getOriginalFilename();
-    //     String ext = originalFileName.substring(originalFileName.indexOf("."));
-	// 	String newFileName = UUID.randomUUID() + ext;
-	// 	String realPath = "C:/Users/Pictures/";
-    //     String savePath = realPath + now + "/" + newFileName;
-    //     String uploadPath = "/Users/Pictures/" + now + "/" + newFileName;
-	// 	File file = new File(savePath);
-    //     if (!file.exists()) {
-    //         try{
-    //             Files.createDirectories(Paths.get(savePath));
-    //             } 
-    //             catch(Exception e){
-    //             e.getStackTrace();
-    //         }        
-    //     }
-	// 	uploadFile.transferTo(file);
-    //     // Image img = new Image();
-    //     // img.setFilename(newFileName);
-    //     // img.setFileOriName(originalFileName);
-    //     // img.setFileurl(savePath);
-    //     // filesService.save(img);
-
-    //     mav.addObject("uploaded", true);
-    //     mav.addObject("url", uploadPath);
-    //     return mav;
-    // }
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/create/upload")
+    public ModelAndView imageUpload(MultipartHttpServletRequest request) throws Exception {
+        LocalDate now = LocalDate.now();
+        ModelAndView mav = new ModelAndView("jsonView");
+        MultipartFile uploadFile = request.getFile("upload");
+        // String originalFileName = uploadFile.getOriginalFilename();
+        // String ext = originalFileName.substring(originalFileName.indexOf("."));
+        String ext = ".png";
+		String newFileName = UUID.randomUUID() + ext;
+		String realPath = "C:/Users/Pictures/";
+        String savePath = realPath + now + "/" + newFileName;
+        String uploadPath = "/Users/Pictures/" + now + "/" + newFileName;
+		File file = new File(savePath);
+        if (!file.exists()) {
+            try{
+                Files.createDirectories(Paths.get(savePath));
+                } 
+                catch(Exception e){
+                e.getStackTrace();
+            }        
+        }
+		uploadFile.transferTo(file);
+        mav.addObject("uploaded", true);
+        mav.addObject("url", uploadPath);
+        return mav;
+    }
 
 }
