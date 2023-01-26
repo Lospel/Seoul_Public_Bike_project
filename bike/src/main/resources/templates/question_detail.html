@@ -153,7 +153,6 @@ class MyUploadAdapter {
 
         xhr.open( 'POST', '/question/create/upload', true );
         xhr.responseType = 'json';
-        // xhr.open( 'POST',"https://api.imgbb.com/1/upload", true );
     }
 
     _initListeners( resolve, reject, file ) {
@@ -188,8 +187,6 @@ class MyUploadAdapter {
     _sendRequest( file ) {
         const data = new FormData();
 
-        // data.set("key","a7876d9e576821376d84368db0398063");
-        // data.append("image", file);
         data.append("upload", file);
         this.xhr.send( data );
     }
