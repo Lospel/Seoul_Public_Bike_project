@@ -40,18 +40,6 @@
       </section> 
         
           
-          <!-- 상단 검색창 -->
-          <!-- <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr; ">
-    
-            <div class="d-flex align-items-center" >
-              <form class="w-100 me-3" role="search">
-                <input type="text" id="keyword" name="keyword" th:value="${keyword}" class="form-control" placeholder="Rental_Office Search" aria-label="Search">
-              </form>
-              <input class="btn btn-outline-secondary btn-dark" type="submit" id="btn_search" value="Find" onclick="create_ptag();">
-            </div>
-            
-          </div> -->
-          
           <table class="table">
             <thead class="table-light">
                 <tr class="text-center">
@@ -85,8 +73,7 @@
     </form>
     <th:block th:replace="layout/fragments/script :: scriptFragment"></th:block>
 </th:block>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=75ojy30gbk "></script>
-
+<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5bv_f-dUTVo2dIeicLVVJ2ILIlPQL6Xo&language=en&callback=initMap"></script>
 <script  th:inline="javascript">
 	
   $(function() {
@@ -95,20 +82,18 @@
     
   });
   
-  
-  
   function initMap() { 
 
     
     let markers = new Array(); // 마커 정보를 담는 배열
     let infoWindows = new Array(); // 정보창을 담는 배열
-    
 
-    var map = new naver.maps.Map('map', {
-      center: new naver.maps.LatLng(37.52251816, 126.9072189),
+
+    var map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 37.52251816, lng: 126.9072189 },
       zoom: 15
     });
-    
+
     /*<![CDATA[*/
     /*[# th:each="tmp : ${offices}"]*/
 	  noti(/*[[${tmp.placename}]]*/, /*[[${tmp.latitude}]]*/, /*[[${tmp.longitude}]]*/); //여기 Argument expression expected. 에러 무시해도 됩니다.
@@ -116,10 +101,10 @@
 	  /*]]>*/
     
     function noti(numValue, latValue, lngValue){
-      var marker = new naver.maps.Marker({
+      var marker = new google.maps.Marker({
               map: map,
               title: numValue, // 지역구 이름 
-              position: new naver.maps.LatLng(latValue , lngValue) // 지역구의 위도 경도 넣기 
+              position: new google.maps.LatLng(latValue , lngValue) // 지역구의 위도 경도 넣기 
           });
       //정보창
       Title = marker.getTitle();
@@ -129,46 +114,44 @@
         '</div>'
           ].join('');
 
-      var infowindow = new naver.maps.InfoWindow({
+      var infowindow = new google.maps.InfoWindow({
           content: contentString
       });
 
-      naver.maps.Event.addListener(marker, 'click', function(e){
-      map.panTo(e.coord);
-      console.log(e.coord);
-      console.log(e.coord.x);
-      position = marker.getPosition(); //클릭이벤트시 해당 마커의 위치정보
-      console.log(position.x);
-      if (infowindow.getMap()) {
-              infowindow.close();
-          } else {
-              infowindow.open(map, marker);
-        }
-      
+      marker.addListener("click", () => {
+        infowindow.open({
+          anchor: marker,
+          map,
+        });
+        position = marker.getPosition();
+        console.log(Title, position.lat(), position.lng());
+        map.panTo(marker.getPosition());
+  
       });
+      
     }
-    /*<![CDATA[*/
+     /*<![CDATA[*/
     /*[# th:each="tmp : ${place}"]*/
 	  noti2(/*[[${tmp.placename}]]*/, /*[[${tmp.Latitude}]]*/, /*[[${tmp.Longitude}]]*/); //여기 Argument expression expected. 에러 무시해도 됩니다.
 	  /*[/]*/
 	  /*]]>*/
 
     function noti2(numValue,latValue, lngValue){
-      var position = new naver.maps.LatLng(latValue, lngValue);
+      var position = new google.maps.LatLng(latValue, lngValue);
       var markerOptions = {
-          position: position.destinationPoint(0, 20),
+          position: position,
           center: position,
           title: numValue,
           map: map,
           icon: {
             url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png',
-            size: new naver.maps.Size(50, 52),
-            origin: new naver.maps.Point(0, 0),
-            anchor: new naver.maps.Point(25, 26)
+            size: new google.maps.Size(50, 52),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(25, 26)
           }
       };
 
-      var marker = new naver.maps.Marker(markerOptions);
+      var marker = new google.maps.Marker(markerOptions);
       //정보창
       Title = marker.getTitle();
       var contentString = [
@@ -177,42 +160,22 @@
         '</div>'
           ].join('');
 
-      var infowindow = new naver.maps.InfoWindow({
+      var infowindow = new google.maps.InfoWindow({
           content: contentString
       });
-      naver.maps.Event.addListener(marker, 'click', function(e){
-        map.panTo(e.coord);
-        if (infowindow.getMap()) {
-                infowindow.close();
-            } else {
-                infowindow.open(map, marker);
-          }
-      
+      marker.addListener("click", () => {
+        infowindow.open({
+          anchor: marker,
+          map,
+        });
+        map.panTo(marker.getPosition());
       });
 
     }
 
-    
+   
   }
-  function create_ptag(){
-    let tagArea = document.getElementById('info');
-    let new_pTag = document.createElement('strong');
-    new_pTag.setAttribute('class', 'pTag');
-    /*<![CDATA[*/
-    /*[# th:each="tmp : ${place}"]*/
-    new_pTag.innerHTML = "("+/*[[${tmp.placename}]]*/+")";
-	  /*[/]*/
-	  /*]]>*/
-    
-    
-    
-    
-    
-    tagArea.appendChild(new_pTag);
-  }
-  
-
 	
-</script>
 
+</script>
 </html>
