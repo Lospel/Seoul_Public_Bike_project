@@ -30,7 +30,7 @@
               </form>
           <br>
           <div id="info">
-            <img src="/files/basic_pin.png" style="width:50px; height:55px;"> <strong>: Rental_office</strong> 
+            <img src="/images/bicyclemarker.png" style="width:50px; height:55px;"> <strong>: Rental_office</strong> 
             <img src='https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png'> <strong>: My Location</strong> 
             <br>
 
@@ -102,10 +102,18 @@
     
     function noti(numValue, latValue, lngValue){
       var marker = new google.maps.Marker({
-              map: map,
-              title: numValue, // 지역구 이름 
-              position: new google.maps.LatLng(latValue , lngValue) // 지역구의 위도 경도 넣기 
-          });
+	        map: map,
+	        title: numValue, // 지역구 이름 
+	        position: new google.maps.LatLng(latValue , lngValue), // 지역구의 위도 경도 넣기 
+          icon: {
+          url: '/images/bicyclemarker.png',
+          size: new google.maps.Size(40, 40),
+          scaledSize: new google.maps.Size(40, 40),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(12, 34)
+        }
+	    });
+      
       //정보창
       Title = marker.getTitle();
       var contentString = [

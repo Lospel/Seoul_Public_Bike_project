@@ -72,8 +72,8 @@
             <button id="route" type="button" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-palette-2-base u-radius-20 u-btn-1" onClick="window.open('https://map.naver.com/v5/directions/-/-/-/bike?c=15,0,0,0,dh')" >Naver map</button>
           </div>
           <div id="info" style="text-align:right;">
-            <img src="/files/basic_pin.png" > <strong>: Rental_office</strong> 
-            <img src='https://navermaps.github.io/maps.js.ncp/docs/img/example/ico_pin.jpg' style="width:20px; height:25px;"> <strong>: THE SIGHTS</strong> 
+            <img src="/images/bicyclemarker.png" style="width:30px; height:25px;" > <strong>: Rental_office</strong> 
+            <img src='/images/placemarker.png' style="width:30px; height:35px;"> <strong>: THE SIGHTS</strong> 
             <img src="https://navermaps.github.io/maps.js.ncp/docs/img/example/sally.png" style="width:20px;height:25px;"> <strong>: My Location</strong>
           </div>
         </div>
@@ -114,9 +114,9 @@
 	        title: place, // 지역구 이름 
 	        position: new google.maps.LatLng(latitude , longitude), // 지역구의 위도 경도 넣기 
           icon: {
-          url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/ico_pin.jpg',
-          size: new google.maps.Size(25, 34),
-          scaledSize: new google.maps.Size(25, 34),
+          url: '/images/placemarker.png',
+          size: new google.maps.Size(70, 50),
+          scaledSize: new google.maps.Size(70, 50),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(12, 34)
         }
@@ -171,9 +171,9 @@
           // console.log(locations[0][0]);
           infowindow.close();
           marker.setIcon({
-              url: 'https://navermaps.github.io/maps.js.ncp/docs/img/example/ico_pin.jpg',
-              size: new google.maps.Size(25, 34),
-              scaledSize: new google.maps.Size(25, 34),
+              url: '/images/placemarker.png',
+              size: new google.maps.Size(70, 50),
+              scaledSize: new google.maps.Size(70, 50),
               origin: new google.maps.Point(0, 0),
               anchor: new google.maps.Point(12, 34)
           }); //클릭시 마커 이미지 변경
@@ -374,9 +374,16 @@
 
     function noti(latValue, lngValue){
       var marker = new google.maps.Marker({
-              map: map,
-              position: new google.maps.LatLng(latValue , lngValue) // 지역구의 위도 경도 넣기 
-          });
+	        map: map,
+	        position: new google.maps.LatLng(latValue , lngValue), // 지역구의 위도 경도 넣기 
+          icon: {
+          url: '/images/bicyclemarker.png',
+          size: new google.maps.Size(40, 40),
+          scaledSize: new google.maps.Size(40, 40),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(12, 34)
+        }
+	    });
     
     }
 
